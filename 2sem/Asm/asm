@@ -1,0 +1,80 @@
+
+test.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 e4 f0             	and    $0xfffffff0,%esp
+   6:	83 ec 20             	sub    $0x20,%esp
+   9:	c7 44 24 1c 00 00 00 	movl   $0x0,0x1c(%esp)
+  10:	00 
+  11:	c7 44 24 04 e6 c0 00 	movl   $0xc0e6,0x4(%esp)
+  18:	00 
+  19:	c7 04 24 0e 00 00 00 	movl   $0xe,(%esp)
+  20:	e8 fc ff ff ff       	call   21 <main+0x21>
+  25:	b8 00 00 00 00       	mov    $0x0,%eax
+  2a:	c9                   	leave  
+  2b:	c3                   	ret    
+
+Disassembly of section .rodata:
+
+00000000 <.rodata>:
+   0:	70 69                	jo     6b <main+0x6b>
+   2:	75 70                	jne    74 <main+0x74>
+   4:	69 75 72 61 7a 72 61 	imul   $0x61727a61,0x72(%ebp),%esi
+   b:	61                   	popa   
+   c:	7a 00                	jp     e <.rodata+0xe>
+   e:	25                   	.byte 0x25
+   f:	64 0a 00             	or     %fs:(%eax),%al
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	00 47 43             	add    %al,0x43(%edi)
+   3:	43                   	inc    %ebx
+   4:	3a 20                	cmp    (%eax),%ah
+   6:	28 55 62             	sub    %dl,0x62(%ebp)
+   9:	75 6e                	jne    79 <main+0x79>
+   b:	74 75                	je     82 <main+0x82>
+   d:	2f                   	das    
+   e:	4c                   	dec    %esp
+   f:	69 6e 61 72 6f 20 34 	imul   $0x34206f72,0x61(%esi),%ebp
+  16:	2e                   	cs
+  17:	37                   	aaa    
+  18:	2e 33 2d 31 75 62 75 	xor    %cs:0x75627531,%ebp
+  1f:	6e                   	outsb  %ds:(%esi),(%dx)
+  20:	74 75                	je     97 <main+0x97>
+  22:	31 29                	xor    %ebp,(%ecx)
+  24:	20 34 2e             	and    %dh,(%esi,%ebp,1)
+  27:	37                   	aaa    
+  28:	2e 33 00             	xor    %cs:(%eax),%eax
+
+Disassembly of section .eh_frame:
+
+00000000 <.eh_frame>:
+   0:	14 00                	adc    $0x0,%al
+   2:	00 00                	add    %al,(%eax)
+   4:	00 00                	add    %al,(%eax)
+   6:	00 00                	add    %al,(%eax)
+   8:	01 7a 52             	add    %edi,0x52(%edx)
+   b:	00 01                	add    %al,(%ecx)
+   d:	7c 08                	jl     17 <.eh_frame+0x17>
+   f:	01 1b                	add    %ebx,(%ebx)
+  11:	0c 04                	or     $0x4,%al
+  13:	04 88                	add    $0x88,%al
+  15:	01 00                	add    %eax,(%eax)
+  17:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  1a:	00 00                	add    %al,(%eax)
+  1c:	1c 00                	sbb    $0x0,%al
+  1e:	00 00                	add    %al,(%eax)
+  20:	00 00                	add    %al,(%eax)
+  22:	00 00                	add    %al,(%eax)
+  24:	2c 00                	sub    $0x0,%al
+  26:	00 00                	add    %al,(%eax)
+  28:	00 41 0e             	add    %al,0xe(%ecx)
+  2b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  31:	68 c5 0c 04 04       	push   $0x4040cc5
+	...

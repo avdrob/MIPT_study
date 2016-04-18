@@ -1,0 +1,16 @@
+1000000
+
+# This file contains the time - value for the 
+# screenblanker. It must be the the first entry
+# into this file and mustn't exceed 2000000000.
+# Use a shorter value, if you have a small 
+# computer or if the blanker should be started 
+# earlier or a longer value for a fast machine
+# or if the blanker should be started later.
+# the default value is 1000000.
+# I got the following times in my tests:
+                                      
+486ax2/66 : 40-45 seconds -> 1 second = ca. 23300
+386dx40   : 2 minutes     -> 1 second = ca. 8333
+386sx20   : 4 minutes     -> 1 second = ca. 4166
+286????   : 5-6 minutes   -> 1 second = ca. 3000

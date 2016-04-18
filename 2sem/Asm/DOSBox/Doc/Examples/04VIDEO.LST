@@ -1,0 +1,64 @@
+Turbo Assembler	 Version 4.1	    02/23/14 14:39:36	    Page 1
+04video.asm
+
+
+
+      1				     ;-----------------------------------------------------------------------------
+      2				     ;		       Задание # 4. Файл 04video.asm
+      3				     ;	     То	же, что	3, но вывод в определенное место экрана	(х;у)
+      4				     ;		     (c) 2001 Copyleft	Andreev	Andrey
+      5				     ;-----------------------------------------------------------------------------
+      6	0000			     .model tiny
+      7
+      8				     ;-----------------------------------------------------------------------------
+      9
+     10	      =0002		     x = 2	     ;	х и у -	константы
+     11	      =0003		     y = 3
+     12
+     13				     ;-----------------------------------------------------------------------------
+     14	0000			     .code
+     15				     org 100h
+     16
+     17	0100  B8 4E21		     start:	     mov ax, 4e21h	       ; желтый	"!" на красном фоне
+     18	0103  BB B800				     mov bx, 0b800h
+     19	0106  8E C3				     mov es, bx
+     20	0108  BB 01E4				     mov bx, (y	* 80 + x) * 2  ; вычисление смещения
+     21	010B  26: 89 07				     mov es:[bx], ax	       ; вывод символа
+     22
+     23	010E  B8 4C00				     mov ax, 4c00h
+     24	0111  CD 21				     int 21h
+     25				     end start
+Turbo Assembler	 Version 4.1	    02/23/14 14:39:36	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "02/23/14"
+??FILENAME			  Text	 "04video "
+??TIME				  Text	 "14:39:36"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 04VIDEO
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+START				  Near	 DGROUP:0100
+X				  Number 0002
+Y				  Number 0003
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+  _TEXT				  16  0113 Word	  Public  CODE
+

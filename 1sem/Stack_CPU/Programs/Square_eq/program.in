@@ -1,0 +1,76 @@
+in ax
+in bx
+in cx
+push ax
+push 0
+je :1
+call :3
+push bx
+push -1
+mul
+push dx
+sqrt
+sub
+push ax
+push 2
+mul
+div
+push bx
+push -1
+mul
+push dx
+sqrt
+add
+push ax
+push 2
+mul
+div
+pop cx
+pop dx
+push cx
+push dx
+je :7
+push cx
+push dx
+out
+:7
+out
+halt
+:3
+push bx
+push 2
+pow
+push ax
+push cx
+push 4
+mul
+mul
+sub
+pop dx
+push dx
+push 0
+jb :6
+ret
+:1
+push bx
+push 0
+je :4
+push cx
+push -1
+mul
+push bx
+div
+out
+jmp :6
+:4
+push cx
+push 0
+je :5
+jmp :6
+:5
+push 0
+push 0
+out
+out
+:6
+halt

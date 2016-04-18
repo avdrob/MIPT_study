@@ -1,0 +1,136 @@
+ FileCase
+
+ Timestamp is 4f457464 (Thu Feb 23 00:04:04 2012)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000024H .idata$5                CODE
+ 0001:00000028 0000021eH .rdata                  CODE
+ 0001:00000250 00001fa5H .text                   CODE
+ 0001:000021f8 00000014H .idata$2                CODE
+ 0001:0000220c 00000014H .idata$3                CODE
+ 0001:00002220 00000024H .idata$4                CODE
+ 0001:00002244 00000074H .idata$6                CODE
+ 0001:000022c0 00000091H .edata                  CODE
+ 0002:00000000 00000000H .data                   DATA
+ 0002:00000000 00000594H .bss                    DATA
+ 0003:00000000 00000058H .rsrc$01                DATA
+ 0003:00000060 00000390H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __imp__lstrcpynW@12        10001000     kernel32:KERNEL32.dll
+ 0001:00000004       __imp__lstrlenW@4          10001004     kernel32:KERNEL32.dll
+ 0001:00000008       __imp__lstrcpyW@8          10001008     kernel32:KERNEL32.dll
+ 0001:0000000c       __imp__MoveFileW@8         1000100c     kernel32:KERNEL32.dll
+ 0001:00000010       __imp__lstrcatW@8          10001010     kernel32:KERNEL32.dll
+ 0001:00000014       __imp__HeapFree@12         10001014     kernel32:KERNEL32.dll
+ 0001:00000018       __imp__GetProcessHeap@0    10001018     kernel32:KERNEL32.dll
+ 0001:0000001c       __imp__HeapAlloc@12        1000101c     kernel32:KERNEL32.dll
+ 0001:00000020       \177KERNEL32_NULL_THUNK_DATA 10001020     kernel32:KERNEL32.dll
+ 0001:00000028       _MainGuid                  10001028     FileCase.obj
+ 0001:00000038       _MenuGuid                  10001038     FileCase.obj
+ 0001:00000048       _DialogGuid                10001048     FileCase.obj
+ 0001:00000058       ??_C@_15NKPPEEJO@?$AA?5?$AA_?$AA?$AA@ 10001058     FileCase.obj
+ 0001:00000060       ??_C@_13JOFGPIOO@?$AA?4?$AA?$AA@ 10001060     FileCase.obj
+ 0001:00000064       ??_C@_1DE@BGKMIKPD@?$AAE?$AAu?$AAg?$AAe?$AAn?$AAe?$AA?5?$AAR?$AAo?$AAs?$AAh?$AAa?$AAl?$AA?5?$AA?$CG?$AA?5?$AAF?$AAa?$AAr?$AA?5?$AAG?$AAr?$AAo?$AAu?$AAp?$AA?$AA@ 10001064     FileCase.obj
+ 0001:00000098       ??_C@_1FG@IEAGHMHI@?$AAF?$AAi?$AAl?$AAe?$AA?5?$AAn?$AAa?$AAm?$AAe?$AAs?$AA?5?$AAc?$AAa?$AAs?$AAe?$AA?5?$AAc?$AAo?$AAn?$AAv?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAF@ 10001098     FileCase.obj
+ 0001:000000f0       ??_C@_1BC@DGHEBOMK@?$AAF?$AAi?$AAl?$AAe?$AAC?$AAa?$AAs?$AAe?$AA?$AA@ 100010f0     FileCase.obj
+ 0001:00000104       ??_C@_1BA@CAKIGJMA@?$AAW?$AAo?$AAr?$AAd?$AAD?$AAi?$AAv?$AA?$AA@ 10001104     FileCase.obj
+ 0001:00000114       ??_C@_1BG@DFJACJCJ@?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAD?$AAi?$AAr?$AA?$AA@ 10001114     FileCase.obj
+ 0001:0000012c       ??_C@_1BM@BNELJCPP@?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAS?$AAu?$AAb?$AAD?$AAi?$AAr?$AA?$AA@ 1000112c     FileCase.obj
+ 0001:00000148       ??_C@_1BM@HMLICANP@?$AAS?$AAk?$AAi?$AAp?$AAM?$AAi?$AAx?$AAe?$AAd?$AAC?$AAa?$AAs?$AAe?$AA?$AA@ 10001148     FileCase.obj
+ 0001:00000164       ??_C@_1BO@IKHLKIJC@?$AAC?$AAo?$AAn?$AAv?$AAe?$AAr?$AAt?$AAM?$AAo?$AAd?$AAe?$AAE?$AAx?$AAt?$AA?$AA@ 10001164     FileCase.obj
+ 0001:00000184       ??_C@_1BI@NPBILFDJ@?$AAC?$AAo?$AAn?$AAv?$AAe?$AAr?$AAt?$AAM?$AAo?$AAd?$AAe?$AA?$AA@ 10001184     FileCase.obj
+ 0001:0000019c       ??_7?$DialogItemBinding@UFarDialogItem@@@@6B@ 1000119c     FileCase.obj
+ 0001:000001a4       ??_7?$DialogBuilderBase@UFarDialogItem@@@@6B@ 100011a4     FileCase.obj
+ 0001:000001c4       ??_7PluginEditFieldBinding@@6B@ 100011c4     FileCase.obj
+ 0001:000001cc       ??_7PluginDialogBuilder@@6B@ 100011cc     FileCase.obj
+ 0001:000001ec       ??_7PluginCheckBoxBinding@@6B@ 100011ec     FileCase.obj
+ 0001:000001f4       ??_7PluginRadioButtonBinding@@6B@ 100011f4     FileCase.obj
+ 0001:000001fc       ??_C@_15EFLNJKHH@?$AA?$CF?$AAu?$AA?$AA@ 100011fc     FileCase.obj
+ 0001:00000204       ??_7PluginIntEditFieldBinding@@6B@ 10001204     FileCase.obj
+ 0001:0000020c       ??_C@_11LOCGONAA@?$AA?$AA@ 1000120c     FileCase.obj
+ 0001:00000210       ??_C@_1CC@CKMDHNMO@?$AAF?$AAi?$AAl?$AAe?$AAC?$AAa?$AAs?$AAe?$AA_?$AAW?$AAo?$AAr?$AAd?$AAD?$AAi?$AAv?$AA?$AA@ 10001210     FileCase.obj
+ 0001:00000234       ??_C@_1BC@ENICKDH@?$AAC?$AAo?$AAn?$AAt?$AAe?$AAn?$AAt?$AAs?$AA?$AA@ 10001234     FileCase.obj
+ 0001:00000250       __alloca_probe             10001250     chkstk.obj
+ 0001:00000250       __chkstk                   10001250 f   chkstk.obj
+ 0001:00000280       ?GetLangString@PluginDialogBuilder@@MAEPB_WH@Z 10001280 f i FileCase.obj
+ 0001:000002a0       ?IsCaseMixed@@YIHPB_W@Z    100012a0 f   FileCase.obj
+ 0001:00000320       ?GetFullName@@YIPA_WPA_WPB_W1@Z 10001320 f   FileCase.obj
+ 0001:000003a0       ?CaseWord@@YIXPA_WH@Z      100013a0 f   FileCase.obj
+ 0001:00000440       ?DlgProc@@YGHPAXHH0@Z      10001440 f   FileCase.obj
+ 0001:00000480       ?ProcessName@@YIXPB_WK@Z   10001480 f   FileCase.obj
+ 0001:000006b0       _GetGlobalInfoW@4          100016b0 f   FileCase.obj
+ 0001:00000730       _SetStartupInfoW@4         10001730 f   FileCase.obj
+ 0001:00000970       _GetPluginInfoW@4          10001970 f   FileCase.obj
+ 0001:000009b0       ?SaveValue@?$DialogItemBinding@UFarDialogItem@@@@UAEXPAUFarDialogItem@@H@Z 100019b0 f i FileCase.obj
+ 0001:000009b0       ?InitDialogItem@?$DialogBuilderBase@UFarDialogItem@@@@MAEXPAUFarDialogItem@@PB_W@Z 100019b0 f i FileCase.obj
+ 0001:000009c0       ?TextWidth@?$DialogBuilderBase@UFarDialogItem@@@@MAEHABUFarDialogItem@@@Z 100019c0 f i FileCase.obj
+ 0001:000009d0       ?DoShowDialog@?$DialogBuilderBase@UFarDialogItem@@@@MAEHXZ 100019d0 f i FileCase.obj
+ 0001:000009e0       ?AddIntEditField@?$DialogBuilderBase@UFarDialogItem@@@@UAEPAUFarDialogItem@@PAHH@Z 100019e0 f i FileCase.obj
+ 0001:000009e0       ?CreateCheckBoxBinding@?$DialogBuilderBase@UFarDialogItem@@@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAHH@Z 100019e0 f i FileCase.obj
+ 0001:000009f0       ?GetLangString@?$DialogBuilderBase@UFarDialogItem@@@@MAEPB_WH@Z 100019f0 f i FileCase.obj
+ 0001:000009f0       ?CreateRadioButtonBinding@?$DialogBuilderBase@UFarDialogItem@@@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAH@Z 100019f0 f i FileCase.obj
+ 0001:00000a00       ??1?$DialogBuilderBase@UFarDialogItem@@@@MAE@XZ 10001a00 f i FileCase.obj
+ 0001:00000a50       ??_G?$DialogBuilderBase@UFarDialogItem@@@@MAEPAXI@Z 10001a50 f i FileCase.obj
+ 0001:00000a50       ??_E?$DialogBuilderBase@UFarDialogItem@@@@MAEPAXI@Z 10001a50 f i FileCase.obj
+ 0001:00000a70       ?ReallocDialogItems@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10001a70 f i FileCase.obj
+ 0001:00000b40       ?UpdateSecondColumnPosition@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10001b40 f i FileCase.obj
+ 0001:00000ba0       ?SaveValues@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10001ba0 f i FileCase.obj
+ 0001:00000bf0       ?MaxTextWidth@?$DialogBuilderBase@UFarDialogItem@@@@IAEHXZ 10001bf0 f i FileCase.obj
+ 0001:00000cb0       ?SaveValue@PluginEditFieldBinding@@UAEXPAUFarDialogItem@@H@Z 10001cb0 f i FileCase.obj
+ 0001:00000ce0       ?InitDialogItem@PluginDialogBuilder@@MAEXPAUFarDialogItem@@PB_W@Z 10001ce0 f i FileCase.obj
+ 0001:00000d00       ?TextWidth@PluginDialogBuilder@@MAEHABUFarDialogItem@@@Z 10001d00 f i FileCase.obj
+ 0001:00000d20       ?DoShowDialog@PluginDialogBuilder@@MAEHXZ 10001d20 f i FileCase.obj
+ 0001:00000d80       ?SaveValue@PluginCheckBoxBinding@@UAEXPAUFarDialogItem@@H@Z 10001d80 f i FileCase.obj
+ 0001:00000dc0       ?SaveValue@PluginRadioButtonBinding@@UAEXPAUFarDialogItem@@H@Z 10001dc0 f i FileCase.obj
+ 0001:00000df0       ??0PluginIntEditFieldBinding@@QAE@ABUPluginStartupInfo@@PAPAXHPAHH@Z 10001df0 f i FileCase.obj
+ 0001:00000e80       ?SaveValue@PluginIntEditFieldBinding@@UAEXPAUFarDialogItem@@H@Z 10001e80 f i FileCase.obj
+ 0001:00000eb0       ?CreateCheckBoxBinding@PluginDialogBuilder@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAHH@Z 10001eb0 f i FileCase.obj
+ 0001:00000f00       ?CreateRadioButtonBinding@PluginDialogBuilder@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAH@Z 10001f00 f i FileCase.obj
+ 0001:00000f50       ??_EPluginDialogBuilder@@UAEPAXI@Z 10001f50 f i FileCase.obj
+ 0001:00000f50       ??_GPluginDialogBuilder@@UAEPAXI@Z 10001f50 f i FileCase.obj
+ 0001:00000f90       ?AddBorder@?$DialogBuilderBase@UFarDialogItem@@@@IAEXPB_W@Z 10001f90 f i FileCase.obj
+ 0001:00000ff0       ?AddCheckbox@?$DialogBuilderBase@UFarDialogItem@@@@QAEPAUFarDialogItem@@HPAHH_N@Z 10001ff0 f i FileCase.obj
+ 0001:00001130       ?AddRadioButtons@?$DialogBuilderBase@UFarDialogItem@@@@QAEXPAHHQBH_N@Z 10002130 f i FileCase.obj
+ 0001:000012a0       ?AddButtonAfter@?$DialogBuilderBase@UFarDialogItem@@@@QAEPAUFarDialogItem@@PAU2@H@Z 100022a0 f i FileCase.obj
+ 0001:000013d0       ?EndColumns@?$DialogBuilderBase@UFarDialogItem@@@@QAEXXZ 100023d0 f i FileCase.obj
+ 0001:000014a0       ?AddOKCancel@?$DialogBuilderBase@UFarDialogItem@@@@QAEXHH_N@Z 100024a0 f i FileCase.obj
+ 0001:00001600       ?UpdateBorderSize@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10002600 f i FileCase.obj
+ 0001:00001680       ??_EPluginEditFieldBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_GPluginRadioButtonBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_EPluginRadioButtonBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_GPluginIntEditFieldBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_E?$DialogItemBinding@UFarDialogItem@@@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_EPluginCheckBoxBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_G?$DialogItemBinding@UFarDialogItem@@@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_EPluginIntEditFieldBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_GPluginCheckBoxBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:00001680       ??_GPluginEditFieldBinding@@UAEPAXI@Z 10002680 f i FileCase.obj
+ 0001:000016a0       ??0PluginDialogBuilder@@QAE@ABUPluginStartupInfo@@ABU_GUID@@1HPB_WP6GHPAXHH3@Z3@Z 100026a0 f i FileCase.obj
+ 0001:00001740       ?AddIntEditField@PluginDialogBuilder@@UAEPAUFarDialogItem@@PAHH@Z 10002740 f i FileCase.obj
+ 0001:00001810       ?AddEditField@PluginDialogBuilder@@QAEPAUFarDialogItem@@PA_WHHPB_W_N@Z 10002810 f i FileCase.obj
+ 0001:00001910       ?CaseConvertion@@YIXXZ     10002910 f   FileCase.obj
+ 0001:00002100       _OpenW@4                   10003100 f   FileCase.obj
+ 0001:00002110       _wcsrchr                   10003110 f   libCRT:strrchr.obj
+ 0001:00002140       ??_V@YAXPAX@Z              10003140 f   libCRT:delete_array.obj
+ 0001:00002150       ??3@YAXPAX@Z               10003150 f   libCRT:delete.obj
+ 0001:00002160       ??_U@YAPAXI@Z              10003160 f   libCRT:new_array.obj
+ 0001:00002170       _memset                    10003170 f   libCRT:memset.obj
+ 0001:000021b0       ??2@YAPAXI@Z               100031b0 f   libCRT:new.obj
+ 0001:000021c0       _free                      100031c0 f   libCRT:free.obj
+ 0001:000021e0       _malloc                    100031e0 f   libCRT:malloc.obj
+ 0001:000021f8       __IMPORT_DESCRIPTOR_KERNEL32 100031f8     kernel32:KERNEL32.dll
+ 0001:0000220c       __NULL_IMPORT_DESCRIPTOR   1000320c     kernel32:KERNEL32.dll
+ 0002:00000000       ?ResetButtonID@@3HA        10004000     FileCase.obj
+ 0002:00000004       ?WordDivEditID@@3HA        10004004     FileCase.obj
+ 0002:00000178       ?Opt@@3UOptions@@A         10004178     FileCase.obj
+
+ entry point at        0000:00000000
+
+ Static symbols
+

@@ -1,0 +1,257 @@
+/GetFreeResources
+*The GetFreeResources function retrieves information
+*about the free system resources.
+'Platforms:
+'Win95
+/AbortDoc
+*The AbortDoc function stops the current print job and erases
+*everything drawn since the last call to the StartDoc function.
+*This function replaces the ABORTDOC printer escape.
+*
+*AbortDoc (hDC as Long) As Long
+*
+*Parameters
+*hDC: Identifies the device context for the print job.
+*
+*Return Values:
+*If the function succeeds, the return value is greater than zero.
+*If the function fails, the return value is SP_ERROR.
+'Platforms:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/Sleep
+*The Sleep function suspends the execution of the current thread
+*for a specified interval.
+*
+*Sleep (dwMilliseconds As Long)
+*
+*Parameters:
+*Specifies the time, in milliseconds, for which to suspend
+*execution. A value of zero causes the thread to relinquish
+*the remainder of its time slice to any other thread of equal
+*priority that is ready to run. If there are no other threads
+*of equal priority ready to run, the function returns
+*immediately, and the thread continues execution. A value of
+*INFINITE causes an infinite delay.
+'Platforms:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AbortPath
+*The AbortPath function closes and discards any paths in
+*the specified device context. 
+*
+*AbortPath (hdc As Long) As Long
+*
+*Parameters:
+*hdc: Identifies the device context from which a path will be discarded.
+*
+*Return Values:
+*If the function succeeds, the return value is nonzero.
+*If the function fails, the return value is zero.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AbortPrinter
+*The AbortPrinter function deletes a printer's spool file if
+*the printer is configured for spooling.
+*
+*AbortPrinter (hPrinter As Long) As Long
+*
+*Parameters:
+*hPrinter: Identifies the printer from which the spool
+*file is deleted.
+*
+*Return Values:
+*If the function succeeds, the return value is nonzero.
+*If the function fails, the return value is zero.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AbortSystemShutdown
+*The AbortSystemShutdown function stops a system shutdown
+*started by using the InitiateSystemShutdown function.
+*
+*AbortSystemShutdown (lpMachineName As String) As Long
+*
+*Parameters:
+*lpMachineName: Computername
+*
+*Return Values:
+*If the function succeeds, the return value is nonzero.
+*If the function fails, the return value is zero.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AccessCheck
+*The AccessCheck function is used by a server application to check
+*a client's access to an object against the access control associated
+*with the object.
+'Platforms:
+'WinNT, Windows 2000
+/AccessCheckAndAuditAlarm
+*The AccessCheckAndAuditAlarm function performs an access validation
+*and generates corresponding audit messages. An application can also
+*use this function to determine whether necessary privileges are held
+*by a client process. This function is generally used by a server
+*application impersonating a client process. Alarms are not supported
+*in the current version of Windows NT. 
+'Platforms:
+'WinNT, Windows 2000
+/ActivateKeyboardLayout
+*The implementations of ActivateKeyboardLayout in Windows 95 and
+*Windows NT are substantially different.
+*
+*Windows 95:
+*The ActivateKeyboardLayout function sets the input language for the
+*current thread. This function accepts a keyboard layout handle that
+*identifies a locale as well as the physical layout of the keyboard.
+*
+*Windows NT:
+*The ActivateKeyboardLayout function activates a different keyboard
+*layout and sets the active keyboard layout for the entire system
+*rather than the calling thread.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddAtom
+*The AddAtom function adds a character string to the
+*local atom table and returns a unique value (an atom)
+*identifying the string.
+*
+*AddAtom (lpString As String) As Integer
+*
+*Parameters:
+*lpString: String to add
+*The string can have a maximum size of 255 bytes.
+*
+*Return Values:
+*If the function succeeds, the return value is the newly created atom.
+*If the function fails, the return value is zero.
+'Platforms:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddAce
+*The AddAce function adds one or more ACEs to a specified ACL.
+*
+*Return Values:
+*If the function succeeds, the return value is nonzero.
+*If the function fails, the return value is zero.
+'Platforms:
+'WinNT, Windows 2000
+/AddMonitor
+*The AddMonitor function installs a local printer monitor and links the
+*configuration, data, and monitor files. Future releases of Windows NT
+*may allow remote installation of printer monitors.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddPort
+*The AddPort function adds the name of a port to the list of supported
+*ports. The AddPort function is exported by the print monitor.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddPrinter
+*The AddPrinter function adds a printer to the list of supported
+*printers for a specified server.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddPrinterConnection
+*The AddPrinterConnection function adds a connection to the specified
+*printer for the current user.
+'Platforms:
+'WinNT, Windows 2000
+/AddPrinterDriver
+*The AddPrinterDriver function installs a local or remote printer driver
+*and links the configuration, data, and driver files.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddPrintProcessor
+*The AddPrintProcessor function installs a print processor on the
+*specified server and adds the print-processor name to an internal
+*list of supported print processors.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AddPrintProvidor
+*The AddPrintProvidor function installs a local printer provider and
+*links the configuration, data, and provider files. Future releases of
+*Windows may allow remote installation of printer providers.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/AdjustTokenGroups
+*The AdjustTokenGroups function adjusts groups in the specified
+*access token. TOKEN_ADJUST_GROUPS access is required
+*to enable or disable groups in an access token.
+'Platforms:
+'WinNT, Windows 2000
+/AdjustTokenPrivileges
+*The AdjustTokenPrivileges function enables or disables privileges
+*in the specified access token. Enabling or disabling privileges
+*in an access token requires TOKEN_ADJUST_PRIVILEGES access.
+'Platforms:
+'WinNT, Windows 2000
+/AdjustWindowRect
+*The AdjustWindowRect function calculates the required size of the
+*window rectangle based on the desired client-rectangle size. The
+*window rectangle can then be passed to the CreateWindowEx
+*function to create a window whose client area is the desired size.
+'Platformen:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/ZeroMemory
+*The ZeroMemory function fills a block of memory with zeros.
+*
+*ZeroMemory (dest As Any, numBytes As Long)
+*
+*Parameters:
+*dest: block of memory to fill with zeros.
+*numBytes: Specifies the size, in bytes, of the block of
+*memory to fill with zeros.
+'Platforms:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/ZwQuerySystemInformation
+'Platforms:
+'WinNT, Windows 2000
+/WritePrivateProfileString
+*The WritePrivateProfileString function copies a string into the
+*specified section of the specified initialization file.
+'Platforms:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/WritePrinter
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/WriteFileEx
+*The WriteFileEx function writes data to a file. It is designed
+*solely for asynchronous operation, unlike WriteFile, which is
+*designed for both synchronous and asynchronous operation.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/EnumDisplaySettings
+*The EnumDisplaySettings function obtains information about one
+*of a display device's graphics modes. You can obtain information
+*for all of a display device's graphics modes by making a series
+*of calls to this function.
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/ChangeDisplaySettings
+*The ChangeDisplaySettings function changes the display settings to
+*the specified graphics mode. 
+'Platforms:
+'Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000
+/SYSTEMTIME;
+*The SYSTEMTIME structure represents a date and time using
+*individual members for the month, day, year, weekday, hour,
+*minute, second, and millisecond.
+'Platforms:
+'Win32s, Windows 95, Windows 98, Windows Me
+'WinNT, Windows 2000 

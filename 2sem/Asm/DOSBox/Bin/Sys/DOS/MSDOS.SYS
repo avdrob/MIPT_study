@@ -1,0 +1,12 @@
+[Paths]
+WinDir=C:\Progra~1.etc\Sys\Dos
+WinBootDir=C:\Progra~1.etc\Sys\Dos
+HostWinBootDrv=C
+
+[Options]
+BootMulti=1
+Logo=0
+BootDelay=0
+BootGUI=0
+DoubleBuffer=1
+AutoScan=0

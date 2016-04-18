@@ -1,0 +1,187 @@
+
+     TASMED distribution sites (BBS)
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         If  you  can place TASMED to your BBS or FTP/HTTP server to permit
+     everyone  to  take it - send me a full information about your site and
+     I'll include you to the list below.
+
+      Owner      Andrew A. Kovalyov (Anklab)
+       Location   Tyumen/Russia
+       BBS name   "Green Spirit"
+       Fidonet    2:5077/37
+       Phone      (3452)-225014
+       Work time  21:00-04:00 MSK
+       Modem      USR Sportster 33.6
+       Freq       allowed (Alias: TASMED)
+       Comments   TASMED location is filearea UTIL
+
+      Owner      Kostya Zalyan (bAmBi)
+       Location   Kemerovo/Russia
+       BBS name   "cRaZy House BBS"
+       Fidonet    2:5001/15.17 2:5001/17.18
+       Phone      +384-2-213450
+       Work time  23:00-07:00 (Local)
+
+      Owner      Jan Zagorskih
+       Location   Novosibirsk/Russia
+       BBS name   "The Wall BBS"
+       Fidonet    2:5000/93.37
+       Phone      +383-2-320-129
+       Work time  00:00-07:00 (Local)
+       Freq       allowed (Alias: TASMED)
+
+      Owner      Oleg Nicolajchuk
+       Location   Kishinau/Moldova
+       BBS name   "GLORIA" (mail only)
+       Fidonet    2:469/48
+       Phone      +373-2-240505
+       Work time  wd 15:00-9:00 MSK / we 24h
+       Modem      USRobotics 14400
+
+      Location   Nizhny Novgorod/Russia
+       Phones     386154, 313896, 313432
+       Modems     Zyxel (14400), Multitech (28800)
+       Work time  after 18:00 (Local)
+       Comments   Placed in hidden areas 12 and 13. Login: guest, password:
+                  none. Time available for download: 15 min.
+
+      Owner      Dmitry Liman
+       Location   Kharkov/Ukraina
+       BBS name   "Maverick BBS"
+       Fidonet    2:461/79.55
+       Phone      +380-572-333418
+       Work time  23:00-07:00 (Local)
+       Modem      ZyXEL U-1496E (2400-16800)
+
+      Owner      Denis Salov
+       Location   Ufa/Bashkorotstan/Russia
+       BBS name   "Giacint BBS"
+       Fidonet    2:5011/42
+       E-mail     giacint@denis.bashkiria.su
+       Phone      (3472) 386056
+       Work time  22:00-07:00 MSK everyday
+       Freq       allowed (Alias: TASMED)
+
+      Owner      Eugeny Kholinov
+       Location   Rybinsk/Russia
+       BBS name   "Virtual Hacker BBS"
+       Fidonet    2:5028/5
+       Phone      (0855) 215041
+       Work time  wd 17:00-8:00 (Local) / we CM
+
+      Owner      Anton Medvedev
+       Location   Ulan-Ude/Russia
+       BBS name   "-=Power BBS=-"
+       Fidonet    2:5008/11
+       Phone      7-30122-46594
+       Work time  19:00-07:00 (Local)
+       Modem      GVC 14400
+
+      Owner      Alexei Medvedev
+       Location   Moscow/Russia
+       Fidonet    2:5020/924
+
+      Owner      Konstantin Boldyshev
+       Location   Kazan/Russia
+       BBS name   "$prite"
+       Fidonet    2:5049/33.10 2:5049/42.2
+       E-mail     konst@ipian.ksu.ras.ru
+       Work time  22:00-08:00 (Local)
+       Phone      7-8432-36-7522
+       Modem      MaxTech 14400
+
+      Owner      Denis Kiselyov
+       Location   Cheboksary/Russia
+       BBS name   "Port Royal"
+       Fidonet    2:5066/49
+       E-mail     konst@ipian.ksu.ras.ru
+       Work time  22:30-6:30 (Local)
+       Phone      7-(8352)-570839
+
+      Owner      Kirill Kutejnikov (KrK //UCL)
+       Location   St.Petersburg/Russia
+       BBS name   "Spree Station" (Freq & Hold only)
+       Fidonet    2:5030/329.5
+       Phone      +7-812-557-9475
+       Work time  03:00-06:00 MSK
+       Modem      Hayes Accura 14400
+
+      Owner      Jean-Marc Gourier (Maniac)
+       Location   Kazan/Russia
+       BBS name   "Pacific BBS"
+       Fidonet    2:5049/44 2:5049/32.34
+       Phone      +843-2-561547
+       Work time  23:00-8:00
+       Modem      USR Sport 14.4k
+
+      Owner      Vasily Shagalov (Cyber Warlock)
+       Location   Moscow/Russia
+       BBS name   "Fantasy Empire"
+       Fidonet    2:5020/1042.99
+       Phone      +7(095)9470768
+       Work time  00:00-07:00
+       Modem      USRobotics 14400
+
+      Owner      Alexander Demidenko (CodeGlider)
+       Location   Tobolsk/Russia
+       BBS name   "LastRover BBS"
+       Fidonet    2:5077/22.10
+       Phone      (34511)-57816
+       Work time  CM, exclude 11:00-13:00 MSK
+       Modem      USRobotics Courier V.Evr 33600
+       Comments   Main owner: Sergey Golod (2:5077/22)
+
+      Owner      Alexander Govyazin
+       Location   Rubtsovsk/Altai/Russia
+       BBS name   "Black Panther"
+       Fidonet    2:5002/37.37
+       Phones     (38557) 38153, 38154
+       Modems     USRobotics 14400
+       Work time  15:00-5:00 MSK
+       Comments   Login name: Crack Server, password: AGro, download limit:
+                  10 MB, TASMED placed in area 31, file name: TASMED.RAR
+
+      Owner      Pavel Chuvanov
+       Location   Moscow/Russia
+       BBS name   "CHP BBS"
+       Fidonet    2:5020/1174.4 2:5020/904.22
+       Phone      095-488-2288
+       Work time  00:30-06:00
+       Modem      USRobotics Curier v. Evr.
+
+      Owner      Alex Kislenko (Sp0t //UCL)
+       Location   St.Petersburg/Russia
+       BBS name   "Sp0t Cracksite" (Freq/Hold Only)
+       Fidonet    2:5030/664
+       Phone      +7-812-599-3877
+       Work time  00:30-08:00 MSK
+       Modem      USR Sportster 14400
+       Freq       Allowed (Alias: TASMED)
+
+      Owner      Denis Martynkin (CrazyDan)
+       Location   Kursk/Russia
+       BBS name   "Crazyhouse Crackstation"
+       Fidonet    2:5035/5.27
+       Work time  23:00-06:00 All week
+       Modem      USR Sport14400
+       Freq       allowed (Alias: TASMED)
+
+      Owner      Denis Vega (Radiant)
+       Location   Rybinsk/Russia
+       BBS name   "Alchemist Lab BBS"
+       Fidonet    2:5028/10.9
+       Phone      (0855) 267-16-7
+       Work time  20:00-00:00 Work days, 15:00-20:00 Week end
+       Modem      USRobotics 14400
+
+      Owner      Andrey Vorobyov (Sp0Raw)
+       Location   St.Petersburg/Russia
+       BBS name   "Remote Access Network Station"
+       Fidonet    2:5030/731.409
+       Phone      +7-812-301-6174
+       Work time  00:00-10:00 MSK
+       Modem      US Robotics Sportster 33600 Vi Flash (X2)
+       Freq       allowed (Alias: TASMED)
+       Comments   Direct download distro
+
+     06-03-99  Eugene Nonko aka CodeMaster

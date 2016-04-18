@@ -1,0 +1,145 @@
+	Этот файл определяет макросы,  которые Вы можете создавать и
+использовать в программе  Turbo Shell. Размер этого  файла не должен
+превышать 64 Kb. Макросы описывыются следущим образом:
+	Название  макроса пишеться  в  квадратных  скобках с  начала
+строки  [...]  .  После  закрывающей скобки  может  быть  слово  для
+быстрого вызова. Слово - любая  последовательность букв и цифр, если
+в редакторе  Turbo Shell ввести  эти символы и нажать  Ctrl-Space, в
+редактируемый  файл  будет  вставлено тело  макроса.  Телом  макроса
+являются   все  символы,   начинающиеся   со   следующей  строки   и
+продолжается  до   следующего  описания  имени   макроса.  Допустимо
+использовать до 10 параметров в теле макроса %1..%0, если необходимо
+поместить  в  тело  макроса  символ процента,  следует  указать  два
+символа - %%. Макрос %_  указывает положение курсора. Размер макроса
+ограничен только размером этого файла  и наличием свободного места в
+редактируемом файле.
+
+[macro]
+%1		macro
+		%_
+%1		endm
+[struc]
+%1		struc
+		%_
+%1		ends
+[label byte]
+%1		label	byte
+		db	%_
+		db	0
+[label word]
+%1		label	word
+		db	%_
+		db	0
+[push/pop reg]
+		push	%1
+		mov	%1,%_
+		
+		pop	%1
+[void %1( %2 )]
+void
+%1(%2)
+{
+ %_
+}
+[int %1( %2 )]
+int
+%1(%2)
+{
+ %_
+}
+[int %1(void)]
+int
+%1()
+{
+ %_
+}
+[for C]
+for(%1=0; %1<%2; %1++)
+ {
+  %_
+ }
+[switch + case]
+switch(%1)
+ {
+  case %_:
+	
+  default:
+	%2
+ }
+[procedure pascal]
+procedure %1(%2);
+var
+ %3;
+begin
+ %_
+end;
+[function pascal :integer]
+function  %1(%2) :integer;
+var
+ %3;
+begin
+ %_
+ result := 
+end;
+[for (pascal)]
+for %1 := 1 to %2 do
+ begin
+  %_
+ end;
+[case ? of (pascal)]
+case %1 of
+ %_:
+ else
+ 
+end;
+[tiny program]mt
+		.model	tiny
+		.code
+		org	100h
+start:
+		%_
+		ret
+
+		.data
+
+		end	start
+[small program]ms
+		.model	small
+		.code
+start:
+		%_
+		mov	ah,4ch
+		int	21h
+
+		.data
+
+		.stack	200h
+
+		end	start
+[WndProc(hwnd, Msg, wParam, lParam)]wnd
+void
+WndProc(HWND hwnd, int Msg, WPARAM wParam, LPARAM lParam)
+{
+	%_
+}
+[#include <.h>]h
+#include <%_.h>
+[#define]d
+#define %_
+[!ifdef/!else/!endif]iee
+!ifdef  %_
+
+!else
+	
+!endif
+[#ifdef/#else/#endif]ie
+#ifdef  %_
+
+#else
+	
+#endif
+[#ifndef/#define/#endif]in
+#ifndef	%_
+#define
+	
+#endif

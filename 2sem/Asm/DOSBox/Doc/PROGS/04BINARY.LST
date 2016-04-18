@@ -1,0 +1,72 @@
+Turbo Assembler	 Version 4.1	    03/09/14 13:04:07	    Page 1
+04binary.asm
+
+
+
+      1	0000				     .model tiny
+      2	0000				     .code
+      3					     org 100h
+      4
+      5	0100  BB 0004		     start:  mov bx, 4
+      6	0103  B4 02			     mov ah, 02h
+      7	0105  B1 10			     mov cl, 10h
+      8	0107  B5 01			     mov ch, 1h
+      9
+     10	0109  E8 000A		     getw:   call getc
+     11	010C  CD 21			     int 21h
+     12	010E  3A E9			     cmp ch, cl
+     13	0110  74 19			     je	stop
+     14	0112  FE C5			     inc ch
+     15	0114  EB F3			     jmp getw
+     16
+     17	0116  8B FB		     getc:   mov di, bx
+     18
+     19	0118  8A D1			     mov dl, cl
+     20	011A  2A D5			     sub dl, ch
+     21	011C  86 CA			     xchg cl, dl
+     22	011E  D3 EF			     shr di, cl
+     23	0120  86 CA			     xchg cl, dl
+     24	0122  83 E7 01			     and di, 0001h
+     25	0125  83 C7 30			     add di, 30h
+     26	0128  8B D7			     mov dx, di
+     27	012A  C3		     ret
+     28
+     29	012B  B8 4C00		     stop:   mov ax, 4c00h
+     30	012E  CD 21			     int 21h
+     31
+     32				     end     start
+Turbo Assembler	 Version 4.1	    03/09/14 13:04:07	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/09/14"
+??FILENAME			  Text	 "04binary"
+??TIME				  Text	 "13:04:07"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 04BINARY
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+GETC				  Near	 DGROUP:0116
+GETW				  Near	 DGROUP:0109
+START				  Near	 DGROUP:0100
+STOP				  Near	 DGROUP:012B
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+  _TEXT				  16  0130 Word	  Public  CODE
+

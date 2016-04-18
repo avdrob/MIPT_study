@@ -1,0 +1,12 @@
+zip: @rar.exe !.!
+arj: @rar.exe !.!
+a0?: @rar.exe !.!
+a1?: @rar.exe !.!
+rar: @rar.exe !.!
+r0?: @rar.exe !.!
+r1?: @rar.exe !.!
+
+exe: @qview !.!
+com: @qview !.!
+
+*:   @vcview.exe

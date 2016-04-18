@@ -1,0 +1,119 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(015)
+#27Font\(004,005)
+Load & Save
+#27Line\(120,068,390,068)
+#27Line\(120,070,390,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(134)
+#27Y\(110)
+LOAD offers you the possibility to
+ read a sprite from harddisc into
+the Sprite Generator to make your
+ changes. You are not limited to
+ the original size of the sprite.
+Sprite Generator works with a pic-
+ ture that uses a size of 320x200
+ and 256 colors. If your sprite is
+    smaller, it is centered in the
+middle of the screen.
+If the filename does not exist,
+the program asks, if it should
+create a new sprite. Press Y/y
+to do this or N/n to abort.
+#27screen_on\
+#27Stop\
+*
+* 2. Teil, Save
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(015)
+#27Font\(004,005)
+Load & Save
+#27Line\(120,068,390,068)
+#27Line\(120,070,390,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(134)
+#27Y\(110)
+SAVE is one of the functions that
+normally needn't be explained. But
+this SAVE has one special feature.
+Working with the Sprite Generator
+means, that you are using a sprite
+  of the size 320 x 200 pixel as
+mentioned before. Often you don't
+  want to save the whole sprite.
+    With the rectangle, you have
+the possibility to mark an area of
+  the current picture. You can
+  change the size of the rectangle
+#27X\(134)
+pressing the cursorkeys LEFT, RIGHT,
+ and the keys PgUp and PgDn. They
+ can be combined with the CONTROL
+key. To position the rectangle, 
+ use the keys F1 to F4. ESC 
+ cancels your action, and you come 
+ back to the main screen. RETURN 
+saves the screen to the selected 
+filename onto your harddisc.
+#27Textcolor\(004)
+#27Y\(380)
+ATTENTION:
+An existing file will be deleted !
+#27Textcolor\(000)
+#27screen_on\
+#27Stop\
+****************
+* The PCX part *
+****************
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(015)
+#27Font\(004,005)
+Load & Save
+#27Line\(120,068,390,068)
+#27Line\(120,070,390,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(120)
+#27Y\(110)
+Additionally you have the possibili-
+  ty to import or export a PCX-file,
+  that can be used in other graphics
+programs. But there are a view things,
+you have to pay attention for.
+Allthough you can load every PCX-file
+  up to a size of 320x200 with 256
+  colors, you only can save the whole
+     sprite as PCX.
+   If you import a picture, its color
+   palette is not saved as PAL-file,
+ so it isn't possible do use CTRL+F10.
+   If you would like to do this, use
+        "EDIT-F7-Save as Pal".
+#27Textcolor\(000)
+#27screen_on\
+#27EndOfFile\

@@ -1,0 +1,51 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(200)
+#27Y\(015)
+#27Font\(004,005)
+Animate
+#27Line\(195,068,340,068)
+#27Line\(195,070,340,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(120)
+#27Y\(080)
+A sprite is often seen as one picture
+#27X\(130)
+of an animation. I wanted to give
+#27X\(124)
+this aspect its room in my program
+too. So I created the topic ANIMATE
+#27X\(120)
+with which you can make a short slide-
+#27X\(124)
+show. If you use sprites, of the same
+ size, the same palette and that fit
+together as a film, you will be able,
+ to make a short animation with them.
+  There are options, with which you
+   have the possibility to influence
+      your movie. First of all, you
+   have to fill the memory with the
+  sprites. Note that you can crash
+the program, if you load wrong files!
+Then you select a color palette. It 
+is not possible to have more than one 
+ palette! If your animation should 
+restart, after the last pictures 
+was shown, press Y when you will be  
+asked you, if you wish to have a loop. 
+The DELAY value is the time between 
+two pictures in 0.1 secounds.
+
+#27Textcolor\(004)
+Examples: Roulette 1-6 in your direc-
+          tory .\examples\animate
+#27Textcolor\(001)
+#27screen_on\
+#27EndOfFile\

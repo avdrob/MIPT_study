@@ -1,0 +1,42 @@
+
+     What is purpose of macros?
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Macros  were  added  to  TASMED  to  make programming with it more
+     convinient and faster.
+
+     How can I use macros?
+     ~~~~~~~~~~~~~~~~~~~~~
+         Press  Ctrl+LShift  for  macros  group 1 or Ctrl+RShift for macros
+     group  2,  then  release  it  and press macro char. For example, if in
+     macro group 1 'M' is customized to macro "[start]macro", then when you
+     press  Ctrl+LShift,  release  it  and  press  M, you will see the word
+     "macro"  typed  from the start of the line. You can also use Alt+Shift
+     instead  of  Ctrl+Shift  to avoid conflicts. Setup it in "Preferences"
+     dialog box.
+
+     Control sequences in macro definition
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     B backspace     blockleft     blockright
+     C comment       copyblock
+     D delchar       delend        delline       delstart      delword
+       down          duplicate
+     E end           endselect
+     G gotobookmark0 gotobookmark1 gotobookmark2 gotobookmark3 gotobookmark4
+       gotobookmark5 gotobookmark6 gotobookmark7 gotobookmark8 gotobookmark9
+     L left          lineselect
+     M moveblock
+     P pagedown      pageend       pagestart     pageup
+     R right
+     S selectall     setbookmark0  setbookmark1  setbookmark2  setbookmark3
+       setbookmark4  setbookmark5  setbookmark6  setbookmark7  setbookmark8
+       setbookmark9  start         startselect
+     T textend       textstart
+     U uncomment     up
+     W wordleft      wordright
+
+         All keywords above must be used in macro definition placed between
+     two  square  brackets.  Place '[[' instead of '['. To insert immediate
+     char  code,  place it's code in square brackets (for example: [1bh] or
+     [27] to insert Esc char).
+
+     06-03-99  Eugene Nonko aka CodeMaster

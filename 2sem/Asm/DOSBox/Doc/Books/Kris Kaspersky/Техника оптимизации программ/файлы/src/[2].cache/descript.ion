@@ -1,0 +1,29 @@
+cache.size.make.bat CALL clock.make -release %1 cache.size.c
+cache.size.c Пример, демонстрирующий зависимость времени обработки от размера и рода обработки блока данных
+code.cache.size.xm Ассемблерный листинг программы, генерирующей произвольное количество машинных операций NOP
+code.cache.size.c Пример, демонстрирующий последствия выхода за кэш перового (второго) уровня
+code.cache.size.make.new.bat /complex Пакетный файл, выполняющий трансляцию тестовой программы
+align.for.make.bat CALL clock.make -release %1 align.for.c
+banks.c Программа, демонстрирующая последствия конфликта кэш-банков
+banks.make.bat CALL clock.make -release %1 banks.c
+L1.overassoc.c Пример, демонстрирующий возникновение конфликтов кэш-линий и их влияние на производительность
+L1.overassoc.make.bat CALL clock.make -release %1 L1.overassoc.c
+column.big.c Пример, демонстрирующий особенности обработки больших двухмерных массивов
+column.big.make.bat CALL clock.make -release %1 column.big.c
+mem.stail.make.bat CALL clock.make -release %1 mem.stail.c
+mem.stail.c Пример, демонстрирующий возникновение задержек памяти при записи/чтении данных	различного размера
+align.for.c Пример, демонстрирующий последствия использования расщепленного счетчика цикла
+store_buff.xm Ядро программы, демонстрирующей выгрузку одних буферов записи параллельно с заполнением других
+store_buff_NOP.xm Ядро программы, демонстрирующей выгрузку буферов во время простоя шины
+store_buff.c Пример, демонстрирующий выгрузку буферов записи
+store_buff.make.bat /complex
+store_buff_NOP.make.bat /complex
+write_sin.c Пример оптимизации посредством совмещения команд записи с вычислительными операциями
+_turbo_memcpy.size.c Функция турбо-копирования памяти, использующая новые команды управления кэшированием процессора P-III+.
+_turbo_memcpy.size.make.bat CALL clock.make -release %1 _turbo_memcpy.size.c
+memstore.direct.make.bat CALL clock.make -release %1 memstore.direct.c
+memstore.direct.c Пример для измерения скорости иницилизации памяти в обоих направлениях
+cache_prefetch_unroll.c Пример, демонстрирующий эффект от "разворачивания" цикла предвыборки
+cache_prefetch_unroll.make.bat CALL clock.make -release %1 cache_prefetch_unroll.c
+write_sin.make.bat CALL clock.make -release %1 write_sin.c
+descript.ion /cat/root

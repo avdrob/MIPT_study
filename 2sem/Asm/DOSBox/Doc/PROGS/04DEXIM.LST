@@ -1,0 +1,70 @@
+Turbo Assembler	 Version 4.1	    02/23/14 24:05:02	    Page 1
+04dexim.asm
+
+
+
+      1	0000				     .model tiny
+      2	0000				     .code
+      3					     org 100h
+      4
+      5	0100  B8 FFFF		     start:  mov ax, 65535
+      6	0103  33 D2			     xor dx, dx
+      7	0105  B9 000A			     mov cx, 000ah
+      8	0108  8B FC			     mov di, sp
+      9
+     10	010A  3D 0000		     dig:    cmp ax, 0000h
+     11	010D  74 07			     je	enough
+     12	010F  F7 F1			     div cx
+     13	0111  52			     push dx
+     14	0112  33 D2			     xor dx, dx
+     15	0114  EB F4			     jmp dig
+     16
+     17	0116  B4 02		     enough: mov ah, 02h
+     18
+     19	0118  3B E7		     outp:   cmp sp, di
+     20	011A  74 08			     je	stop
+     21	011C  5A			     pop dx
+     22	011D  83 C2 30			     add dx, 30h
+     23	0120  CD 21			     int 21h
+     24	0122  EB F4			     jmp outp
+     25
+     26	0124  B8 4C00		     stop:   mov ax, 4c00h
+     27	0127  CD 21			     int 21h
+     28
+     29				     end start
+Turbo Assembler	 Version 4.1	    02/23/14 24:05:02	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "02/23/14"
+??FILENAME			  Text	 "04dexim "
+??TIME				  Text	 "24:05:02"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 04DEXIM
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+DIG				  Near	 DGROUP:010A
+ENOUGH				  Near	 DGROUP:0116
+OUTP				  Near	 DGROUP:0118
+START				  Near	 DGROUP:0100
+STOP				  Near	 DGROUP:0124
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+  _TEXT				  16  0129 Word	  Public  CODE
+

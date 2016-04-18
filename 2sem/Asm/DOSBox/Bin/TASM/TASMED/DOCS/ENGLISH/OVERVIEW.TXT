@@ -1,0 +1,177 @@
+
+           ÜÜÜ  ±Û  ÜßßÛ²   ÜÜÜÜÜÜ             ÜÜÜ       ÜÜÜ    ÜÛÛÜÜÜ
+          Û²²² ²ß ÛÛÝ  ±²ÝÜÛ²Ûß ßß²ÛÜ      ÜÜÜÛßß²²ÝÜÜÜ²ß  Û²Ü ÜÛÛ²  ß²²Ü
+         ÜÛ²²²ß ÜÛÛ²   ±± Þ²²²Ý    ÞÛ²  ÜÜß²Û²Ý  ²²²Þ²²²   ÞÛ²±Û²²²   Þ²²²
+       ÜÛ Û±±²  Þ²²²  Þ°±Ý ß±²ÛÜ   ÛßßÞ²²Ý ²²±Ý  ²±± ²±²ÜÛÜ Û±Û ²±²    ²²±
+      Û±  ÞÛ±²   ²±²Ý Þ°°Û   ßßÛÜÜ    Û±±  °²±   ±±°Ý±±± Û  ß Ü ±±±    ²±±
+      ß    Û±±   ±±±²Üß²°± °°ÜÜ  ßÛ²²Ý²±±  ²±°Ý Þ±°Û °°°   Û²±± °°°    ±±°
+           Û°Û   °°°ß  ±°°Þ°²°Ý   Þ±±°²°°Ý ßß°ß ±²°ÛÞ°²°Ý  Þ±²°Þ°²°   Þ°±°
+           Û°²  Þ°²°  ß°ßßÞ°±°±   ²°°Ý°ßßß     ÜÛ°°ßÞ°±°± Ü²°±ÝÞ°±°  Ü°°ß
+           ²°±Ý Þ°±°       ß°ß°ÛÜßß°ß           ß°ß  ß°ß°Üß°ß   ß°ßßß
+           ß°ß   ß°ß
+
+     ! Even  if  you  already  used  TASMED, you should better to read this
+       file.  This  file  contains some important information about TASMED,
+       explains  the contens of the distributive, introduces general TASMED
+       features and describes how to correctly install it.
+
+     Contens
+     ~~~~~~~
+      Introduction
+      Standard disclaimer and distribution notices
+      Hardware and software requirements
+      General features
+      How to install and start
+      Files containing in distributive
+      Final notes
+      How to contact me
+
+     Introduction
+     ~~~~~~~~~~~~
+         TASMED  provides  easy-to-use,  but  powerful  workshell  to edit,
+     compile, run and debug your assembly language projects.
+
+     Standard disclaimer and distribution notices
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         TASMED  is  freeware  product  provided  on "as is" basis, without
+     warranty  of any kind. The only thing I guarantee is that I'll take to
+     my   consideration   all   your   wishes,   suggestions,  notices  and
+     acknowledgements.
+         In  this context "freeware" means that it's up to you to decide on
+     what  conditions you get TASMED and what to do then with it. But there
+     is two minor restrictions:
+          It  is  forbidden  to  modify  or  remove  any files included to
+     TASMED  distributive,  moreover,  every byte of every file included in
+     this distributive is copyrighted by me.
+          You may not sell or rent TASMED.
+         If  these  terms  are  not  acceptable  to you, then you can't use
+     TASMED and should immediately delete it from your storage devices.
+
+     Hardware and software requirements
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Required:
+      386
+      EGA
+      DOS 5.0
+      450KB of free memory
+      600KB of free disk space to install
+
+         Recommended:
+      Pentium-100
+      VGA or SVGA
+      2048KB of free memory (extended or expanded)
+      Some gray substance in your head (the more the better)
+      Assembly knowledge (again, the more the better)
+
+     General features
+     ~~~~~~~~~~~~~~~~
+      Large files (>64KB) editing. Maximal string length is 255 symbols.
+      Stream and rectangular blocks support.
+      On-fly IDE customizing.
+      Syntax highlighting.  TASMED can highlight  instructions, registers,
+       directives, reserved words, numbers, string etc.
+      Compilation and linking via external compiler and linker.
+      Executing of compiled programs.
+      Hanged programs can be terminated by TASMED when you press hot key.
+      Debugging programs via external debugger (such as TD).
+      Source  code  style  customizing  (for example: all directives upper
+       letters, but all instructions lower etc.)
+      Printing  programs  with  syntax highlighting. You can use different
+       fonts  to highlight different semantic groups. Printers supported by
+       standard print: Epson and HP LaserJet compatibles.
+      Useful  incapsulated  tools:  C-style  expression calculator,  ASCII
+       table and Converter/Disassembler.
+      External tools supported also.
+      Many  text modes, such as 80x60 and 90x30 on standard VGA, VESA text
+       modes are also supported.
+      Powerful editor macros.
+      Symbol browser.
+      Changing  style and editing of Pascal and C/C++ sources that contain
+       inline assembly.
+      Many other features.
+
+     How to install and start
+     ~~~~~~~~~~~~~~~~~~~~~~~~
+      Uncompress distributive with full path.
+      Execute TASMED.BAT. If you get error, check the following:
+        "Out of environment space"
+         Increase  DOS  environment  size.  Refer  to  MS-DOS  help (try to
+         execute "help command").
+        "File not found"
+         Modify environment variable "TASMED" in TASMED.BAT file.
+        "Stub error (2003): can't find ..."
+         You  need  two  files,  DPMI16BI.OVL  and  RTM.EXE in order to run
+         TASMED.  You  can find these files in Borland Pascal, Borland C++,
+         Borland TASM and many other Borland tools. Copy these files to any
+         directory  specified  in  your "PATH" environment  variable  or to
+         directory with TASMED.COM file.
+      Press Alt+F5 few times (usually 20 times are enough). If you hang up
+       -  your Video BIOS is buggy and you ought to add "-NOVESA" parameter
+       to TASMED command line. Edit "OPTIONS" variable in TASMED.BAT file.
+      Setup  path  to  your  assembler,  linker  and  debugger. TASMED was
+       primarily  designed for use with Borland tools (TASM, TLINK and TD),
+       but it supports Microsoft and any other tools also.
+      Read the file WHATSNEW.DOC to learn more about TASMED features.
+      If you successfully done all above steps, you are ready to work with
+       TASMED. Good luck in assembly programming.
+
+     Files containing in distributive
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ÃÄ FILE_ID.DIZ - short description
+     ÃÄ GNU.DCT - dictionaries file to use with GNU as
+     ÃÄ TASMED.BAT - batch file to execute TASMED
+     ÃÄ TASMED.COM - TASMED executer
+     ÃÄ TASMED.OVL - main program file
+     ÃÄ DOCS\ - miscellaneous documentation files
+     ³  ÃÄ ENGLISH\ - english documentation
+     ³  ³  ÃÄ BUGS.COM - known bugs descriptions
+     ³  ³  ÃÄ CLMACROS.COM - documentation on command line macros
+     ³  ³  ÃÄ FAQ.COM - frequently asked questions on TASMED
+     ³  ³  ÃÄ KEYS.COM - key combinations that works with TASMED
+     ³  ³  ÃÄ MACROS.COM - how to use and customize editor macros
+     ³  ³  ÀÄ OVERVIEW.COM - this documentation
+     ³  ÃÄ RUSSIAN\ - russian documentation
+     ³  ÃÄ DISTBBS.COM - list of TASMED distribution sites (BBS)
+     ³  ÃÄ DISTINET.COM - list of TASMED distribution sites (Internet)
+     ³  ÃÄ EXTRACT.BAT - batch to save all documentations to text files
+     ³  ÀÄ WHATS.NEW - what's new documentation
+     ÃÄ EXAMPLES\ - miscellaneous examples and demos
+     ÀÄ FILTERS\ - filters for external tools with sources
+        ÃÄ SOURCES\ - filters sources
+        ³  ÃÄ GREP.PAS - source of Turbo GREP filter
+        ³  ÃÄ LINK.PAS - source of LINK filter
+        ³  ÃÄ MASM.PAS - source of MASM filter
+        ³  ÃÄ PRINT.PAS - source of standard print filter
+        ³  ÃÄ TASM.PAS - source of TASM filter
+        ³  ÀÄ TLINK.PAS - source of TLINK filter
+        ÃÄ GREP.EXE - filter for Turbo GREP
+        ÃÄ LINK.EXE - LINK filter
+        ÃÄ MASM.EXE - MASM filter
+        ÃÄ PRINT.EXE - standard print filter
+        ÃÄ TASM.EXE - TASM filter
+        ÀÄ TLINK.EXE - TLINK filter
+
+     Final notes
+     ~~~~~~~~~~~
+         So,  I  suppose  that  time has come to create some TASMED support
+     sites.  If  you  can  place  TASMED  to your BBS or FTP/HTTP server to
+     permit  everyone  to  take  it - send me a full information about your
+     site  and  I'll  include  you to the support sites list. Refer to file
+     SSITES.COM to see the preferred format of support site info.
+         If  you  find any bug that is not described in file BUGS.COM you'd
+     better  send  me a message with complete description of bug and how to
+     reproduce it.
+         Also,  as  I  said  before, if you have some interesting comments,
+     suggestions, notices or just critics, drop me a couple of lines.
+
+     How to contact me
+     ~~~~~~~~~~~~~~~~~
+         Voice      +7(3854)224738, 18:00-22:00 (+6:00 GMT)
+         Fidonet    2:5002/39 or 2:5002/24.23
+         E-mail     cm@liceum.secna.ru or
+                    Eugene.Nonko@f39.n5002.z2.fidonet.org or
+                    Eugene.Nonko@p23.f24.n5002.z2.fidonet.org or
+                    ros@mail.biysk.ru (subject - 4cm)
+         Home page  http://www.geocities.com/SiliconValley/Network/2963
+
+     06-03-99  Eugene Nonko aka CodeMaster

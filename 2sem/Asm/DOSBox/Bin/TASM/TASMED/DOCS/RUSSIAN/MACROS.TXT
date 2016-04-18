@@ -1,0 +1,43 @@
+
+     Зачем нужны макросы?
+     ~~~~~~~~~~~~~~~~~~~~
+         Макросы  были добавлены в TASMED, чтобы сделать программирование с
+     его помощью удобнее и быстрее.
+
+     Как использовать макросы?
+     ~~~~~~~~~~~~~~~~~~~~~~~~~
+         Нажмите  Ctrl+LShift  чтобы  выбрать  первую  группу  макросов или
+     Ctrl+RShift,  чтобы  выбрать вторую, затем отпустите и нажмите символ.
+     Например,  если  в первой группе макросов символ 'M' настроен на вызов
+     макроса  "[start]macro",  то когда вы нажмете Ctrl+LShift, отпустите и
+     нажмете  M,  вы  увидите  слово  "macro" напечатанное с начала строки.
+     Вместо   Ctrl+Shift  можно  использовать  Alt+Shift.  Эта  возможность
+     настраивается в панели диалога "Preferences".
+
+     Управляющие последовательности в макроопределениях
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     B backspace     blockleft     blockright
+     C comment       copyblock
+     D delchar       delend        delline       delstart      delword
+       down          duplicate
+     E end           endselect
+     G gotobookmark0 gotobookmark1 gotobookmark2 gotobookmark3 gotobookmark4
+       gotobookmark5 gotobookmark6 gotobookmark7 gotobookmark8 gotobookmark9
+     L left          lineselect
+     M moveblock
+     P pagedown      pageend       pagestart     pageup
+     R right
+     S selectall     setbookmark0  setbookmark1  setbookmark2  setbookmark3
+       setbookmark4  setbookmark5  setbookmark6  setbookmark7  setbookmark8
+       setbookmark9  start         startselect
+     T textend       textstart
+     U uncomment     up
+     W wordleft      wordright
+
+         Все   вышеперечисленные   ключевые  слова  должны  употребляться в
+     макроопределении   заключенными   в  квадратные  скобки.  Вставляйте в
+     макроопределение  '[['  вместо  '['.  Для  того  чтобы  вставить ASCII
+     символ,  просто заключите его ASCII код в квадратные скобки (например:
+     [1bh] или [27] чтобы вставить Esc).
+
+     06-03-99  Eugene Nonko aka CodeMaster

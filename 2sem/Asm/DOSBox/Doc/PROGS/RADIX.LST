@@ -1,0 +1,184 @@
+Turbo Assembler	 Version 4.1	    03/02/14 17:22:53	    Page 1
+radix.asm
+
+
+
+      1	0000				     .model tiny
+      2
+      3	0000				     .data
+      4	      =000A				     dcm = 0ah
+      5	      =0001				     bin = 01h
+      6	      =0004				     hxd = 04h
+      7
+      8	0000					     hex_num:
+      9	0000  30 31 32 33 34 35	36+			     db	'0123456789ABCDEF'
+     10	      37 38 39 41 42 43	44+
+     11	      45 46
+     12	0010				     .code
+     13					     org 100h
+     14
+     15	0100			     start:
+     16	0100  E8 0011			     call capt_num
+     17	0103  E8 0030			     call nwln
+     18	0106  E8 0055			     call geth
+     19	0109  E8 002A			     call nwln
+     20	010C  E8 0032			     call getb
+     21
+     22	010F  B8 4C00			     mov ax, 4c00h
+     23	0112  CD 21			     int 21h
+     24
+     25				     ;===================================
+     26				     ;	     Inputs number, then prints	it.
+     27				     ;	     Entry: none
+     28				     ;	     Exit: BX =	the number itself.
+     29				     ;	     Destr: AX,	BX, DX
+     30				     ;===================================
+     31	0114			     capt_num:
+     32	0114  B4 00			     mov ah, 00h
+     33	0116  CD 16			     int 16h
+     34	0118  3C 0D			     cmp al, 0dh
+     35	011A  74 19			     je	exit1
+     36
+     37	011C  B4 02			     mov ah, 02h
+     38	011E  86 C2			     xchg al, dl
+     39	0120  CD 21			     int 21h
+     40	0122  86 C2			     xchg al, dl
+     41
+     42	0124  B4 00			     mov ah, 00h
+     43	0126  2C 30			     sub al, '0'
+     44	0128  93			     xchg ax, bx
+     45	0129  BA 000A			     mov dx, dcm
+     46	012C  F7 E2			     mul dx
+     47	012E  33 D2			     xor dx, dx
+     48	0130  03 C3			     add ax, bx
+     49	0132  93			     xchg ax, bx
+     50	0133  EB DF			     jmp capt_num
+     51
+     52	0135			     exit1:
+     53	0135  C3		     ret
+     54				     ;===================================
+     55
+     56				     ;===================================
+     57				     ;	     Prints a new line.
+Turbo Assembler	 Version 4.1	    03/02/14 17:22:53	    Page 2
+radix.asm
+
+
+
+     58				     ;	     Entry: none.
+     59				     ;	     Exit: none.
+     60				     ;	     Destr: AL,	DL.
+     61				     ;===================================
+     62	0136			     nwln:
+     63	0136  B4 02			     mov ah, 02h
+     64	0138  B2 0A			     mov dl, 0ah
+     65	013A  CD 21			     int 21h
+     66	013C  B2 0D			     mov dl, 0dh
+     67	013E  CD 21			     int 21h
+     68	0140  C3		     ret
+     69				     ;===================================
+     70
+     71
+     72				     ;===================================
+     73				     ;	     Prints a binary number.
+     74				     ;	     Entry: BX = number	to print.
+     75				     ;	     Exit: BX =	still the number.
+     76				     ;	     Destr: AX,	CX, DX.
+     77				     ;===================================
+     78	0141			     getb:
+     79	0141  B1 10			     mov cl, 10h
+     80
+     81	0143				     get_num1:
+     82	0143  8B D3				     mov dx, bx
+     83	0145  FE C9				     dec cl
+     84	0147  D3 EA				     shr dx, cl
+     85	0149  FE C1				     inc cl
+     86	014B  83 E2 01				     and dx, bin
+     87	014E  80 C2 30				     add dl, '0'
+     88	0151  B4 02				     mov ah, 02h
+     89	0153  CD 21				     int 21h
+     90
+     91	0155  B5 00				     mov ch, 0h
+     92	0157  3A CD				     cmp cl, ch
+     93	0159  FE C9				     dec cl
+     94	015B  75 E6				     jne get_num1
+     95	015D  C3		     ret
+     96				     ;===================================
+     97
+     98	015E			     geth:
+     99	015E  B1 04			     mov cl, 04h
+    100	0160  BF 0000r			     mov di, offset hex_num
+    101	0163  B0 04			     mov al, hxd
+    102
+    103	0165				     get_num2:
+    104	0165  8B D3				     mov dx, bx
+    105	0167  FE C9				     dec cl
+    106	0169  F6 E1				     mul cl
+    107	016B  FE C1				     inc cl
+    108	016D  86 C1				     xchg al, cl
+    109	016F  D3 EA				     shr dx, cl
+    110	0171  86 C1				     xchg al, cl
+    111	0173  83 E2 0F				     and dx, 000fh
+    112
+    113	0176  57				     push di
+    114	0177  03 FA				     add di, dx
+Turbo Assembler	 Version 4.1	    03/02/14 17:22:53	    Page 3
+radix.asm
+
+
+
+    115	0179  8A 15				     mov dl, byte ptr [di]
+    116	017B  5F				     pop di
+    117	017C  B4 02				     mov ah, 02h
+    118	017E  CD 21				     int 21h
+    119
+    120	0180  B5 00				     mov ch, 0h
+    121	0182  3A CD				     cmp cl, ch
+    122	0184  FE C9				     dec cl
+    123	0186  75 DD				     jne get_num2
+    124	0188  C3		     ret
+    125
+    126				     end start
+Turbo Assembler	 Version 4.1	    03/02/14 17:22:53	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/02/14"
+??FILENAME			  Text	 "radix	  "
+??TIME				  Text	 "17:22:53"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 RADIX
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+BIN				  Number 0001
+CAPT_NUM			  Near	 DGROUP:0114
+DCM				  Number 000A
+EXIT1				  Near	 DGROUP:0135
+GETB				  Near	 DGROUP:0141
+GETH				  Near	 DGROUP:015E
+GET_NUM1			  Near	 DGROUP:0143
+GET_NUM2			  Near	 DGROUP:0165
+HEX_NUM				  Near	 DGROUP:0000
+HXD				  Number 0004
+NWLN				  Near	 DGROUP:0136
+START				  Near	 DGROUP:0100
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0010 Word	  Public  DATA
+  _TEXT				  16  0189 Word	  Public  CODE
+

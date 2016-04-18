@@ -1,0 +1,86 @@
+Turbo Assembler	 Version 4.1	    03/09/14 13:07:54	    Page 1
+03video.asm
+
+
+
+      1	0000				     .model tiny
+      2	0000				     .code
+      3					     org 100h
+      4
+      5				     ;start: mov ax, 0b800h
+      6				     ;	     mov es, ax
+      7				     ;	     mov di, 0BE0h
+      8				     ;	     mov bx, offset pip
+      9
+     10	0100			     start:
+     11	0100  B8 B800			     mov ax, 0b800h
+     12	0103  8E C0			     mov es, ax
+     13
+     14	0105  B4 03			     mov ah, 03h
+     15	0107  B7 00			     mov bh, 00h
+     16	0109  CD 10			     int 10h
+     17
+     18	010B  B0 50			     mov al, 050h
+     19	010D  F6 E6			     mul dh
+     20	010F  B6 00			     mov dh, 00h
+     21	0111  03 C2			     add ax, dx
+     22	0113  B9 0002			     mov cx, 0002h
+     23	0116  F7 E1			     mul cx
+     24	0118  8B F8			     mov di, ax
+     25
+     26	011A  BB 0136r			     mov bx, offset pip
+     27
+     28	011D			     next:
+     29	011D  8A 07			     mov al, [bx]
+     30	011F  3C 24			     cmp al, '$'
+     31	0121  74 0E			     je	stop
+     32
+     33	0123  26: 88 05			     mov es:[di], al
+     34	0126  26: C6 45	01 4E		     mov byte ptr es:[di+1], 4eh
+     35	012B  43			     inc bx
+     36	012C  83 C7 02			     add di, 2
+     37	012F  EB EC			     jmp next
+     38
+     39	0131			     stop:
+     40	0131  B8 4C00			     mov ax, 4c00h
+     41	0134  CD 21			     int 21h
+     42
+     43	0136			     pip:
+     44	0136  48 65 79 21 24		     db	'Hey!$'
+     45
+     46				     end start
+Turbo Assembler	 Version 4.1	    03/09/14 13:07:54	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/09/14"
+??FILENAME			  Text	 "03video "
+??TIME				  Text	 "13:07:54"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 03VIDEO
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+NEXT				  Near	 DGROUP:011D
+PIP				  Near	 DGROUP:0136
+START				  Near	 DGROUP:0100
+STOP				  Near	 DGROUP:0131
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+  _TEXT				  16  013B Word	  Public  CODE
+

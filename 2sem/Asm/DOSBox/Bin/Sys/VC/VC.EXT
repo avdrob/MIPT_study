@@ -1,0 +1,19 @@
+rar: rar !.!
+r0?: rar !.!
+r1?: rar !.!
+zip: rar !.!
+arj: rar !.!
+a0?: rar !.!
+a1?: rar !.!
+
+c:   bc !.!
+h:   bc !.!
+cpp: bc !.!
+hpp: bc !.!
+asm: tasm  /la !.!
+obj: tlink /t  !.!
+mak: make  -f!.!
+
+txt: ed !.!
+
+*:   @start !:!\!.!

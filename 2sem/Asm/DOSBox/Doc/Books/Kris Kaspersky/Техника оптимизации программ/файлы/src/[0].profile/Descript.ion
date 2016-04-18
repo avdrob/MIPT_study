@@ -1,0 +1,13 @@
+crypted.dat защифрованный файл для pswd
+Descript.ion /cat/root
+test.c измеритель времени выполнения отдельных машинных команд
+readm.c демонстрация непостояннство времени обработка блоков памяти
+test.mod embedding file
+pswd.optimized.c оптимизированный вариант парольного переборщика
+pswd.c не оптимизированный вариант парольного переборщика
+pswd.profile.AMD.bat сборка оптимизируемого файла для его профилировки под AMD CodeAnalyst
+pswd.make.bat CALL clock.make -release pswd.c
+pswd.optimized.make.bat CALL clock.make -release pswd.optimized.c
+readm.make.bat CALL clock.make -release readm.c
+test.make.bat CALL clock.make -release test.c
+etc ,,,всяко-разно

@@ -1,0 +1,71 @@
+
+     What is purpose of command line macros?
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Command  line macros (or just macros) were added to TASMED to make
+     an  interface  with  miscellaneous  assemblers, linkers, debuggers and
+     other tools possible.
+
+     Macros defined for assembling
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $ASM_NAME - name of a file to assemble
+      $OBJ_NAME - name of a destination object file
+      $LST_NAME - name of a listing file or nothing if no listing needed
+      $LST - option to turn on listing file generation
+      $COMMA_LST - just comma, if listing file needed (for TASM)
+      $DEBUG - option to turn on debug info incapsulation
+      $INCLUDES - include paths defined in "Project options" dialog box
+      $CONDS - conditionals defined in "Project options" dialog box
+
+         Default string for Turbo Assembler:
+     $ASM_NAME, $OBJ_NAME $COMMA_LST$LST_NAME $LST $DEBUG $INCLUDES
+     $CONDS
+
+         Default string for Microsoft Assembler:
+     /nologo $ASM_NAME /Fo$OBJ_NAME $LST$LST_NAME $DEBUG /c $INCLUDES
+     $CONDS
+
+     Macros defined for linking
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $OBJ_NAMES - object files separated by space
+      $LIB_NAMES - libraries separated by space
+      $PRIMARY - primary executable file name
+      $MAP - option to turn on .MAP file generation
+      $DEBUG - option to turn on debug info incapsulation
+      $TARGET - depends on target (.COM or .EXE)
+
+         Default string for Turbo Linker:
+     $OBJ_NAMES, $PRIMARY, , $LIB_NAMES $TARGET $MAP $DEBUG /3
+
+         Default string for Microsoft Linker:
+     /nologo $OBJ_NAMES /Fe$PRIMARY /link /nologo $LIB_NAMES $TARGET $MAP
+     $DEBUG
+
+     Macros defined for debugging
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $PRIMARY - primary executable file name
+      $PARAMS - executable parameters
+
+         Default string for Turbo Debugger:
+     TD.EXE $PRIMARY $PARAMS
+
+     Macros defined for tools
+     ~~~~~~~~~~~~~~~~~~~~~~~~
+      $CUR_NAME - complete name of the file in the active edit window
+      $CUR_TOKEN - word at cursor in the active edit window
+      $COL - column number of the current edit window
+      $LINE - line number of the current edit window
+      $PRIMARY - primary executable file name
+      $PARAMS - executable parameters
+
+     Macro defined for print filter
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $CUR_NAME - complete name of the file in the active edit window
+
+         Default string:
+     $TASMED_PATH\FILTERS\PRINT.EXE $CUR_NAME /EPSON
+
+     Other macros
+     ~~~~~~~~~~~~
+      $TASMED_PATH - path where TASMED.COM is placed (without trailing \)
+
+     06-03-99  Eugene Nonko aka CodeMaster

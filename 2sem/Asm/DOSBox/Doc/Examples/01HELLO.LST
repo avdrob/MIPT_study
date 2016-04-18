@@ -1,0 +1,60 @@
+Turbo Assembler	 Version 4.1	    02/16/14 22:31:45	    Page 1
+01hello.asm
+
+
+
+      1				     ;-----------------------------------------------------------------------------
+      2				     ;			 Задание # 1. Файл 01hello.asm
+      3				     ;	    Прога, выводящая на	экран <Hello> с	помощью	9-ой функции ДОСа
+      4				     ;		       (c) 2001	Copyleft  Andreev Andrey
+      5				     ;------------------------------------------------------------------------------
+      6	0000			     .model tiny			     ; Задание COM-модели
+      7	0000			     .code				     ; Начало кода
+      8
+      9				     org 100h				     ; Необходимое смещение на 100 из-за PSP
+     10
+     11	0100  B4 09		     start:	     mov ah, 9		     ; Функция ДОСа 9 выводит строку
+     12	0102  BA 0000r				     mov dx, offset msg	     ; Вычисление адреса msg
+     13	0105  CD 21				     int 21h		     ; Прерывание и передача управления	ДОСу
+     14									     ; для того, чтобы ДОС вывел строку
+     15
+     16	0107  B8 4C00				     mov ax, 4c00h	     ; Выход и окончательная передача упра-
+     17	010A  CD 21				     int 21h		     ; вления ДОСу.
+     18
+     19	010C			     .data
+     20	0000  48 65 6C 6C 6F 24	     msg	     db	'Hello$'
+     21
+     22				     end start
+Turbo Assembler	 Version 4.1	    02/16/14 22:31:45	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "02/16/14"
+??FILENAME			  Text	 "01hello "
+??TIME				  Text	 "22:31:45"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _DATA
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 01HELLO
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+MSG				  Byte	 DGROUP:0000
+START				  Near	 DGROUP:0100
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0006 Word	  Public  DATA
+  _TEXT				  16  010C Word	  Public  CODE
+

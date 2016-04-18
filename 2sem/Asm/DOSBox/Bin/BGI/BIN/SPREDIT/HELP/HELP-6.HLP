@@ -1,0 +1,521 @@
+****************
+* Other themes *
+****************
+*
+* The Mainmenu
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(125)
+#27Y\(020)
+#27Font\(004,005)
+The mainscreen
+#27Font\(004,004)
+#27Y\(070)
+#27X\(220)
+(1/2)
+#27Line\(125,068,390,068)
+#27Line\(125,066,390,066)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(126)
+#27Y\(130)
+The mainscreen offers several func-
+#27X\(125)
+tions, to manipulate your pictures.
+Here they are listed briefly. On the 
+left hand, you see a blue box with
+the names of the available functions
+  (LOAD, SAVE, SHOW, EDIT, TEXT, 
+    PALETTE and INSERT). Press the
+ mouse button once, to select one of
+#27X\(121)
+these. To leave the program, press 
+the quit button twice. At the bottom 
+of the screen, all colors are listed. 
+You move the mouse cursor on a color 
+and press a button to select it. The 
+color and its number are shown in the 
+field at the left. If you would 
+like to know the number of a certain 
+color of your picture, switch the 
+button "GET" to "on", move the square 
+ mouse cursor onto the color on the 
+screen and press the mouse button. It 
+  will be selected. After that you 
+ mustn't forget to switch "GET" back 
+  to "off".
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(125)
+#27Y\(020)
+#27Font\(004,005)
+The mainscreen
+#27Font\(004,004)
+#27Y\(070)
+#27X\(220)
+(2/2)
+#27Line\(125,068,390,068)
+#27Line\(125,066,390,066)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(126)
+#27Y\(130)
+  In the upper left corner, you see 
+  the part of the picture, that is 
+  scaled. With the cursor keys you 
+    can choose the section of your 
+  sprite that is shown. If you want 
+   to go to the border of it, click 
+    on the marked points, which is 
+    faster than scrolling with the
+   cursor keys.
+#27sprite\(220,250)"Ide.spr"
+#27Textcolor\(004)
+#27Line\(227,317,170,340)
+#27X\(126)
+#27Y\(330)
+click
+here
+#27Line\(317,317,374,340)
+#27Line\(323,315,378,340)
+#27X\(384)
+#27Y\(330)
+also
+here
+#27Line\(323,257,374,282)
+#27X\(384)
+#27Y\(260)
+and
+here
+#27screen_on\
+#27Stop\
+*
+* The Mainmenu
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(125)
+#27Y\(020)
+#27Font\(004,005)
+Completion
+#27Font\(004,004)
+#27Line\(125,068,160,068)
+#27Line\(125,066,160,066)
+#27Line\(170,068,340,068)
+#27Line\(170,066,340,066)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(126)
+#27Y\(090)
+I got sick of putting in long paths
+and filenames, so I implemented a
+kind of path-/filename-completion.
+This feature is available, every-
+ where you want to load a picture
+or a palette.
+This feature is very simple to handle.
+The only thing you have to do, is to
+press the TAB key. Everytime you do
+    it, a file or directory will be
+    shown. If you know a part of the
+  filename, you can put in the
+beginning letters and press the TAB
+ key again. Add a backslash, if you
+have selected a directory, and go on,
+or press RETURN, if you want to
+load the file.
+#27screen_on\
+#27Stop\
+*
+* About
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(216)
+#27Y\(015)
+#27Font\(004,005)
+About
+#27Line\(210,068,330,068)
+#27Line\(210,070,330,070)
+#27Font\(011,001)
+#27Textcolor\(000)
+#27X\(155)
+#27Y\(065)
+Sprite Generator
+#27Y\(096)
+#27X\(240)
+V1.0
+#27X\(140)
+#27Y\(132)
+#27Font\(001,001)
+#27Textcolor\(004)
+(c) by Markus Herbord 1994
+#27X\(118)
+#27Y\(160)
+#27Textcolor\(000)
+#27step\(019)
+The Sprite Generator was written
+#27X\(130)
+ with Turbo Pascal 6.01. This
+    version is public domain
+and may be uploaded to every
+#27X\(124)
+FTP-Server or BBS. You are also
+ permitted to make copies of
+ this version as many as you
+  like. All functions of the
+#27X\(120)
+registered version are disposable.
+#27X\(118)
+ Commercial vendors may copy
+ the Sprite Generator too, but
+the maximum copy charge must
+#27X\(140);
+#27Y\(392)
+not exceed US$ 5/9.-DM/50™S.
+#27std_step\
+#27screen_on\
+#27Stop\
+*
+* Registration
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(140)
+#27Y\(015)
+#27Font\(004,005)
+Registration
+#27Line\(130,068,350,068)
+#27Line\(130,070,350,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(136)
+#27Y\(080)
+Public Domain does not imply, to 
+#27X\(128)
+be a Christmas present for you. This
+#27X\(130)
+  means, you may test it (31 days)
+#27X\(132)
+ and then decide if you would like
+#27X\(128)
+to register or delete your copies. I
+am aware of this appearing unreliable
+#27X\(126)
+striking a bargain with cash in some
+#27X\(122)
+countries. But I beg your pardon for 
+not accepting cheques, because the 
+#27X\(136)
+costs are too high, to change them
+  to German money. If you're afraid
+   to become deceived, you can send
+#27X\(132)
+your money as registered letter and
+#27X\(118)
+take off $3/5.-DM/35 ™S for additional
+ postage from the complete price. If
+ you live in Germany, you certainly
+#27X\(120)
+can send cheques. If you register, you
+can buy later versions of this program
+cheaper. You also get information
+and demos about other programs, as 
+soon as I deliver them.
+#27X\(136)
+#27Y\(330)
+#27step\(008)
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÂÄÄÄÄÄÂÄÄÄÄÄÄ¿
+³ Registrations ³ US$ ³  DM ³  ™S  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÅÄÄÄÄÄÅÄÄÄÄÄÄ´
+³       1       ³  25 ³  40 ³  290 ³
+³       2       ³  45 ³  70 ³  560 ³
+³       3       ³  65 ³ 110 ³  800 ³
+³       4       ³  85 ³ 140 ³ 1000 ³
+³       5       ³ 100 ³ 170 ³ 1190 ³
+³      10       ³ 170 ³ 280 ³ 2000 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÁÄÄÄÄÄÁÄÄÄÄÄÄÙ
+#27std_step\
+  For others connect the author.
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(140)
+#27Y\(015)
+#27Font\(004,005)
+Registration
+#27Line\(130,068,350,068)
+#27Line\(130,070,350,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(128)
+#27Y\(080)
+If you really wouldn't like to send
+    money before you have your 
+   registration become ratified,
+please connect me and we will find
+a way to handle it out.
+
+(Since the procedure of registration
+ could take 2 or 3 weeks, you may
+ certainly use the Sprite Generator
+ although the 31 days are over.)
+
+#27Textcolor\(001)
+#27X\(200)
+#27Y\(198)
+#27Font\(004,005)
+Copyrights
+#27Line\(190,252,400,252)
+#27Line\(190,254,400,254)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(128)
+#27Y\(260)
+The BGI driver for the Super VGA
+cards was written by:
+
+Jordan Powell Hargrave
+1000 Morewood Ave, Box #3277
+Pittsburgh, PA 15213
+
+The complete packet is available
+on many ftp servers as SVGABGI.ZIP.
+For the copyrights of the driver,
+please look into the file:
+  README_S.VGA
+  in your Sprite Generator directory.
+
+#27screen_on\
+#27Stop\
+*
+* Address
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(200)
+#27Y\(015)
+#27Font\(004,005)
+Address
+#27Line\(200,068,340,068)
+#27Line\(200,070,340,070)
+#27Font\(001,001)
+#27step\(019)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(080)
+Markus Herbord
+Angerstrasse 41a
+D-89275 Elchingen
+Germany
+
+Internet:
+#27Textcolor\(001)
+#27Font\(000,001)
+#27Y\(202)
+   markus.herbord@medizin.uni-ulm.de
+#27Font\(001,001)
+#27Textcolor\(000)
+#27X\(120)
+#27Y\(228)
+(this account will be available
+ until December 1994, perhaps
+ longer. After that I hope I'll 
+ get a new Internet account,
+ which I will publish then.)
+
+Use the file REGISTER.TXT. Please
+ print it out (if you don't have 
+#27X\(134)
+a printer, please write a short
+#27X\(120)
+   letter) and send it to me.
+#27std_step\
+#27screen_on\
+#27Stop\
+*
+* Bugs
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(220)
+#27Y\(015)
+#27Font\(004,005)
+Bugs
+#27Line\(210,068,330,068)
+#27Line\(210,070,330,070)
+#27Font\(001,001)
+#27step\(018)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(080)
+I have spent much time to
+guarantee that the program 
+works correctly. But nobody is
+perfect, so if you find a bug,
+please send me a description of 
+the problem and I will try to
+#27X\(124)
+   manage it. If I didn't know
+#27X\(138)
+  the bug before, you will get
+a cheaper version of the next
+update (charges only) if you
+like. There is an ASCII textfile
+#27Y\(283)
+#27X\(128)
+(BUGFILE.TXT) in your direc-,
+#27Y\(306)
+#27X\(116)
+ tory that you can send to me,
+#27X\(118)
+or you can write a simple letter.
+#27X\(124)
+All other proposals, which you
+#27X\(130)
+have or what I can do better,
+ you are very welcome too.
+#27std_step\
+#27screen_on\
+#27Stop\
+*
+* Bugs
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(220)
+#27Y\(015)
+#27Font\(004,005)
+Bugs
+#27Line\(210,068,330,068)
+#27Line\(210,070,330,070)
+#27Font\(000,001)
+#27step\(018)
+#27Textcolor\(000)
+#27X\(126)
+#27Y\(080)
+#27step\(011)
+These are the known bugs and
+what to do:
+
+- I had problems with one mouse 
+  driver, during my tests. The
+  position of the cursor didn't
+  show the real possition of the
+   mouse. So it happened, that I
+    clicked on HELP and got the
+  TEXT-function. If you have prob-
+  lems with  this, press ALT+M in
+     the mainscreen  or start the
+      Sprite Generator with the
+     option "mf=1".
+
+- If the colors 0 and 15 have nearly
+  the same RGB-values (this depends
+  on the color palette), you can't
+  read anything and the mouse cursor
+  may disappear. Press ALT+E in
+  the mainscreen or in the EDIT
+  function. Although the program
+  changes some colors and your sprite
+  seems to be damaged, everything
+  will work correctly!
+
+#27std_step\
+#27screen_on\
+#27Stop\
+*
+* Thanx and greetings
+*
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(130)
+#27Y\(015)
+#27Font\(004,004)
+Thanks &
+greetings
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(100)
+#27step\(020)
+#27Font\(010,005)
+#27Textcolor\(004)
+T
+#27X\(131)
+#27Y\(101)
+T
+#27Font\(010,001)
+#27X\(155)
+#27Y\(128)
+#27Textcolor\(000)
+hanks to my friend Michael,
+#27X\(130)
+who helped me with some problems.
+Also to Sabine . Without her, my
+   help files were more amasing 
+than helpful.
+#27Textcolor\(000)
+And special thanks to my girl-
+friend Jacqueline, who has to
+prove very much patience with
+a computer freak like me.
+#27std_step\
+#27screen_on\
+#27Stop\
+
+#27EndOfFile\

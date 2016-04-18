@@ -1,0 +1,29 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(222)
+#27Y\(015)
+#27Font\(004,005)
+Show
+#27Line\(220,068,320,068)
+#27Line\(220,070,320,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(135)
+#27Y\(080)
+  There is really not much to say
+about SHOW. In case that you select
+   SHOW from the mainmenu, your
+   picture will appear  on the
+   screen.  It is centered  in
+  the middle of your monitor. If
+  you press any key, you will be
+   returned to the mainmenu.
+
+         That's all.
+#27screen_on\
+#27EndOfFile\

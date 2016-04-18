@@ -1,0 +1,217 @@
+Turbo Assembler	 Version 4.1	    03/10/14 18:13:17	    Page 1
+mstring.asm
+
+
+
+      1	0000				     .model tiny
+      2
+      3	0000				     .data
+      4	0000  35 34 33 32 24			     pip db '5432$'
+      5
+      6	0005				     .code
+      7						     org 100h
+      8
+      9	0100			     start:
+     10	0100  50 55 8B EC C7 46	02+	     push offset pip
+     11	      0000r 5D
+     12	010A  1E			     push ds
+     13	010B  E8 0005			     call strlen
+     14
+     15	010E  B8 4C00			     mov ax, 4c00h
+     16	0111  CD 21			     int 21h
+     17
+     18				     ;=================================================
+     19				     ;	     Counts length of string <-	SrcSeg:[SrcOffset].
+     20				     ;	     Entry: push SrcOffset
+     21				     ;			push SrcSeg
+     22				     ;	     Exit: CX =	string length.
+     23				     ;		       AL = '$'.
+     24				     ;	     Destr:  none.
+     25				     ;=================================================
+     26	0113			     strlen:
+     27	0113  55			     push bp
+     28	0114  8B EC			     mov bp, sp
+     29
+     30	0116  8E 46 04			     mov es, word ptr ss:[bp + 4]
+     31	0119  8B 7E 06			     mov di, word ptr ss:[bp + 6]
+     32
+     33	011C  B4 00			     mov ah, 00h
+     34	011E  B0 24			     mov al, '$'
+     35	0120  B9 FFFF			     mov cx, 0ffffh
+     36	0123  F2> AE			     repne scasb
+     37	0125  F7 D9			     neg cx
+     38	0127  83 E9 02			     sub cx, 2
+     39
+     40	012A  5D			     pop bp
+     41	012B  C3		     ret
+     42				     ;=================================================
+     43
+     44
+     45				     ;=================================================
+     46				     ;	     Copies a string SrcSeg:[SrcOffset]	into
+     47				     ;					     DestSeg:[DestOffset]
+     48				     ;	     Entry: push SrcOffset
+     49				     ;			push SrcSeg
+     50				     ;			push DestOffset
+     51				     ;			push DestSeg
+     52				     ;
+     53				     ;	     Exit: DS:[SI] -> the byte after the last
+     54				     ;						     byte of src.
+     55				     ;		       ES:[DI] -> the byte after the last
+     56				     ;						     byte of dest.
+     57				     ;		       AL = '$'
+Turbo Assembler	 Version 4.1	    03/10/14 18:13:17	    Page 2
+mstring.asm
+
+
+
+     58				     ;	     Destr: AX
+     59				     ;			CX = 0.
+     60				     ;=================================================
+     61	012C			     strcpy:
+     62	012C  55			     push bp
+     63	012D  8B EC			     mov bp, sp
+     64
+     65	012F  FF 76 0A			     push ss:[bp + 10]
+     66	0132  FF 76 04			     push ss:[bp + 4]
+     67	0135  E8 FFDB			     call strlen
+     68	0138  58			     pop ax
+     69	0139  58			     pop ax
+     70
+     71	013A  8B 76 0A			     mov si, word ptr ss:[bp + 10]
+     72	013D  8E 5E 08			     mov ds, word ptr ss:[bp + 8]
+     73	0140  8B 7E 06			     mov di, word ptr ss:[bp + 6]
+     74	0143  F2> A4			     repne movsb
+     75
+     76	0145  5D			     pop bp
+     77	0146  C3		     ret
+     78				     ;=================================================
+     79
+     80				     ;=================================================
+     81				     ;	     Fills in block <- DestSeg:[DestOffset]
+     82				     ;			     with Num Val values.
+     83				     ;	     Entry: push Num
+     84				     ;			push Val
+     85				     ;			push DestOffset
+     86				     ;			push DestSeg
+     87				     ;	     Exit: ES:[DI] -> the byte after the last
+     88				     ;						     byte of the block.
+     89				     ;	     Destr: CX = 0.
+     90				     ;=================================================
+     91	0147			     memset:
+     92	0147  55			     push bp
+     93	0148  8B EC			     mov bp, sp
+     94
+     95	014A  8E 46 04			     mov es, ss:[bp + 4]
+     96	014D  8B 7E 06			     mov di, ss:[bp + 6]
+     97	0150  8A 46 08			     mov al, byte ptr ss:[bp + 8]
+     98	0153  8B 4E 0A			     mov cx, ss:[bp + 10]
+     99	0156  F3> AA			     rep stosb
+    100
+    101	0158  5D			     pop bp
+    102	0159  C3		     ret
+    103				     ;=================================================
+    104
+    105				     ;=================================================
+    106				     ;	     Compares 2	memory blocks of
+    107				     ;		     particular	size.
+    108				     ;	     Entry: SrcSeg:[SrcOffset] -> the 1st one.
+    109				     ;			DestSeg:[DestOffset] ->	the 2nd	one.
+    110				     ;			Num = blocks size.
+    111				     ;
+    112				     ;			push Num
+    113				     ;			push SrcOffset
+    114				     ;			push SrcSeg
+Turbo Assembler	 Version 4.1	    03/10/14 18:13:17	    Page 3
+mstring.asm
+
+
+
+    115				     ;			push DestOffset
+    116				     ;			push DestSeg
+    117				     ;
+    118				     ;	     Exit:
+    119				     ;		     CL	= 01h <=> 1st >	2nd.
+    120				     ;		     CL	= 00h <=> 1st =	2nd.
+    121				     ;		     CL	= FFh <=> 1st <	2nd.
+    122				     ;
+    123				     ;		     DS:[SI] ->	the last byte after the
+    124				     ;			     1st block's end.
+    125				     ;		     ES:[DI} ->	the last byte after the
+    126				     ;			     2nd block's end.
+    127				     ;
+    128				     ;	     Destr: none.
+    129				     ;=================================================
+    130	015A			     memcmp:
+    131	015A  55			     push bp
+    132	015B  8B EC			     mov bp, sp
+    133
+    134	015D  8E 46 04			     mov es, ss:[bp + 4]
+    135	0160  8B 7E 06			     mov di, ss:[bp + 6]
+    136	0163  8E 5E 08			     mov ds, ss:[bp + 8]
+    137	0166  8B 76 0A			     mov si, ss:[bp + 10]
+    138	0169  8B 4E 0C			     mov cx, ss:[bp + 12]
+    139
+    140	016C  F3> A6			     repe cmpsb
+    141
+    142	016E  77 04			     ja	above
+    143	0170  74 06			     je	equal
+    144	0172  72 08			     jb	below
+    145
+    146	0174				     above:
+    147	0174  B1 01				     mov cl, 01h
+    148	0176  5D				     pop bp
+    149	0177  C3			     ret
+    150
+    151	0178				     equal:
+    152	0178  B1 00				     mov cl, 00h
+    153	017A  5D				     pop bp
+    154	017B  C3			     ret
+    155
+    156	017C				     below:
+    157	017C  B1 FF				     mov cl, 0ffh
+    158	017E  5D				     pop bp
+    159	017F  C3			     ret
+    160				     ;=================================================
+    161
+    162				     end start
+Turbo Assembler	 Version 4.1	    03/10/14 18:13:17	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/10/14"
+??FILENAME			  Text	 "mstring "
+??TIME				  Text	 "18:13:17"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 MSTRING
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+ABOVE				  Near	 DGROUP:0174
+BELOW				  Near	 DGROUP:017C
+EQUAL				  Near	 DGROUP:0178
+MEMCMP				  Near	 DGROUP:015A
+MEMSET				  Near	 DGROUP:0147
+PIP				  Byte	 DGROUP:0000
+START				  Near	 DGROUP:0100
+STRCPY				  Near	 DGROUP:012C
+STRLEN				  Near	 DGROUP:0113
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0005 Word	  Public  DATA
+  _TEXT				  16  0180 Word	  Public  CODE
+

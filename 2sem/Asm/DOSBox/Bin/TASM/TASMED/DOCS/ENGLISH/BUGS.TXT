@@ -1,0 +1,33 @@
+
+     Preamble
+     ~~~~~~~~
+         If  you  found  a  bug  unlisted  here,  please send me a complete
+     description  how  to  reproduce it, what OS you're using, what version
+     of TASMED do you have and so on. Remember, complete description, not a
+     message just like a "It does not work under NT, what's up?".
+
+     Bugs in VESA support
+     ~~~~~~~~~~~~~~~~~~~~
+      Computer  hangs  after 7 or about screen swappings on S3 Virge. This
+       bug  was  also detected by special simple real mode programs I wrote
+       to detect it. So, I think it is bug in VESA support on S3 Virge. One
+       solution:  switch  VESA  support  off  by adding "-novesa" switch in
+       TASMED command line.
+      Some  old  SVGA  videocards is not detected even as VGA (ax = 1a00h,
+       int  10h).  Example:  Acumos AVGA2 with 512 Kb of VRAM on board (VBE
+       1.1). Solution: add "-vga" switch to TASMED command line.
+
+     Bugs and incompatibilities with Operating Systems
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      When  TASMED  is  invoking Turbo Debugger under Windows 95, TD hangs
+       up.  The  cause  is  partial incompatibility between DPMI16 host and
+       Windows 95.  Solutions:  use  another version DPMI host or don't use
+       Windows 95.
+      Some custom video modes make Windows 95 feel worse. Solutions: don't
+       use that video modes or don't use Windows 95.
+      Inproper Pause and PrintScreen keys handling under Windows 95. Cause
+       is keyboard driver.  It interpretes  key combinations  before TASMED
+       internal  keyboard  driver.  There  is  nothing  I  can  do with it.
+       Solution: don't use Pause and PrintScreen keys under Windows 95.
+
+     06-03-99  Eugene Nonko aka CodeMaster

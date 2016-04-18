@@ -1,0 +1,65 @@
+
+     Комбинации клавиш, которые работают в TASMED-е
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Ctrl+A - word left
+     Ctrl+B - change block type (stream/rectangular)
+     Ctrl+C - page down
+     Ctrl+D - char right
+     Ctrl+E - line up
+     Ctrl+F - word right
+     Ctrl+G - delete char
+     Ctrl+H - backspace
+     Ctrl+I - tab
+     Ctrl+K - block keys
+       # - set bookmark # at current cursor position
+       B - start block
+       C - copy block
+       H - hide/unhide selection
+       I - shift block right
+       K - end block
+       L - select current line
+       O - uncomment block
+       P - comment block
+       U - shift block left
+       V - move block
+       Y - delete block
+     Ctrl+L - search again
+     Ctrl+M - new line
+     Ctrl+N - hide/unhide comments
+     Ctrl+O - indent mode on/off
+     Ctrl+P - insert ASCII code
+     Ctrl+Q - quick keys
+       # - go to bookmark #
+       A - replace
+       C - text end
+       D - line end
+       F - find
+       H - delete to start of line
+       P - duplicate current line
+       R - text start
+       S - line start
+       Y - delete to end of line
+     Ctrl+P - hide comments
+     Ctrl+R - page up
+     Ctrl+S - char left
+     Ctrl+T - delete to the end of word
+     Ctrl+U - undo
+     Ctrl+V - insert mode on/off
+     Ctrl+X - line down
+     Ctrl+Y - delete current line
+     Ctrl+[ - upcase current word
+     Ctrl+] - locase current word
+     Ctrl+\ - mixcase current word
+     Ctrl+Shift+[ - upcase current line
+     Ctrl+Shift+] - locase current line
+     Ctrl+Shift+\ - mixcase current line
+     Ctrl+Enter - open file at cursor
+     Alt+PgUp - search for label
+     Alt+PgDn - return
+
+         NB: Это  стандартные  комбинации клавиш.  Вы можете модифицировать
+     все вышеперечисленные комбинации путем редактирования файла TASMED.IDE
+     (выполните  TASMED  с  ключом  "-xide",  чтобы  выделить  этот файл из
+     запускаемого модуля TASMED-а).
+
+     06-03-99  Eugene Nonko aka CodeMaster

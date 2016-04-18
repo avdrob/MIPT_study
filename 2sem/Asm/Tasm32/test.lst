@@ -1,0 +1,60 @@
+test.asm line 0005: Duplicate label: (include)
+test.asm line 0006: Duplicate label: (include)
+test.asm line 0006: Duplicate label: (masm32)
+test.asm line 0006: Duplicate label: (include)
+test.asm line 0007: Duplicate label: (include)
+test.asm line 0007: Duplicate label: (masm32)
+test.asm line 0007: Duplicate label: (include)
+test.asm line 0009: Duplicate label: (masm32)
+test.asm line 0010: Duplicate label: (includelib)
+test.asm line 0010: Duplicate label: (masm32)
+test.asm line 0010: Duplicate label: (lib)
+0001   0000             .386
+test.asm line 0001: unrecognized directive.            (.386)
+0002   0000             .model flat, stdcall
+test.asm line 0002: unrecognized directive.            (.MODEL)
+0003   0000             option casemap :none
+test.asm line 0003: Label not found: (option)
+test.asm line 0003: label value misalligned.           (option)
+test.asm line 0003: unrecognized instruction.          (option)
+0004   0000              
+0005   0000             include \masm32\include\windows.inc
+0005   0000             
+0005   0000             
+0005   0000             
+0006   0000             include \masm32\include\kernel32.inc
+0006   0000             
+0006   0000             
+0006   0000             
+0007   0000             include \masm32\include\masm32.inc
+0007   0000             
+0007   0000             
+0007   0000             
+0008   0000              
+0009   0000             includelib \masm32\lib\kernel32.lib
+0009   0000             
+0009   0000             
+0009   0000             
+0010   0000             includelib \masm32\lib\masm32.lib
+0010   0000             
+0010   0000             
+0010   0000             
+0011   0000              
+0012   0000             .data
+test.asm line 0012: unrecognized directive.            (.DATA)
+0013   0000             HelloWorld db "Hello World!", 0
+test.asm line 0013: Label not found: (HelloWorld)
+test.asm line 0013: label value misalligned.           (HelloWorld)
+test.asm line 0013: unrecognized instruction.          (HelloWorld)
+0014   0000              
+0015   0000             .code
+test.asm line 0015: unrecognized directive.            (.CODE)
+0016   0000                 start:
+test.asm line 0016: unrecognized instruction.          (START)
+0017   0000                     invoke StdOut, addr HelloWorld
+test.asm line 0017: unrecognized instruction.          (INVOKE)
+0018   0000                     invoke ExitProcess, 0
+test.asm line 0018: unrecognized instruction.          (INVOKE)
+0019   0000                 end starttest.asm line 0019: unrecognized instruction.          (END)
+ line 0019: No END directive before EOF.       
+tasm: Number of errors = 26

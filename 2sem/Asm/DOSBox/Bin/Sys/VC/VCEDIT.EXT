@@ -1,0 +1,13 @@
+zip: @rar !.!
+ar?: @rar !.!
+a0?: @rar !.!
+a1?: @rar !.!
+rar: @rar !.!
+r0?: @rar !.!
+r1?: @rar !.!
+
+exe: @qview !.!
+com: @qview !.!
+bin: @qview !.!
+
+*:   @ed.exe !.!

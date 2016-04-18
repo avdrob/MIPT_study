@@ -1,0 +1,77 @@
+Turbo Assembler	 Version 4.1	    04/12/14 22:18:51	    Page 1
+max_mas.asm
+
+
+
+      1				     assume CS:code,DS:data,SS:stack
+      2	0000			     stack segment
+*Warning* max_mas.asm(2) Reserved word used as symbol: STACK
+      3	0000  0100*(??)			 db 256	dup (?)
+      4	0100			     stack ends
+      5	0000			     data segment
+      6	0000  06*(????)			 a dw 6	dup (?)
+      7	000C  0006			 n dw 6
+      8	000E  8000			 max dw	-32768
+      9	0010			     data ends
+     10	0000			     code segment
+     11	0000  B8 0000s		     ent:mov AX,data
+     12	0003  8E D8			 mov DS,AX
+     13	0005  BE 0000r			 lea SI,a
+     14	0008  8B 0E 000Cr		 mov CX,n
+     15	000C  A1 000Er			 mov AX,max
+     16	000F			     C1:inint [SI]
+**Error** max_mas.asm(16) Illegal instruction
+     17	000F  3B 04			 cmp AX,[SI]
+     18	0011  7C 03			 jl m1
+     19	0013  EB 03 90			 jmp m2
+     20	0016  8B 04		     m1:mov AX,[SI]
+     21	0018  83 C6 02		     m2:add SI,2
+     22	001B  E2 F2			 loop C1
+     23	001D  A3 000Er		     mov max,AX
+     24				     outint AX
+**Error** max_mas.asm(24) Illegal instruction
+     25				     inint BX
+**Error** max_mas.asm(25) Illegal instruction
+     26	0020  B8 004C		     mov AX,004Ch
+     27	0023  CD 21		     int 21h
+     28	0025			     code ends
+     29				     end ent
+Turbo Assembler	 Version 4.1	    04/12/14 22:18:51	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "04/12/14"
+??FILENAME			  Text	 "max_mas "
+??TIME				  Text	 "22:18:51"
+??VERSION			  Number 040A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 MAX_MAS
+@WORDSIZE			  Text	 2
+A				  Word	 DATA:0000
+C1				  Near	 CODE:000F
+ENT				  Near	 CODE:0000
+M1				  Near	 CODE:0016
+M2				  Near	 CODE:0018
+MAX				  Word	 DATA:000E
+N				  Word	 DATA:000C
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  0025 Para	  none
+DATA				  16  0010 Para	  none
+STACK				  16  0100 Para	  none
+Turbo Assembler	 Version 4.1	    04/12/14 22:18:51	    Page 3
+Error Summary
+
+
+
+*Warning* max_mas.asm(2) Reserved word used as symbol: STACK
+**Error** max_mas.asm(16) Illegal instruction
+**Error** max_mas.asm(24) Illegal instruction
+**Error** max_mas.asm(25) Illegal instruction
+

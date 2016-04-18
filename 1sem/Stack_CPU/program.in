@@ -1,0 +1,5 @@
+push ax
+push 100
+add
+out
+halt

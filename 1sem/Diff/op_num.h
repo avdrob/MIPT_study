@@ -1,0 +1,23 @@
+enum op_num
+{
+    OP_LESS = 1,
+    OP_MORE,
+    OP_LES_EQ,
+    OP_MOR_EQ,
+    OP_EQ,
+    OP_NEQ,
+    OP_PLUS,
+    OP_MINUS,
+    OP_MUL,
+    OP_DIV,
+    OP_OPEN_RND_BR,
+    OP_CLOSE_RND_BR,
+    OP_OPEN_FIG_BR,
+    OP_CLOSE_FIG_BR,
+    OP_POW,
+    OP_SEP,
+    OP_IF,
+    OP_WHILE,
+    OP_RET,
+    OP_OP,
+};

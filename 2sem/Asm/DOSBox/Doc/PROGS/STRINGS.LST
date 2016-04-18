@@ -1,0 +1,180 @@
+Turbo Assembler	 Version 4.1	    03/09/14 21:02:37	    Page 1
+strings.asm
+
+
+
+      1	0000				     .model tiny
+      2
+      3	0000				     .data
+      4	0000  30				     beep db '0'
+      5	0001  31				     tyc db '1'
+      6	0002				     .code
+      7					     org 100h
+      8
+      9	0100			     start:
+     10	0100  BE 0000r			     mov si, offset beep
+     11	0103  BF 0001r			     mov di, offset tyc
+     12	0106  B9 0001			     mov cx, 01h
+     13	0109  E8 002B			     call memcmp
+     14
+     15	010C  B8 4C00			     mov ax, 4c00h
+     16	010F  CD 21			     int 21h
+     17
+     18				     ;==========================================
+     19				     ;	     Counts string length
+     20				     ;	     Entry: ES:[DI] -> string
+     21				     ;	     Exit: CX =	string length
+     22				     ;		       AL = '$'
+     23				     ;	     Destr:  none
+     24				     ;==========================================
+     25	0111			     strlen:
+     26	0111  B4 00			     mov ah, 00h
+     27	0113  B0 24			     mov al, '$'
+     28	0115  B9 FFFF			     mov cx, 0ffffh
+     29	0118  F2> AE			     repne scasb
+     30	011A  F7 D9			     neg cx
+     31	011C  83 E9 02			     sub cx, 2
+     32	011F  C3		     ret
+     33				     ;==========================================
+     34
+     35				     ;==========================================
+     36				     ;	     Copies a string into another
+     37				     ;		     memory block.
+     38				     ;	     Entry: DS:[SI] -> string.
+     39				     ;			ES:[DI]	-> block should	be
+     40				     ;				     filled with the string.
+     41				     ;	     Exit: DS:[SI] -> the byte after the last
+     42				     ;						     byte of src.
+     43				     ;		       ES:[DI] -> the byte after the last
+     44				     ;						     byte of dest.
+     45				     ;		       AL = '$'
+     46				     ;	     Destr: CX = 0.
+     47				     ;==========================================
+     48	0120			     strcpy:
+     49	0120  56			     push si
+     50	0121  87 F7			     xchg si, di
+     51	0123  06			     push es
+     52	0124  1E			     push ds
+     53	0125  1F			     pop ds
+     54	0126  07			     pop es
+     55	0127  E8 FFE7			     call strlen
+     56
+     57	012A  06			     push es
+Turbo Assembler	 Version 4.1	    03/09/14 21:02:37	    Page 2
+strings.asm
+
+
+
+     58	012B  1E			     push ds
+     59	012C  1F			     pop ds
+     60	012D  07			     pop es
+     61	012E  5F			     pop di
+     62	012F  87 F7			     xchg si, di
+     63
+     64	0131  F2> A4			     repne movsb
+     65	0133  C3		     ret
+     66				     ;==========================================
+     67
+     68
+     69				     ;==========================================
+     70				     ;	     Fills in block of CX bytes	at ES:[DI]
+     71				     ;		     with AL.
+     72				     ;	     Entry: ES:[DI] -> the block should	be
+     73				     ;				     filled in.
+     74				     ;			AL = the value byte.
+     75				     ;			CX = number of bytes.
+     76				     ;	     Exit: ES:[DI] -> the byte after the last
+     77				     ;						     byte of the block.
+     78				     ;	     Destr: CX = 0.
+     79				     ;==========================================
+     80	0134			     memset:
+     81	0134  F3> AA			     rep stosb
+     82	0136  C3		     ret
+     83				     ;==========================================
+     84
+     85
+     86				     ;==========================================
+     87				     ;	     Compares 2	memory blocks of
+     88				     ;		     particular	size.
+     89				     ;	     Entry: DS:[SI] -> the 1st one.
+     90				     ;			ES:[DI]	-> the 2nd one.
+     91				     ;			CX = blocks size.
+     92				     ;	     Exit:
+     93				     ;		     CL	= 1 <=>	1st > 2nd.
+     94				     ;		     CL	= 0 <=>	1st = 2nd.
+     95				     ;		     CL	= -1 <=> 1st < 2nd.
+     96				     ;
+     97				     ;		     DS:[SI] ->	the last byte after the
+     98				     ;			     1st block's end.
+     99				     ;		     ES:[DI} ->	the last byte after the
+    100				     ;			     2nd block's end.
+    101				     ;
+    102				     ;	     Destr: none.
+    103				     ;==========================================
+    104	0137			     memcmp:
+    105	0137  F3> A6			     repe cmpsb
+    106
+    107	0139  77 04			     ja	above
+    108	013B  74 05			     je	equal
+    109	013D  72 06			     jb	below
+    110
+    111	013F				     above:
+    112	013F  B1 01				     mov cl, 01h
+    113	0141  C3			     ret
+    114
+Turbo Assembler	 Version 4.1	    03/09/14 21:02:37	    Page 3
+strings.asm
+
+
+
+    115	0142				     equal:
+    116	0142  B1 00				     mov cl, 00h
+    117	0144  C3			     ret
+    118
+    119	0145				     below:
+    120	0145  B1 FF				     mov cl, -1h
+    121	0147  C3			     ret
+    122				     ;==========================================
+    123
+    124				     end start
+Turbo Assembler	 Version 4.1	    03/09/14 21:02:37	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/09/14"
+??FILENAME			  Text	 "strings "
+??TIME				  Text	 "21:02:37"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 STRINGS
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+ABOVE				  Near	 DGROUP:013F
+BEEP				  Byte	 DGROUP:0000
+BELOW				  Near	 DGROUP:0145
+EQUAL				  Near	 DGROUP:0142
+MEMCMP				  Near	 DGROUP:0137
+MEMSET				  Near	 DGROUP:0134
+START				  Near	 DGROUP:0100
+STRCPY				  Near	 DGROUP:0120
+STRLEN				  Near	 DGROUP:0111
+TYC				  Byte	 DGROUP:0001
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0002 Word	  Public  DATA
+  _TEXT				  16  0148 Word	  Public  CODE
+

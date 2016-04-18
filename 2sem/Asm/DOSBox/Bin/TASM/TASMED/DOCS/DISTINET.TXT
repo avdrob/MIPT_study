@@ -1,0 +1,18 @@
+
+     TASMED distribution sites (Internet)
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         If  you  can place TASMED to your BBS or FTP/HTTP server to permit
+     everyone  to  take it - send me a full information about your site and
+     I'll include you to the list below.
+
+      Owner      Anton Bolshakov (blshkv)
+       Location   Bishkek
+       HTTP       www.blshkv.kg/download.html
+       Fidonet    2:50/520.22
+       Phone      (3312) 425178
+
+      Owner      Eugene Nonko
+       HTTP       www.geocities.com/SiliconValley/Network/2963/files.html
+       Comments   This is my official homepage
+
+     06-03-99  Eugene Nonko aka CodeMaster

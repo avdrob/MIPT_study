@@ -1,0 +1,17 @@
+read.write.c Программа для оценки влиянения на производительность перекрытия транзация чтения/записи
+read.write.make.bat CALL clock.make -release %1 read.write.c
+prefetch.hierarchy.L2.make.bat CALL clock.make -release %1 prefetch.hierarchy.L2.c
+prefetch.hierarchy.L2.c Пример, демонстрирующий эффективность использования "сквозной"загрузки данных в L1-кэш, минуя L2
+prefetch.hierarchy.type.c Пример, демонстрирующий влияение выбора	предвыбираемой кэш-иерархии на производительность
+prefetch.hierarchy.type.make.bat CALL clock.make.bat -release %1 prefetch.hierarchy.type.c
+memset.optimize.c Пример, демонстрирующий технику оптимизации заполнения памяти путем сквозной записи в системную память, минуя кэш
+memset.optimize.make.bat CALL clock.make -release %1 memset_optimize.c
+memcpy.optimize.c Пример, демонстрирующий технику оптимизации компирования памяти	путем предварительной предвыборки
+memcpy.optimize.make.bat CALL clock.make -release %1 memcpy.optimize.c
+brust.order.c Пример, демонстрирующий последовательность адресов в пакетном цикле обмена с памятью
+brust.order.make.bat CALL clock.make -release %1 brust.order.c
+descript.ion /cat/root
+memcpy.direct.make.bat CALL clock.make -release %1 memcpy.direct.c
+memcpy.direct.c Пример, демонтрирующий скорость копирования памяти в обоих направлениях
+mem.stail.read.make.bat CALL clock.make -release %1 mem.stail.read.c
+mem.stail.read.c Пример, демонстрирующий возникновение задержек памяти при чтении/записи	данных различного размера

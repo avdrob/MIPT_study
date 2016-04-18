@@ -1,0 +1,732 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(1/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(100)
+
+If you select EDIT from the main
+menu, your sprite will appear and
+ nothing else, in particular will, 
+  happen. All functions are used 
+via hotkey.
+
+Use the following keys:
+#27X\(160)
+#27Y\(190)
+F1  moves a part of the screen
+F2  copies a part of the screen
+F3  flips a part of the screen
+F4  mirrors a part of the screen
+F5  line functions like circle
+F6  plane functions 
+F7  color manipulations
+F8  Effects like color flow
+F9  Floodfill, rubber, etc
+F10 load tempfile
+INS save as tempfile for F10
+TAB a short overview
+#27X\(130)
+
+Alt+F10  Undo last change (F1-F9)
+Ctrl+F10 Recall palette
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(2/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(086)
+
+EDIT and UNDO
+
+ When you select EDIT, the actual
+screen is saved. If you have made
+ a mistake or something does not
+ look like it should, use F10 to
+undo your changes and restore the
+picture to its original state.
+ Sometimes you may think, that the
+ current state is ok, and you would
+#27X\(145)
+   not like to lose your changes
+#27X\(130)
+ anymore. Well, save it on the same
+temporary file as the one, when EDIT
+is called. To do this, press INS and
+your sprite will be saved. Everytime
+you use F10, this state will be re-
+stored. If you use INS, it is diff-
+ erent from SAVE in the main menu.
+ Your sprite will be saved in a 
+ temporary file, that is deleted, 
+when you quit EDIT.
+
+Keys: INS and F10
+Mouse: no
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(3/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+
+#27X\(130)
+#27Y\(082)
+
+Function F1:
+
+First of all, you have to select a
+logical operation for your image.
+Choose one of these: COPY, OR, AND,
+#27X\(115)
+XOR, NOT. If you are not aware with the
+#27X\(120)
+meaning of logial operation, try them 
+all and see the difference. The most
+important ones are COPY, OR and, XOR.
+#27X\(120)
+Then the mouse cursor will be changed
+#27X\(130)
+    to F1. Press the left button to
+   select the upper left corner. If
+you move the mouse now, a rectangle
+will appear. This is the area, that
+#27X\(120)
+will be moved later. If you press the
+left button again, your selection is
+   finished. The marked part of the
+screen will be saved in memory. If
+you press the left button a third
+time, it is restored from memory. The
+#27X\(128)
+marked area is filled with color 0.
+Pressing the right button during the
+selection process, will abort your
+action.
+
+#27X\(138)
+Keys:  none
+Mouse: yes
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(4/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+Function F2:
+
+The COPY function works like the
+MOVE function with the difference.
+that marked area will not be cleared
+with color 0.
+
+Keys:  none
+Mouse: yes
+
+
+Function F3:
+
+The FLIP routine flips a marked area.
+
+Keys:  none
+Mouse: yes
+
+
+Function F4:
+
+If you would like to mirror a part
+of the screen, mark it as previously
+discribed. The two short lines show 
+the mirror axis.
+#27X\(150)
+#27Y\(400);
+Keys:  none
+Mouse: yes
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(5/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+Function F5:
+
+The "line" functions. This topic
+offers you the possibility to draw
+lines, circles, ellipses, rect-
+angles or squares. After selecting
+this topic, you have to decide what
+  you would like to draw. Enter a
+number and choose a color. What to
+  do next, is discribed later.
+
+Keys:  none
+Mouse: yes
+
+
+1. Circle:
+Select the center with the left 
+button and move the mouse. If
+you press the left button again, 
+the circle will be set.
+
+
+2. A line:
+Select two points with the mouse
+and the line will be drawn.
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(6/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+3. Ellipse:
+See circle.
+
+4. Rectangle:
+Use the mouse to select the upper
+left corner. For the lower right
+corner, press the left button again.
+
+5. Trapeze:
+#27X\(124)
+  To make a trapeze, you have to mark
+#27X\(130)
+     three points. You will not see
+anything, before you haven't set the
+second of them.
+
+6. Lines:
+You can draw up to 255 lines. If you
+press the left button twice, your
+action will be finished.
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(7/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+Function F7
+
+This is the place, where you can
+manipulate the active color palette.
+At the moment, it contains four
+subroutines.
+#27Y\(180)
+
+1. RGB:
+  Each of the 256 colors consists of
+     a triple of numbers which are
+in the range from 0 to 63. The first
+part of the triple is the RED, the
+second the GREEN and the third the
+BLUE value. Generally speaking  you 
+can say, that a high number indicates 
+a pale color, a lower one a darker 
+color. That means, black would be 
+0/0/0 (R/G/B) and white 63/63/63.
+Some more color information:
+
+black:  0/0/0     white:  63/63/63
+gray:   n/n/n     yellow: 63/63/0
+red:    n/0/0     green:  0/n/0
+blue:   0/0/n     (n is any number)
+
+#27Line\(253,330,253,384)
+#27Line\(254,330,254,384)
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(8/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+If you select F7 and RGB, you can
+change the RGB values of one color.
+The bar  at the top of the screen, 
+shows the status of the color. The 
+original state is marked with a 
+point over and under the bar of each 
+value.
+
+  Keys:
+       -CURSOR keys
+       -RETURN to accept
+       -ESC to forget it
+  Mouse: no
+
+
+
+2. Grayscale
+
+If you select this topic, the
+color palette will be transformed
+into a gray color palette. Don't
+forget to save it, if you would
+like to use it in your next session.
+
+  Keys:  none
+  Mouse: no
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(9/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+
+3. Light
+
+  LIGHT offers you the possibility
+to lighten or to darken your picture.
+  Watch out!  If you would like to
+lighten/darken it again, the values
+  may have changed! This may cause 
+    problems! Colors can become
+  lost! If this happens, load your
+  palette again with one of the UNDO
+    functions or in the main menu.
+
+Keys:  
+      -cursor keys up and down
+      -ESC or RETURN to finish
+Mouse: no
+
+4. (Really) Used Colors (RUC)
+
+Scans the picture and checks, if a
+color is in use or not. Those, which
+were not needed, become 0/0/0. You
+can add new colors then, using the
+RGB function.
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(10/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(124)
+#27Y\(090)
+
+6+7. Save color palette
+
+Use this function not to loose your
+  changes at your color palette, 
+   anymore. Enter the new file
+name. This palette will be loaded,
+if you select PALETTE from the main
+menu. The actual palette file name
+is shown also. If you wish to load
+  the new palette everytime you load
+    this sprite, save it with the
+same name that appears there. This
+#27X\(122)
+does not work, if you use STDCOL.PAL,
+  because this palette cannot be 
+ deleted. Next step is to, save it 
+ with the same name as your sprite. 
+#27Textcolor\(004)   
+   Don't forget to change the
+   file extension to PAL!!!!
+
+#27Textcolor\(003)
+Example: SPRITE.SPR and SPRITE.PAL
+
+#27Textcolor\(000)
+Keys:
+     -ESC to cancel
+     -RETURN to save
+Mouse: no
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(11/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+5.Palette
+
+#27X\(130)
+   In case you would like to load
+#27X\(124)
+ another palette, you are right with
+ this topic. Select PALETTE from the
+#27X\(120)
+main menu and enter the right filename
+#27X\(124)
+ of the palette file. Here are some
+filenames, that are included in  the
+program:
+
+
+
+STDCOL.PAL:
+          The standard color palette
+          of this program.
+
+STDCOL2.PAL:
+          The standard 256 colors
+          palette.
+
+GRAYPAL.PAL:
+          A grayscaled palette.
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(12/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(090)
+
+
+Funktion F8
+
+1+2. Flow Pts.
+
+#27X\(120)
+This makes a transition of two colors.
+You have to select the area, in which 
+the transition should take place. One
+is horizontal, one vertical.
+
+
+
+#27X\(130)
+3. Random
+
+#27X\(124)
+RANDOM fills an area with accidental
+chosen colors. You have to decide 
+what colors and how many.
+
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(13/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(080)
+
+Funktion F9
+
+1. Floodfill
+
+ Fills an area with a color. This 
+function has a little bug. It works 
+best, if you select the starting-
+point at the bottom of the area you 
+#27X\(125)
+want to fill. Often you will have to 
+use this function two or three times, 
+#27X\(130)    
+    until the area is completely 
+    filled. Press ESC to terminate.
+
+2. Rubber
+
+#27X\(122)
+If you press the left button of your
+mouse, a filled square will appear.
+You can keep the button pressed and
+move the mouse around. You have
+the choice of different squares, you
+can select with the cursor keys up
+and down. If you would like to leave
+this function, you press the
+#27Textcolor\(003)
+#27X\(354)
+#27Y\(344)
+left
+#27Textcolor\(000)
+#27X\(122)
+button twice.
+
+  Keys: -Cursor keys up and down
+  Mouse: yes
+#27screen_on\
+#27Stop\
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(135)
+#27Y\(020)
+#27Font\(004,005)
+Edit
+#27Font\(004,003)
+#27X\(335)
+#27Y\(390)
+(14/14)
+#27Line\(130,070,205,070)
+#27Line\(130,072,205,072)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(130)
+#27Y\(080)
+
+
+3.Brush
+
+#27X\(122)
+If you press the left button of your
+mouse, a filled circle will appear.
+You can keep the button pressed and
+move the mouse around applying BRUSH
+  as the RUBBER-function. You have
+the choice of different circles, which
+you can select with the cursor keys up
+and down.
+
+     Keys: -Cursor keys up and down
+     Mouse: yes
+
+4. Aerosol
+
+#27X\(120)
+You will see a rectangle, when you se-
+lect this function. This is the area,
+that is filled with points. The
+position of a point is casual. You
+can spray with different intensities,
+which were selected with the cursor
+keys.
+
+  Keys: -Cursor keys up and down
+  Mouse: yes
+
+#27screen_on\
+#27Stop\
+#27EndOfFile\
+
+
+
+
+
+

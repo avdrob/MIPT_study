@@ -1,0 +1,2079 @@
+
+
+
+
+
+                             VESA BGI 256 Color Driver
+                             =========================
+
+                         Copyright 1991-1995 Knight Software
+                                 as of 21 May 1995
+
+
+        The VESA256 driver is a BGI driver for Super VGA cards using 256 
+        colors. The most popular 256 color modes are supported.
+        Protected mode operation is supported by this driver.
+
+        Mode     Description   Memory    Who uses it
+         0       320x200x256 : (64K)     Standard VGA and MCGA
+         1       640x400x256 : (256K)    Some Super VGAs
+         2       640x480x256 : (512K)    Most Super VGAs
+         3       800x600x256 : (512K/1M) Some Super VGAs
+         4      1024x768x256 : (1M)      Some Super VGAs
+         5     1280x1024x256 : (2M)      Some Super VGAs
+
+
+        The VESA256 driver supports most of the Graphics commands with a 
+        few exceptions. Additionally, I have added some extensions to the 
+        capabilities of the BGI driver beyond the functionality of the 
+        standard BGI drivers. These extensions do not affect the normal 
+        use of the BGI driver with regular programs. The extensions allow 
+        for greater flexibility in the use of the driver and various 
+        drawing functions. 
+
+        The driver works with the standard Borland graphics commands. For 
+        the operation of the graphics commands refer to your Pascal or C 
+        language reference manual. 
+
+        It should be noted that the BGI driver was originally designed 
+        for use with the Hercules, CGA and EGA displays. It does not have 
+        full support capability for VGA type displays, and in fact has 
+        some limitations placed on it by the EGA specific code. Every 
+        attempt was made to keep the operation as similar as possible to 
+        the Borland supplied BGI drivers, but because of the limitations 
+        imposed by Borland's GRAPH code some functions do not work 
+        exactly the same, or do not work at all. For general and card 
+        specific known problems see the BUGS.DOC file.
+
+        The following list of commands describe the exceptions or 
+        limitations of the graphics commands that are not fully 
+        supported, supported differently, or have been extended in this 
+        driver. Graphics functions that are not listed here continue to 
+        operate exactly as specified in the language reference manual. 
+
+
+
+
+
+
+
+
+                                        1
+
+        Pascal: function AutoDetect : integer;
+        C, C++: int huge autodetect(void);
+
+        The AutoDetect function is not a library function but rather code 
+        that you must write yourself if you are going to be using 
+        autodetection for a non-Borland supplied BGI driver. You can 
+        label the function any name that you wish as long as you pass a 
+        pointer to the function to the InstallUserDriver when it is 
+        called. If you are not going to be supplying an autodetect 
+        function, then you should pass a nil pointer to the 
+        InstallUserDriver function. 
+
+        Note: In TP5.0 and TP5.5 you must use the Autodetection method 
+        due to a bug in the graph unit which causes the InstallUserDriver 
+        function to return a bad number.
+
+        The AutoDetect function can be used to determine if the hardware 
+        is installed in the computer, and the Borland manuals indicate 
+        that this is it's function. I consider this poor practice however 
+        since it places hardware dependent code in the main program which 
+        defeats the purpose of the BGI driver which is to remove hardware 
+        dependencies from the main program code. The VESA256 driver 
+        provides the hardware detection as a part of the driver itself. 
+        The detection is performed during the InitGraph (and as a side 
+        effect in the SetGraphMode function). 
+
+        Normally you would pass the mode selection that you wish the 
+        display to start up in. Sometimes that is not always possible, 
+        especially with the Super VGA displays where you cannot be 
+        certain what modes are available until the display has been 
+        initialized with the InitGraph function. 
+
+        To solve that problem, if a mode value that is outside the range 
+        of available modes is passed to the driver it will go into auto-
+        mode detection. This will cause the driver to ignore the mode 
+        value and place the driver into the default mode. This prevents 
+        setting the display to a non-supported mode while still allowing 
+        the main program to be non-hardware specific. 
+
+        The only problem with this is that the GRAPH unit will think that 
+        the mode selected is 127. To get around this limitation, an 
+        extended function has been provided to cause the GetMaxMode 
+        function to return the currently selected mode by calling 
+        SetWriteMode($E0+25) before calling GetMaxMode. The GetGraphMode 
+        function will not contain a proper value until a SetGraphMode 
+        call is made with a supported mode passed as the mode value.
+        Because of this, it is recommended that the GetMaxMode method be 
+        used if you use the auto-mode detection scheme. 
+
+        The same effect will occur if you pass the auto-mode value as a 
+        mode value to the InitGraph function along with the desired 
+        Driver number, or if the driver is unable to select the mode that 
+        is passed. In all cases the grInvalidMode error will be returned.
+
+
+
+
+                                        2
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure DetectGraph
+                                (var GraphDriver, GraphMode : integer);
+        C, C++: void far detectgraph
+                            (int far *graphdriver, int far *graphmode);
+
+        The DetectGraph function is used to detect the presence of one of 
+        the standard Borland supported display cards. This function will 
+        NOT call the AutoDetect function addressed by the 
+        InstallUserDriver function. If you wish to detect the presence of 
+        a non-Borland supplied driver, then you must first call the 
+        appropriate AutoDetect routine yourself.
+
+        This function doesn't normally have to be used unless you wish to 
+        override the driver/mode numbers normally determined by the 
+        detection function and you intend to use one of the Borland 
+        supplied BGI drivers.
+
+        The DetectGraph function is automatically called by the InitGraph 
+        function when the GraphDriver number passed is zero. If you call 
+        DetectGraph yourself, the number provided in GraphDriver is 
+        ignored, and the number for the Borland supplied driver that fits 
+        the determined display card is passed back in GraphDriver 
+        variable. The Mode number is set to the maximum mode number that 
+        is available for the detected display system. These numbers can 
+        then be used with the InitGraph function to actually initialize 
+        the graphics system. 
+
+        If you wish to autodetect the VESA256 driver, then you must call 
+        your own AutoDetect routine to test for the driver before 
+        attempting to call the DetectGraph function. If you don't do 
+        this, then this driver will not be detected.
+
+        See also:
+          AutoDetect, InitGraph, RegisterBGIdriver, InstallUserDriver
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        3
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure FloodFill(X, Y : integer; Border : word);
+        C, C++: void far floodfill(int x, int y, int border);
+
+        The Floodfill function is now fully supported in V3.00. You can 
+        select either Border Fill (default), or Seed Fill operation. The 
+        FillPattern controls the floodfill color and pattern that will be 
+        used (see SetFillPattern).  Note that for Seed based fills, the 
+        border color passed is ignored.
+
+        All of the extended write modes are supported by the Floodfill 
+        function through the use of the FillMode extension of the 
+        SetWriteMode command. In addition, a separate WriteMode command 
+        has been provided to control specific floodfill options. 
+
+          BorderFill ------- 0  = border fill method (default)
+          SeedFill --------- 1  = seed fill method
+          AutoFill --------- 8  = auto fill mode detection (default)
+          ComplexFill ------ 9  = force complex fill mode
+          FillCompressOff -- 10 = fast fill stack operation (default)
+          FillCompressOn --- 11 = compressed fill stack operation
+          FillDelayOff ----- 12 = draw fill lines during search (default)
+          FillDelayOn ------ 13 = wait until search is done to do fill
+          FillTracerOff ---- 14 = don't show tracer cursor (default)
+          FillTracerOn ----- 15 = show tracer cursor during search
+
+        The default floodfill method is a border fill which is what 
+        Borland does in their own BGI drivers. Borland uses a simplex 
+        type of floodfill. The simplex fill is fast and uses minimum 
+        stack space, but it has a problem with complex fill modes (ie it 
+        doesn't always work). The floodfill routine provided with VESA256 
+        uses a simplex fill if the conditions allow it, but will switch 
+        to a complex fill if required to properly perform the fill. If 
+        you wish, you can force a complex type fill to always be used 
+        (it's slower and uses more stack space).
+
+        To help alleviate the problem of running out of stack space, a 
+        stack compression option has been provided which reduces stack 
+        usage by 33% with a tradeoff of 50% reduction in fill speed.
+
+        The FillDelay option allows the actual drawing of the fill lines 
+        to be delayed until after the complete search is done and all 
+        fill lines are known (this avoids incomplete fills because of out 
+        of memory problems). This option is only available in the Complex 
+        fill mode. It is ignored in the simplex fill mode. Since the fill 
+        search can take a lengthy period of time on complex fills, the 
+        FillTracer option is provided to show the search activity when 
+        using the delayed fill option (no it's not dead, just busy).
+
+        For more information of the operation of the floodfill function, 
+        see the FLOOD.DOC file which contains a full description of the 
+        operation of the floodfill function.
+
+
+
+
+                                        4
+
+        -----------------------------------------------------------------
+
+        Pascal: function GetBkColor:word;
+        C, C++: int far getbkcolor(void);
+
+        GetBkColor is an EGA type function. GetBkColor reads the current 
+        EGA type background color. See SetBkColor above for details. This 
+        is the last value that was set with the SetBkColor function. It 
+        is recommended that the SetBkColor and GetBkColor functions not 
+        be used. The function is mainly here for compatibility.
+
+        See also:
+          SetBkColor, SetColor, GetColor, SetRGBPalette, GetMaxColor
+
+        -----------------------------------------------------------------
+
+        Pascal: function GetColor:word;
+        C, C++: int far getcolor(void);
+
+        GetColor is the opposite of the SetColor function it returns the 
+        current drawing color that was set with the SetColor command.
+
+        Note that it is not possible to read the current background color 
+        with this function. If you wish to keep track of the current 
+        background color, you should use a variable inside your 
+        application program to track it. 
+
+        See also:
+          SetColor, SetWriteMode, GetMaxColor, GetBkColor
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure GetDefaultPalette(var Palette : PaletteType);
+        C, C++: struct palettetype *far getdefaultpalette(void);
+
+        This is an EGA type function. It will return the standard EGA 
+        default palette values for use with the SetAllPalette function. 
+        It is recommended that you do not use this function. The VGA 
+        palette will be loaded with a default palette whenever the 
+        InitGraph or SetGraphMode functions are called. You can obtain 
+        the default palette values by using the GetRGBPalette method 
+        described in the SetRGBPalette function description immediately 
+        after calling InitGraph or SetGraphMode. The function is mainly 
+        here for compatibility.
+
+        See also:
+          GetPalette, GetPalette, SetAllPalette, SetRGBpalette
+
+
+
+
+
+
+
+
+
+
+                                        5
+
+        ---------------------------------------------------------------
+
+        Pascal: function GetDriverName : string;
+        C, C++: char *far getdrivername(void);
+
+        The GetDriverName returns the name of the currently loaded 
+        driver. Currently this function only works with Borland's C 
+        compilers. The Pascal GRAPH unit does not properly support this 
+        function and will return an empty string. To determine the driver 
+        name, use the GetModeName function which will return the driver 
+        name as a part of it's return string.
+
+        See also:
+          DetectGraph, InitGraph, GetModeName
+
+        -----------------------------------------------------------------
+
+        Pascal: function GetGraphMode : integer;
+        C, C++: int far getgraphmode(void);
+
+        The GetGraphMode function returns the currently selected display 
+        mode. Note that this does not call the BGI driver, thus it cannot 
+        know if the BGI driver is not in the mode that was declared in 
+        InitGraph or SetGraphMode. You can use the GetMaxMode function 
+        preceded by SetWriteMode($E0+25) to obtain the currently selected 
+        display mode inside the BGI driver. Refer to the mode listing for 
+        the various mode numbers available. 
+
+        See also:
+          GetMaxMode, SetGraphMode, GetGraphMode
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure GetImage (X1, Y1, X2, Y2 : integer; 
+                                    var BitMap; BitBlt : word);
+        C, C++: void far getimage (int left, int top, int right, 
+                                   int bottom, void far *bitmap, int op);
+
+        GetImage works as before, with the exception that it can be 
+        modified to write the data pointed at by BitMap to be replaced by 
+        the original display image after reading the image. This allows 
+        faster animation operation by eliminating several PutImage steps. 
+        The write method used by the GetImage function and the selection 
+        of the read/write or read/only mode is set with SetWriteMode 
+        commands. For more information on the copying methods available, 
+        refer to the SetWriteMode function.
+
+        See also:
+           ImageSize, PutImage, SetWriteMode
+
+
+
+
+
+
+
+
+                                        6
+
+        -----------------------------------------------------------------
+
+        Pascal: function GetMaxColor : word;
+        C, C++: int far getmaxcolor(void);
+
+        This function returns the maximum color palette that can be used.
+        It works exactly like the normal GetMaxColor function except that 
+        the maximum color value of 255 will be returned instead of 15. 
+
+        See also:
+          SetColor, GetColor, SetWriteMode, GetBkColor
+
+        ---------------------------------------------------------------
+
+        Pascal: function GetMaxMode : integer;
+        C, C++: int far getmaxmode(void);
+
+        The GetMaxMode function will return the maximum mode number that 
+        is allowed for the card that was detected. This is typically the 
+        number that was passed to the InitGraph function if a non-zero 
+        driver number was given, or the value returned by the AutoDetect 
+        function if the driver number was set to zero (Detect). Refer to 
+        the mode listing for the various mode numbers available.
+
+        The GetMaxMode function is also used as an mechanism to retrieve 
+        operation information from inside the BGI driver. The 
+        SetWriteMode($E0+command) function is used to select which value 
+        is to be returned by the GetMaxMode function for the extended 
+        functions. See the SetWriteMode function for more information.
+
+        If the auto-mode detection scheme was used (passing a Mode value 
+        of 127 to the InitGraph function), then GetMaxMode can be used to 
+        find out the true currently selected mode since the GetGraphMode 
+        function will not return the correct value. To have GetMaxMode 
+        return the current mode value, precede the call to GetMaxMode 
+        with a call to SetWriteMode($E0+25). 
+
+        See also:
+          SetGraphMode, GetGraphMode, GetModeName, SetWriteMode
+
+        ---------------------------------------------------------------
+
+        Pascal: function GetModeName(GraphMode : integer) : string;
+        C, C++: char *far getmodename(int mode_number);
+
+        The GetModeName function will return a string containing the mode 
+        and driver name for the requested mode number. An error message 
+        is passed back in the string if the mode requested is not 
+        available. The GraphResult value will also be set to 
+        grInvalidMode. 
+
+        See also:
+          GetMaxMode, SetGraphMode, GetGraphMode, GetDriverName
+
+
+
+
+                                        7
+
+        ---------------------------------------------------------------
+        Pascal: procedure GetModeRange
+                 (GraphDriver : integer; var LoMode, HiMode : integer);
+        C, C++: void far getmoderange
+                 (int graphdriver, int far *lomode, int far *himode);
+
+        GetModeRange does not work with this driver. This function only 
+        works with Borland's predefined BGI drivers. Incorrect results 
+        will be returned if you use this function. This is a limitation 
+        of the GRAPH code, not the BGI driver. You should use the 
+        GetMaxMode function instead. 
+
+        See also:
+          GetMaxMode, SetGraphMode, GetGraphMode, GetModeName
+
+        -----------------------------------------------------------------
+        Pascal: procedure GetPalette(var Palette : PaletteType);
+        C, C++: void far getpalette(struc palettetype far *palette);
+
+        This is an EGA type function. You can only get the first sixteen 
+        palette entry values that were previously set with the SetPalette 
+        or SetAllPalette functions. It is recommended that you do not use 
+        this function. If you need to keep track of the palette values 
+        you should keep a copy of the palette inside your application 
+        program. There is no way to directly read the palette settings 
+        using the BGI libraries. See the SetRGBPalette function for a 
+        work-around. The function is mainly here for compatibility. 
+
+        See also:
+          GetDefaultPalette, GetPalette, SetAllPalette, SetRGBpalette
+          
+        -----------------------------------------------------------------
+        Pascal: function GetPaletteSize : integer;
+        C, C++: int far getpalettesize(void);
+
+        This is an EGA type function. This function is limited by the 
+        GRAPH code and will always return a value of 15 which isn't much 
+        value in a 256 color driver.  It is recommended that you do not 
+        use this function. The function is mainly here for compatibility.
+
+        See also: 
+          GetDefaultPalette, GetPalette, SetAllPalette, SetRGBpalette
+
+        -----------------------------------------------------------------
+        Pascal: procedure GetPixel (X,Y : integer): integer;
+        C, C++: unsigned far getimage (int X, int Y);
+
+        GetPixel works as before, with the exception that it can be 
+        modified to write the current drawing color (see SetColor) to the 
+        display after reading the specified pixel.  A SetWriteMode 
+        command controls the operation of the GetPixel function.
+
+        See also:
+           ImageSize, PutImage, SetWriteMode
+
+
+
+                                        8
+
+        ---------------------------------------------------------------
+
+        Pascal: procedure InitGraph(var GraphDriver : integer;
+                       var GraphMode : integer; PathToDriver : String);
+        C, C++: void far initgraph(int far *graphdriver, 
+                           int far *graphmode, char far *pathtodriver);
+
+        InitGraph is used to initialize the graphics driver and switch 
+        the screen to graphics mode. If the GraphDriver value passed is 
+        zero, then the InitGraph routine will attempt to determine the 
+        highest display card/driver combination available. 
+
+        If you are using a non-Borland BGI and you have provided an 
+        AutoDetect function (by previously calling the InstallUserDriver 
+        function), the InitGraph function will first call the AutoDetect 
+        function to see if the card exists. If the card is not found, 
+        then the standard Borland BGI driver detection (DetectGraph 
+        function) will be performed. If a Borland supported driver/card 
+        combination is found, then the driver and mode numbers for that 
+        combination will be returned.
+
+        If the GraphNumber provided is a positive number, then it is 
+        assumed to be a valid driver number and that driver will be used. 
+        For a non-Borland supplied driver the number used should be the 
+        one returned by the InstallUserDriver function. 
+
+        If a GraphNumber is provided to the InitGraph function, the 
+        display will be set to the mode specified in the GraphMode 
+        variable. If the InitGraph function is told to autodetect the 
+        driver/card, then the mode number will be set based on the mode 
+        number returned by the autodetect routine and any number passed 
+        in the GraphMode variable is ignored. 
+
+        To override the default GraphMode number but still be able to 
+        autodetect, call any AutoDetect functions in your code yourself 
+        followed by the DetectGraph function if the AutoDetect function 
+        fails to determine the driver/card combination. Next call the 
+        InitGraph function with the driver and mode numbers returned from 
+        the detection code. 
+
+        If you pass a GraphMode number other than the one returned by the 
+        autodetection function, then that will become the selected mode 
+        that will be used until you call SetGraphMode or the CloseGraph 
+        function and recall the InitGraph with a different number.
+
+        Note that the Mode number that is passed to the InitGraph 
+        function is assumed to be a valid mode number that the display 
+        can handle. If the driver cannot support the mode, then it may 
+        select a different mode, and/or pass back a mode error. At this 
+        point, the value returned by GetGraphMode will be wrong. See the 
+        AutoDetect function for more information about this action.
+
+        See also:
+          AutoDetect, DetectGraph, RegisterBGIdriver, InstallUserDriver
+
+
+
+                                        9
+
+        ---------------------------------------------------------------
+
+        Pascal: function InstallUserDriver
+          (DriverFileName : string; AutoDetectPtr : pointer) : integer;
+        C, C++: int far installuserdriver
+                              (char far *name, int huge(*detect)(void);
+
+        The InstallUserDriver function tells the program that you are 
+        installing a non-Borland BGI driver. This function must be called 
+        before calling the InitGraph routine. If you are using the 
+        RegisterBGIdriver function, you must use the InstallUserDriver 
+        function before calling the RegisterBGIdriver function. 
+
+        The AutoDetectPtr is Pascal FAR procedure or C huge pointer that 
+        points to a procedure that is used to detect the presence of the 
+        display card being used with the driver. If the display card is 
+        found, then the function should return the desired mode number 
+        for the card. If the card is not found it should return a -2 
+        indicating that the card was not found. 
+
+        Note: In TP5.0 and TP5.5 the InstallUserDriver function does not 
+        return a valid driver number that can be used by the InitGraph 
+        function. Therefore you must use the AutoDetect mechanism with 
+        the InitGraph function to be able to use a non-Borland supplied 
+        BGI driver.
+
+        The Mode number that is returned from the function is assumed to 
+        be the desired mode number for the display. If you wish to use 
+        the display at a mode number that is not the value returned, then 
+        you should call the SetGraphMode function after the InitGraph 
+        function call to set the desired display mode.
+
+        The AutoDetectPtr value can alternately be set to a 'nil' value 
+        if you do not wish to provide an autodetect function for the 
+        card. If you do not provide an autodetect function, then you MUST 
+        provide the driver number returned by InstallUserDriver to the 
+        InitGraph function as the driver number to use if you want the 
+        user supplied driver to be used. (With TP5.0 and TP5.5 you must 
+        provide a valid pointer, the 'nil' mechanism will not work.)
+
+        If you tell the InitGraph function to autodetect (GraphDriver=0) 
+        without an autodetect function available, the InitGraph routine 
+        will only call the standard GraphDetect function to search for 
+        the standard Borland display/card combinations.
+             
+        See also:
+          DetectGraph, InitGraph, RegisterBGIdriver 
+
+
+
+
+
+
+
+
+
+
+                                       10
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure PutImage
+                          (X, Y : integer; var BitMap; BitBlt : word);
+        C, C++: void far putimage
+                          (int left, int top, void far *bitmap, int op);
+
+        PutImage works as before, with the exception that the copying 
+        methods have been expanded to allow 24 different copying methods. 
+        For more information on the copying methods available, refer to 
+        the SetWriteMode function.
+
+        An additional option available with PutImage allows for Sprite 
+        animation. This is a modified version of PutImage that requires a 
+        Sprite animation record to be supplied rather than a normal 
+        pointer to an image.
+
+        {sprite record used with PutImage sprite command ($A0)}
+        type  SpriteRecord = record
+                               Width,Height,OldX,OldY:integer;
+                               Image,Old:pointer;
+                             end;
+
+        For additional information, refer to the ANIMATE.DOC file.
+
+        See also:
+           ImageSize, GetImage, SetWriteMode
+
+        ---------------------------------------------------------------
+
+        Pascal: function RegisterBGIdriver(Driver : pointer) : integer;
+        C, C++: int registerbgidriver(void (*driver)(void));
+
+        The RegisterBGIdriver function allows you to link the BGI driver 
+        directly into the program. Either loaded on the heap, or as a 
+        linked in code module. You do not need to normally call this 
+        function unless you want to provide the BGI driver as a part of 
+        your program. Normally the InitGraph procedure will read the BGI 
+        driver from the disk and install it on the heap unless you 
+        override it with the RegisterBGIdriver function. 
+
+        To over-ride the InitGraph function, load the BGI driver into 
+        your program. Either as a part of the compile process via the 
+        Link directive, or by loading the BGI driver yourself directly 
+        into memory. Then use the RegisterBGIdriver to provide the 
+        InitGraph routine with a pointer to the start of the BGI driver 
+        image. 
+
+        See also:
+          DetectGraph, InitGraph, InstallUserDriver
+
+
+
+
+
+
+
+                                       11
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetActivePage(Page : word);
+        C, C++: void far setactivepage(int page);
+
+        The SetActivePage is now supported on systems that support the 
+        virtual display capability. On those systems which do not support 
+        virtual displays, you only get one display page to work with. 
+
+        See also: 
+          SetWriteMode, SetVisualPage
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetAllPalette(var Palette);
+        C, C++: void far setallpalette(struct palettetype far *palette);
+
+        This is an EGA type function. You can only set the first 16 
+        palette entries with this function. It is recommended that you 
+        do not use this function. Use the SetRBGpalette function instead. 
+        The function is mainly here for compatibility.
+
+        See also: 
+          GetDefaultPalette, GetPalette, SetPalette, SetRGBpalette
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetBkColor(ColorNum:word); 
+        C, C++: void far setbkcolor(int color);
+
+        SetBkColor is an EGA type function. SetBkColor sets the color for 
+        palette zero. It is limited to copying the color from the palette 
+        number passed in the function. You are not passing a true color 
+        value, rather you are passing a reference to the palette number 
+        you wish to copy the color from. The background color will become 
+        the same color as that used by the palette number that you 
+        referenced.  
+
+        Since this is an EGA only function, it is limited to access of 
+        the first 16 palette entries. It is recommended that you use the 
+        SetRGBPalette function to set the background color for palette 
+        zero. Palette zero is the default background palette.
+        The function is mainly here for compatibility.
+
+        See also:
+          GetBkColor, SetColor, GetColor, SetWriteMode, GetMaxColor
+
+
+
+
+
+
+
+
+
+
+
+                                       12
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetColor(ColorNum:word); 
+        C, C++: void far setcolor(int color);
+
+        SetColor works just like it normally does with the exception that
+        you can specify any of the 256 possible colors. You can also use 
+        the SetColor function to set the background drawing color. This 
+        is done by setting the current drawing color to the desired 
+        background color to use with the SetColor function, then using 
+        the SetWriteMode function to make it the new background drawing 
+        color. See the SetWriteMode function for more detail. To define 
+        the color that will be selected by the SetColor function, see the 
+        SetRGBPalette function.
+
+        See also:
+          GetColor, SetWriteMode, GetMaxColor, SetRGBPalette, SetBkColor
+
+        ---------------------------------------------------------------
+
+        Pascal: procedure SetGraphMode(Mode : integer);
+        C, C++: void far setgraphmode(int mode);
+
+        The SetGraphMode function sets the display mode to the value 
+        provided. The mode number must be in the range of available 
+        modes (less than or equal to the maximum mode available as 
+        determined by the GetMaxMode function. Refer to the mode listing 
+        for the various mode numbers available.
+
+        See also:
+          GetMaxMode, GetGraphMode, GetModeName
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetPalette(ColorNum : word; Color : shortint);
+        C, C++: void far setpalette(int colornum, int color);
+
+        This is an EGA type function. You can only set the first sixteen 
+        palettes using this function in the EGA fashion. It is 
+        recommended that you do not use this function. You should use the 
+        SetRGBpalette function instead. The function is mainly here for 
+        compatibility.
+
+        See also: 
+          GetDefaultPalette, GetPalette, SetAllPalette, SetRGBpalette
+
+
+
+
+
+
+
+
+
+
+
+
+                                       13
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetRGBPalette
+                   (ColorNum, RedValue, GreenValue, BlueValue : integer);
+        C, C++: void far setrgbpalette
+                   (int colornum, int red, int green, int blue);
+
+        This is the correct function to use to set the palette colors in 
+        the BGI driver. It works just as the manual says it does. You can 
+        set any of the 256 palettes using this function. There is no 
+        associated GetRGBPalette function, but you can perform the 
+        function with a small assembler code fragment as show below:
+
+        GetRGBPalette:
+             MOV  AX,1015H
+             MOV  BX,[ColorNumber]
+             INT  10H
+             MOV  [RedValue],DH
+             MOV  [GreenValue],CH
+             MOV  [BlueValue],CL
+
+        See also: 
+          GetDefaultPalette, GetPalette, SetAllPalette, SetPalette
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetVisualPage(Page : word);
+        C, C++: void far setvisualpage(int page);
+
+        The SetVisualPage is now supported on systems that support the 
+        virtual display capability. On those systems which do not support 
+        virtual displays, you only get one display page to work with. 
+
+        See also: 
+          SetWriteMode, SetActivePage
+
+        -----------------------------------------------------------------
+
+        Pascal: procedure SetWriteMode(WriteMode : integer);
+        C, C++: void far setwritemode(int mode);
+
+        The SetWriteMode function has been altered. Normally it only 
+        allows the values of 0 and 1 to be used. It has been modified to 
+        expand the available write modes and to provide a means to also 
+        control the write mode of the pixel, bar, fill, image, and text 
+        routines. 
+
+        See SetWriteMode Operation description below for a description on 
+        the use of the SetWriteMode command. Also see the FLOOD.DOC file 
+        for a description of the floodfill operation and the VIRTUAL.DOC 
+        file for a description of the virtual display operation.
+
+        See also:
+          SetColor, GetColor, SetBkColor, GetBkColor, SetRGBPalette
+
+
+
+                                       14
+
+                             SetWriteMode Operation
+
+        The top three bits (5, 6 and 7) of the WriteMode value controls 
+        which group of functions the write mode value will affect. 
+
+        Bits 5, 6 and 7 = function select:
+          000 = 0:(00) Line procedures
+          001 = 1:(20) Pixel procedures 
+          010 = 2:(40) Fill procedures
+          011 = 3:(60) Floodfill options
+          100 = 4:(80) Text procedures
+          101 = 5:(A0) Display procedures
+          110 = 6:(C0) GetImage procedures
+          111 = 7:(E0) Misc commands 
+
+        If the function select value is 000 ($00), the Line function 
+        write mode will be updated. All line based functions are 
+        controlled via this setting. 
+
+        If the function select value is 001 ($20), the Pixel 
+        function write mode will be updated. All pixel based functions 
+        are controlled via this setting. (This includes circle and arc 
+        drawing.)
+
+        If the function select value is 010 ($40), the bar/fill 
+        write mode function will be updated. All Bar and fill functions 
+        will be affected by this setting (this includes floodfill). 
+
+        If the function select value is 011 ($60), the floodfill 
+        type options will be updated. Future floodfill operations will 
+        then be performed in the manner specified.
+
+        If the function select value is 100 ($80), the text write mode 
+        function will be updated. All bitmapped text functions will be 
+        drawn using the mode specified. 
+
+        If the function select value is 101 ($A0) the virtual display 
+        control commands will be used. (Note: for PutImage commands, the 
+        ($A0) selection will select the sprite animation operation.
+
+        If the function select value is 110 ($C0), the Image write mode 
+        function will be updated. When the GetImage function is modified 
+        for read/write operation the image write will be drawn using the 
+        mode specified. Note that a call to PutImage will override any 
+        GetImage selection used.
+
+        If the value is 111 ($E0), then a misc command function is 
+        performed. See the list below for the specific commands that are 
+        currently supported for this selection.
+
+
+
+
+
+
+
+
+                                       15
+
+        Functions $00, $20, $40, and $80 use the following mode commands 
+        to control the operation of the selected function.
+
+        Bits 0-4 = write mode:
+         foreground and       foreground              background 
+         background drawing   drawing only            drawing only
+          0= MOVE write       8= FORE MOVE write      16= BACK MOVE write     
+          1= XOR write        9= FORE XOR write       17= BACK XOR write      
+          2= OR write        10= FORE OR write        18= BACK OR write      
+          3= AND write       11= FORE AND write       19= BACK AND write     
+          4= NOT MOVE write  12= FORE NOT MOVE write  20= BACK NOT MOVE write
+          5= NOT XOR write   13= FORE NOT XOR write   21= BACK NOT XOR write 
+          6= NOT OR write    14= FORE NOT OR write    22= BACK NOT OR write  
+          7= NOT AND write   15= FORE NOT AND write   23= BACK NOT AND write 
+
+        24 = Set Background color to currently selected foreground color.
+        25 = <reserved>
+        26-29 = (- unused -)
+        30 = Return the current write mode on next GetMaxMode call.
+        31 = Return selected background color on next GetMaxMode call.
+
+        Bits 0 through 4 control the write mode that will be used. 
+        If the value given is between 0 and 7, then both the foreground 
+        and the background will be drawn using the style selected. 
+
+        If a value between 8 and 15 is used, then only the foreground 
+        will be drawn using the style selected. The background will be 
+        left unaffected. 
+
+        If a value between 16 and 23 is given, then only the background 
+        will be drawn using the style selected. The foreground will be 
+        left unaffected. 
+
+        Value 24 is used to set the background color for the selected 
+        function. The current drawing color that was set with SetColor 
+        will be used as the background color for the selected function.
+
+        Values 25 through 29 are currently reserved for future use and 
+        should not be used. 
+
+        Value 30 modifies the GetMaxMode function so that it will return 
+        the currently selected write mode on the next call.
+
+        Value 31 modifies the GetMaxMode function so that it will return 
+        the currently selected background color on the next call.
+
+        Note that the values between 0 and 23 are all valid for 
+        controlling with the PutImage function as well. Use the desired 
+        value as the WriteMode value in the PutImage function. The 
+        PutImage background color is controlled via the Misc Command 
+        selection (see below).
+
+
+
+
+
+
+                                       16
+
+        The FloodFill type option selection ($60) allows you to control 
+        the operation of the floodfill procedure. The following options 
+        are currently supported.
+
+          BorderFill ------- 0  = border fill method (default)
+          SeedFill --------- 1  = seed fill method
+          AutoFill --------- 8  = auto fill mode detection (default)
+          ComplexFill ------ 9  = force complex fill mode
+          FillCompressOff -- 10 = fast fill stack operation (default)
+          FillCompressOn --- 11 = compressed fill stack operation
+          FillDelayOff ----- 12 = draw fill lines during search (default)
+          FillDelayOn ------ 13 = wait until search is done to do fill
+          FillTracerOff ---- 14 = don't show tracer cursor (default)
+          FillTracerOn ----- 15 = show tracer cursor during search
+
+        Sub-functions 2-7, 16-23, 25 and 28-30 are currently unused and 
+        reserved for future use. You should not use those function 
+        numbers.
+
+        24 - sets the InitColor used by ClearDevice to the currently 
+              selected drawing color. 
+        26 - Return the peak stack usage of the last floodfill command                              
+              that was performed on the next GetMaxMode call. 
+        27 - Return the free stack space of the last floodfill command                              
+              that was performed in the next GetMaxMode call. 
+        31 - returns the currently selected floodfill option flags in 
+              the next GetMaxMode function call. 
+
+             The format of the option flags is as follows:
+              bit        description
+               0: 0=borderfill    1=seedfill
+               1: <reserved>
+               2: 0=auto fill     1=force complex fill
+               3: 0=compress off  1=compress on
+               4: 0=delay off     1=delay on
+               5: 0=tracer off    1=tracer on
+               6: <reserved>
+               7: 0=simplex fill  1=complex fill
+
+        For more information of the operation of the floodfill function, 
+        see the FLOOD.DOC file which contains a full description of the 
+        operation of the floodfill function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       17
+
+        The Display Command selection ($A0) controls the virtual display 
+        operations of the BGI driver. The following options are 
+        currently supported by this selection. See the VIRTUAL.DOC file 
+        for more information on the use of the virtual display commands.
+
+         0 = Set ScreenOfsXY to value in CPX/CPY (see MoveTo cmd)
+         1 = Set DrawOfsXY to value in CPX/CPY   (see MoveTo cmd)
+         2 = Set DrawSize to value in CPX/CPY    (see MoveTo cmd)
+         3 = Set VirtualWidth to value in CPX    (see MoveTo cmd)
+
+         4 = Return ScreenOfsX value in next GetMaxMode call.
+         5 = Return ScreenOfsY value in next GetMaxMode call. 
+         6 = Return DrawOfsX value in next GetMaxMode call.
+         7 = Return DrawOfsY value in next GetMaxMode call.
+
+         8 = Return ScreenWidth value in next GetMaxMode call.
+         9 = Return ScreenHeight value in next GetMaxMode call.
+        10 = Return DrawWidth value in next GetMaxMode call.
+        11 = Return DrawHeight value in next GetMaxMode call.
+        12 = Return VirtualWidth value in next GetMaxMode call.
+        13 = Return VirtualHeight value in next GetMaxMode call.
+
+        14-27 = (-unused-)
+
+        28 = Return ScanLineBytes in next GetMaxMode call.
+        29 = Return virtual support flag in next GetMaxMode call.
+        30 = Return size of video memory in KB in next GetMaxMode call.
+        31 = Return number of pages available in next GetMaxMode call.
+
+        Sub-functions 14-27 are currently unused and reserved 
+        for future use. You should not use these function numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       18
+
+        The Misc Command selection ($E0) controls various misc internal 
+        operations of the BGI driver. The following options are 
+        currently supported by this selection.
+
+         0 - Restore GetPixel to Read only functionality
+         1 - Alter GetPixel to Write current color after reading
+         2 - Restore GetImage to Read only functionality
+         3 - Alter GetImage to exchange image between memory and display
+         4 - Set Line Style Mode 0 : (default) clr pat mask cnt on draw
+         5 - Set Line Style Mode 1 : do not clr pat mask cnt on draw
+         6 - Set Line Style Mode 2 : use fixed pat mask (uses x/y addr)
+         7 - <reserved>
+         8-21 - (- unused -)
+
+        22 - enable default palette load (default)
+        23 - disable default palette load
+        24 - Set PutImage background color to the current color that was 
+              selected with the SetColor function.
+        25 - Return the currently active Display mode on the next            
+              GetMaxMode call. 
+
+        26-27 - <reserved>  (see note below)
+
+        28 - Return driver version in the next GetMaxMode call. 
+        29 - Return current line style mode in the next GetMaxMode call. 
+        30 - Return the last used PutImage write mode on the next 
+              getMaxMode call.
+        31 - Return PutImage background color on next GetMaxMode call. 
+
+        Sub-functions 7 and 18-23 are currently unused and reserved 
+        for future use. You should not use these function numbers.
+
+        Sub-functions 26 and 27 were moved to the FloodFill command set.
+        This was done since they are floodfill commands, it makes more
+        sense for them to be there. They are still supported in the 
+        Misc Command set, but they will be discontinued in the Misc
+        Command set in the future. if you are using these commands, you 
+        should change them to use the FloodFill sub-functions instead.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       19
+
+        Note that unlike the BGI drivers supplied by Borland, this BGI 
+        driver allows you to change the palette used for the background 
+        at will. This allows you to set a specific background color for 
+        the object you are drawing without affecting the backgrounds of 
+        all other drawn items on the screen. 
+
+        In effect, this means that all drawing takes place with both a 
+        foreground color and a background color that you can specify. 
+        As an example, to set the Fill background color for all following 
+        fill commands you would do it like this in Pascal:
+
+           SetColor(BackgroundColor);
+           SetWriteMode($40+24);
+           SetColor(ForegroundColor);
+
+        I recommend that you define some constants that contain the 
+        numbers to use with the SetWriteMode function to make it clearer 
+        what is being done.
+
+        const LineMode   = 0;
+              PixelMode  = $20;
+              FillMode   = $40;
+              TextMode   = $80;
+              BackColor  = 24;
+
+        With the above constant structure you can set the background 
+        color for bitmapped text drawing to the current foreground color 
+        with the instruction "SetWriteMode(TextMode+BackColor);"
+
+        To make things easier, a unit called WRMODE.PAS has been included 
+        which predefines the available command numbers for the 
+        SetWriteMode procedure. The WRMODE.PAS unit also provides high 
+        level support for the virtual display commands. 
+
+        Note: The standard BGI only uses modes 0 and 1. This new 
+        SetWriteMode function does not implement modes 0 and 1 exactly 
+        like the standard BGI. The standard BGI implements them as 
+        foreground drawing only (mode 8). This unfortunately is 
+        inconsistent with the PolyFill and BitImage operations. For 
+        consistency I have implemented the function to operate the same 
+        as the BitImage and PolyFill operations. Both foreground and 
+        background are written if you select mode 0 or 1. I didn't like 
+        doing it, but I needed the functional code consistency.
+
+        If you wish to use the same SetWriteMode functionality, you will 
+        need to use modes 8 and 9 instead of 0 and 1. In most cases the 
+        differences won't be a problem, but in some cases it may, and you 
+        should be aware of the difference in operation. The default line 
+        write mode selection is 8 which is what the default Borland BGI 
+        mode uses.
+
+
+
+
+
+
+
+                                       20
+
+        ***************************************************************
+
+        BitMapped Fonts:
+
+        Another feature of the VESA256 driver is the ability to load your 
+        own custom BitMapped text fonts. 
+
+        The driver will by default use the low 128 character font found 
+        at location $F000:$FE6A in the bios and the upper 128 character 
+        font found at the address stored at the interrupt vector at $1F. 
+
+        If you wish to load your own bit-mapped font for use with the 
+        VESA256 driver, you can do so by loading your own 8x8 font and 
+        pointing the interrupt vector at $1F to your own table. 
+
+        See the BITFONT.DOC file for more information on loading your own 
+        bit-mapped font for use with the VESA256 driver.
+
+
+        ***************************************************************
+
+        Special notes:
+
+        In the previous versions of the VESA256 driver, SetWriteMode 
+        function select 110 ($C0), was used to control the PutImage 
+        function background color. While it is still unoffically 
+        supported, it may disappear in a future release of the driver. If 
+        you are using this function, you should change over to the Misc 
+        Command function instead. 
+
+        Note: The PutImage mode selection only worked for defining the 
+        PutImage background color. When you call the PutImage function it 
+        over-rides any write mode setting that was set by the 
+        SetWriteMode function. For this reason, the function was dropped 
+        as a group selection and the single background color selection 
+        moved to the Misc command function.
+
+        In the previous version of the VESA256 driver, the Group function 
+        selection was ignored for subfunction value 25. While this is 
+        still supported in this version of the driver, it will not be 
+        supported in future versions. If you are using this function, you 
+        should change it to be selected with the Misc Command group 
+        selection.
+
+        Also keep in mind that I am using the SetWriteMode function in an 
+        unoffical way. Borland may change it's use at any point in the 
+        future which may disrupt how I am using it. 
+
+
+
+
+
+
+
+
+
+
+                                       21
+
+        ***************************************************************
+
+        Loading and using the BGI driver:
+
+        You can use the RegisterBGIdriver function to register a BGI 
+        driver that was directly loaded into your program. That way you 
+        can avoid the delay in loading the driver from disk and the 
+        possibility that the file may not be available on disk. 
+
+        You can load a BGI driver into the Code segment, Data segment, or 
+        onto the Heap. It is even possible to access the driver 
+        externally from your program if needed. The only thing you need 
+        is to pass a far pointer containing the starting location of the 
+        driver image in memory to the RegisterBGIdriver function which 
+        tells the program where to find the driver.
+
+        By default, the Borland compilers will load the BGI driver onto 
+        the heap when the InitGraph function is called. If the 
+        RegisterBGIdriver function is called before the InitGraph 
+        function, then the driver will be expected to exist at the 
+        address provided in the pointer.
+
+        If you are loading a non-Borland BGI driver, then you must 
+        additionally call the InstallUserDriver function to let the 
+        program know that it exists.
+
+        The sequence of events should be:
+
+           InstallUserDriver
+           RegisterBGIdriver {if used}
+           InitGraph
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       22
+
+        *****************************************************************
+
+        The following are some sample procedures for initializing the
+        BGI driver to show you the options that are available.
+
+        {---------------------------------------------------------------}
+        {Sample procedure to include the VESA256 driver in the code 
+        segment and initialize it.}
+
+          CONST Mode200  = 0;  {320x200x256}
+                Mode400  = 1;  {640x400x256}
+                Mode480  = 2;  {640x480x256}
+                Mode600  = 3;  {800x600x256}
+                Mode768  = 4;  {1024x768x256}
+                Mode1024 = 5;  {1280x1024x256}
+
+          procedure VESA256Proc; External;
+          {$L VESA256}
+          procedure InitVESA256;
+          begin
+            GD := InstallUserDriver('VESA256',nil);
+            Error := RegisterBGIdriver(@VESA256Proc);
+            GM := Mode480;              {start in 640x480x256 mode}
+            InitGraph(GD,GM,'');
+            Error := GraphResult;
+            if Error <> 0 then
+            begin
+              writeln(Error,' Error: Could not initialize BGI driver');
+              Exit;
+            end;
+          end;
+
+        {-----------------------------------------------------------}
+        {Sample procedure to load the VESA256 driver from disk
+        onto the heap and initialize it.}
+
+          procedure InitVESA256;
+          begin
+            GD := InstallUserDriver('VESA256',nil);
+            GM := Mode480;              {start in 640x480x256 mode}
+            InitGraph(GD,GM,'');
+            Error := GraphResult;
+            if Error <> 0 then
+            begin
+              writeln(Error,' Error: Could not initialize BGI driver');
+              Exit;
+            end;
+          end;
+
+
+
+
+
+
+
+
+
+                                       23
+
+        {-----------------------------------------------------------}
+        {Sample procedure to load the VESA256 driver from disk
+        onto the heap, detect whether card exists, and initialize it.}
+
+          CONST AutoMode = 127;
+          function VESA256AutoDetect:integer; FAR;
+          begin
+            VESA256AutoDetect := AutoMode; {return max mode if good}
+          end;
+
+          procedure InitVESA256;
+          begin
+            GD := InstallUserDriver('VESA256',@VESA256AutoDetect);
+            InitGraph(GD,GM,'');  {GM is set by autodetect}
+            Error := GraphResult;
+            if Error <> 0 then
+            begin
+              writeln(Error,' Error: Could not initialize BGI driver');
+              Exit;
+            end;
+          end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       24
+
+
+                  VESA256 FloodFill Description
+                  ============================
+
+                            12/26/92
+
+
+I won't be getting into the details of the floodfill algorithms 
+here. I will presume that if you wish to explore the inner depths 
+of floodfills that you already have the basic understanding. If 
+not, you can obtain it from any number of books and articles on 
+the subject. The intent of this document is to explain the 
+approach I took to floodfill in the VESA256 driver, the reasoning 
+behind it, and how to use it.
+
+
+Overview:
+
+There are two basic types of floodfills. A border bound 
+floodfill, and a seed bound floodfill. In the border bound 
+floodfill, all areas within a defined border are filled with a 
+prescribed color. In a seed bound floodfill only the area 
+bound within by the seed color is filled. To put it a bit more 
+simply, a border fill will overwrite all other colors inside the 
+border color. A seed fill defines as its border any color other 
+than the starting seed color.
+
+Floodfills always start from a predefined point referred to as 
+the "seed" point. The seed defines the area that will be filled 
+by declaring where it is to begin. The seed location is always 
+passed as the X/Y parameter in the FloodFill command. The color 
+value that is passed is the border color to which the fill will 
+be confined in a border fill. For seed fill operations, the color 
+information passed is ignored. 
+
+
+Types of Floodfills:
+
+If you look in the graphics books, you will usually see the 
+simple floodfill algorithm. It consists of a recursive routine 
+that looks at each of the pixel locations surrounding the filled 
+location. This is a very slow method and eats lots of stack space 
+because of the recursion. Because of the limitations, nobody 
+actually uses the basic flood fill algorithm. Other more advanced 
+methods are used. 
+
+There are a number of methods by which a floodfill can be 
+performed. Each has its own set of tradeoffs. They boil down to 
+two distinct classes of algorithms. Those that read the display 
+to determine if it was already filled (simplex fills), and those 
+that track the information separately (complex fills). 
+
+The complex floodfills are the most reliable and must be used 
+when doing a read/modify/write or a pattern type of fill. The 
+disadvantage is that they are slow and use lots of memory 
+resources. Complex fills are slow and hog memory because they 
+must track every place on the screen that was filled so that it 
+won't be filled again. This means that for each fill location on 
+the display it must check the location stack to see if it has 
+been there before. For large convoluted fills the stack can grow 
+to be quite large which can slow things down a lot and use lots 
+of memory.
+
+A simplex fill is a special case floodfill. It relies on a few 
+limitations to be able to perform quickly. The simplex fill 
+allows for much faster fills to happen by not bothering to track 
+if it has been someplace before. Instead it looks at the display 
+to see if it was there before. Since we have to look at the 
+display to decide whether to fill it or not, the information is 
+already there. 
+
+This eliminates the slow down of checking the stack, but requires 
+the limitation that the current floodfill drawing color not be 
+the seed color. This is because the fast floodfill uses the 
+drawing color as the indicator that it has been to the location 
+previously. If you think about it, you can see that this creates 
+a problem for floodfills which do a read/modify/write type of 
+fill such as XOR. What is written to the display is based on what 
+was there which means that it changes. A pattern fill has a 
+similar problem in that both the background and the foreground 
+colors are being filled so a simple single color test won't work, 
+and since most pattern fills use the background color, there is 
+the problem of dealing with attempting to draw the background 
+color on the background. Leading to the problem of once again not 
+knowing if you've been there before.
+
+To prevent these problems, a complex floodfill must use the 
+slower method that tracks the locations of the fill rather than 
+reading the screen at the time of the fill. 
+
+
+Complex Fill:
+
+There are two basic types of location storage. The pixel per bit 
+method, and the XY location storage method. The pixel per bit 
+method has the advantage of speed because it is a fixed array of 
+bits identifying each pixel on the screen. That means that it can 
+be directly accessed, making the method very quick. The downside 
+is that the entire storage area must be allocated in memory. This 
+is ok for small screen areas, but for large screens we run into a 
+memory problem. As an example, lets say we are filling a 1024x768 
+screen; That means that we would require 98304 bytes of storage 
+for the pixel information. That is over the 64K segment 
+limitation, which makes things rather difficult. 
+
+The other problem is that the BGI driver does not have direct 
+access to the system memory. It is provided memory only via the 
+stack, and the amount of stack it is given is predefined. The 
+default is 4000 bytes. Since the stack also must be used for 
+normal stack operations, including interrupts, you have to 
+subtract about 2000 bytes from the allocation to determine how 
+much stack is actually available for use inside the BGI. This 
+means that we only have about 2000 bytes of default stack to work 
+with. that comes out to about 24000 pixels. That seems like a lot 
+until you realize that it only covers an area of 240x100 pixels. 
+Even low-res CGA is larger than that. 
+
+The pixel per bit location identification is actually the 
+preferred method when the memory is available since it is fast 
+efficient and accurate. Unfortunately, in the PC environment it 
+runs into hardware limitations. 
+
+Given the limitations of the hardware and the driver, it is more 
+desirable to use a sparse array method. That is, storing the 
+locations of the fills rather than identifying the pixels. 
+Luckily, we don't have to store the location of each pixel 
+changed, we only need to store the scan line (Y), and the start 
+and stop location of the fill on the scan line (X1 and X2). 
+That is a big increase in memory usage, from 1/8th byte per pixel 
+to 6 bytes, but it makes use of the fact that fills seldom 
+consist of individual pixel fills. Most fills involve large areas 
+which means that actual memory usage is typically reduced. For a 
+fill line of 128 pixels we would use 16 bytes of memory for the 
+bit per pixel method, but only 6 bytes for the sparse array 
+method. In addition, typically the whole screen is not filled, so 
+we only use memory for those scan lines that are actually filled.  
+The down side is that we have to search the storage area on each 
+fill because it is no longer possible to code a fixed access 
+method. That means the search time is significantly slowed down, 
+especially when the filled area is convoluted requiring the 
+location stack to grow to a large size.
+
+
+Simplex fill -- It's the Speed Stupid!
+
+While accuracy is important of course, it doesn't do much good if 
+it takes over a minute to fill the screen. Users are simply not 
+going to accept that kind of performance. So what to do? 
+
+A simplex fill can often get the job done much faster and with 
+minimal memory usage. The simplex fill does apply some 
+restrictions. If you are going to do a read/modify/write type 
+fill such as XOR or a patterned fill, you cannot use the simplex 
+fill. In a normal fill, the fill mechanism determines if a fill 
+is to be done based on whether the pixel is the border color or 
+the seed color (depending on the type of fill being done). For 
+the simplex fill we add one more test which looks to see if the 
+pixel is the fill color. If it is the fill color, then we know 
+that we have been there before and it gets treated as if it were 
+the border or seed. That way we don't have to track the location 
+since we can tell that we have been there by looking at the pixel 
+color. 
+
+The limitation here is that we can't fill an area with the same 
+color. Since normally you would not do that, it is usually an 
+acceptable limitation. Most simplex fills concentrate on reducing 
+the number of repeat visits to a location to see if it needs to 
+be filled. Since each visit slows down the fill operation that 
+much longer, it is important to limit the repeats. This is 
+normally done by an ordered list pushed on a location stack. 
+
+The search method normally involves tracking the direction of the 
+search for areas to fill. There is no need to go back to an area 
+that was already filled, so by indicating the direction of the 
+search, that aspect can be eliminated. A popular method of 
+reducing the repeat visits is to break a fillable scan line into 
+three sections. Left, middle, and right. The left and right 
+sections are explored in both directions if they exceed the 
+length of the master scan line we came from. The middle section 
+is only explored in the direction we are moving since we know 
+where we've been. This reduces the re-visitation time by not 
+looking at the scan line we came from. Unfortunately, there is a 
+tremendous memory hit to do that. Instead of storing the 
+information for one scan line, we have to store it for three 
+sections. We've just eaten up three times the memory for a slight 
+increase in speed. In most cases it simply isn't worth it. Memory 
+is too precious. 
+
+In my simplex floodfill I store the entire scan line segment 
+instead of breaking it up. This means a slight decrease in speed, 
+but empirical experience has shown that in real life there is no 
+noticeable difference in speed but a significant difference in 
+memory savings. 
+
+An advantage of the simplex fill is that it uses an adjustable 
+stack. That is it only keeps the minimum information needed on 
+the stack for areas that it has yet to explore. A complex fill 
+must save everything it has done so that it can know where its 
+been. By discarding completed locations off the stack, the 
+simplex fill can reduce memory usage. 
+
+The simplex fill also has an advantage for situations where we 
+run out of memory. In a complex fill, when we run out of memory, 
+the fill must terminate at that point since it has no more memory 
+to be able to track locations. That usually leaves an incomplete 
+floodfill with ragged holes everyplace. With a simplex fill, 
+because of the ordered list, and because we can discard old 
+information from the stack, we can just stop exploring in the 
+direction we were moving, back up and try again in another 
+direction. This usually results in a cleaner fill failure. 
+Ragged holes are seldom left behind. Usually it is just one or 
+two large areas that are left unfilled. 
+
+
+Patterned Fills:
+
+Another problem with simplex fills is dealing with pattern fills 
+(fills with a foreground and background color mix). Since the 
+simplex fill looks only for the foreground color, a pattern fill 
+can drive it crazy since it will keep trying to fill in the 
+background that it put on the display. Because of this, patterned 
+fills are not allowed with a simplex floodfill. 
+
+
+Auto Flood Fill Detection:
+
+Because the simplex floodfill mechanism can't deal with anything 
+beyond the simple fill method of a solid unpatterned write only 
+foreground color, an auto-detection function exists which looks 
+at the floodfill configuration and determines if the floodfill 
+can occur as a simplex fill or requires a complex fill. If a 
+read/modify/write fill method is selected, or a patterned fill is 
+used, it will automatically select the complex fill operation. If 
+a single foreground color with solid write only fill is selected, 
+and the seed color is not equal to the fill color, the simplex 
+method will be used. You can force the complex fill method to be 
+used with the ComplexFill option using the SetWriteMode command 
+if you wish, but this will slow down the operation and reduce the 
+amount of usable stack. It is normally better to let the system 
+determine the best method.
+
+
+Delayed Filling:
+
+Because of the out-of-memory failure problem with complex fills, 
+I added a control flag which allows the filling to be delayed 
+until all information has been collected. If we run out of 
+memory, the flood fill does not happen. This allows an alternate 
+action to be taken before damaging the image with a partial fill. 
+The delayed fill is only available in the complex fill mode 
+because it requires the complex fill location stack to work. If 
+the simplex method is selected, the delayed fill flag will be 
+ignored. If the simplex fill is automatically selected, and you 
+wish to have a delayed fill, you must select the forced complex 
+fill method. 
+
+
+Flood Tracer:
+
+A problem with the delayed fill is that it can take time to 
+perform the initial search of the flood area. With nothing 
+happening on the screen it can look like the program locked up 
+and stopped working. To deal with this, I added a tracer function 
+which shows the location of the floodfill search as it traces the 
+floodfill area. The tracer works in simplex or complex mode, but 
+since the fill is directly noticeable in simplex mode, there is 
+no real need to have it on except when in complex fill mode and 
+the delayed fill function is turned on.
+
+
+Compressed stack:
+
+Even with the sparse array method used, the stack can still 
+easily run out of space in a convoluted fill pattern. If you run 
+out of stack space, you might want to turn on the stack 
+compression flag. This reduces stack usage by 33%, giving you 
+that much more stack memory. The trade off is that the fill speed 
+will be slowed down by about 50%. The reason for this is because 
+the stack compression discards the X2 location of the scan line 
+(doesn't save it). This provides the 33% reduction of the stack, 
+but it means that we must recreate the X2 location when we read 
+the location off the stack. To recreate it, we must read the 
+screen again to find the end of the scan line segment. That is 
+where the 50% slow down comes from. 
+
+The following floodfill options are available in the VESA256 
+driver. The options are selected via the SetWriteMode function.
+
+     BorderFill      (default)
+     SeedFill   
+     SimplexFill     (default)
+     ComplexFIll
+     FillCompressOff (default)
+     FillCompressOn
+     FillDelayOff    (default)
+     FillDelayOn
+     FillTraceOff    (default)
+     FillTraceOn
+
+
+You can select the desired option using the SetWriteMode command. 
+As an example, to select the Seed method, you would use the 
+following statement.
+
+ SetWriteMode(FloodFillType+SeedFill);
+
+
+Note: Do not mix commands in the same SetWriteMode function. Only 
+one command per function call is valid. As an example, the 
+following statement is _NOT_ valid.
+
+ SetWriteMode(FloodFillType+SeedFill+FillCompressOn+FillDelayOn);
+
+Instead, you must write it in three separate statements like the 
+following.
+
+ SetWriteMode(FloodFillType+SeedFill);
+ SetWriteMode(FloodFillType+FillCompressOn);
+ SetWriteMode(FloodFillType+FillDelayOn);
+
+
+You can read the current option settings by using the 
+GetFloodFillOpt command. When you select the command, the current 
+floodfill option flags will be returned in the next GetMaxMode 
+call. 
+
+ SetWriteMode(FloodFillType+GetFloodFillOpt); 
+ FFOptFlags := GetMaxMode;"
+
+
+The format of the option flag byte is as follows:
+
+ bit        description
+  0: 0=borderfill    1=seedfill
+  1: <reserved>
+  2: 0=auto fill     1=force complex fill
+  3: 0=compress off  1=compress on
+  4: 0=delay off     1=delay on
+  5: 0=tracer off    1=tracer on
+  6: <reserved>
+  7: 0=simplex fill  1=complex fill
+
+
+
+Other Misc Functions:
+
+When working on your own floodfills, you may find it desirable to 
+know just how much stack space is used up. Several functions have 
+been provided to obtain that information. Using the SetWriteMode 
+Misc Function command, you can ask for the peak stack usage and 
+the stack free space left from the previously run fill command. 
+
+
+The following code will tell you how much free space was 
+available on the fill stack at the end of the last fill command, 
+and how much was used. The total space available is the two 
+values added together. To determine the number of scan segments 
+that were used, dive the Stack Peak value by four if stack 
+compression was used, or by six if stack compression was not 
+used. 
+
+  SetWriteMode(FloodFillType+GetXYStackPeak);
+  XYStackPeak := GetMaxMode;
+  SetWriteMode(FloodFillType+GetXYStackFree);
+  XYStackFree := GetMaxMode;
+
+
+Reminders:
+
+One thing to watch out for is to remember that the flood fill is 
+based on the color information (border or seed). What may seem to 
+be two equal colors on the display may in fact be two different 
+colors. As an example, the default startup white color (255) 
+looks the same as the graph unit white color (15). In fact, they 
+are the same color, but the color _number_ is different. Thus if 
+you draw a picture using a border color of 255 then tell the 
+floodfill to fill it using the white 15 color, you will not get 
+the results you expected. You must remember to use the proper 
+border or seed color for the action you want.
+
+Also keep in mind that the floodfill is a memory hog. It needs 
+lots of memory. Even a simple large circle or square on the 
+screen will require more stack space than provided by the default 
+memory allocation given to the BGI if the complex fill method is 
+used. If you expect to be filling large and/or complex areas, you 
+should allocate more memory with the SetGraphBufSize function. 
+Note that you must allocate the buffer size before calling 
+InitGraph. Once InitGraph has been called, calls to 
+SetGraphBufSize will be ignored. 
+
+If you expect to be filling user created images, you should set 
+the buffer size as large as possible since it is not possible to 
+know ahead of time how much memory will be required for the fill. 
+You may also want to turn on the stack compression. There will be 
+some slow down of the fill, but not by an overly noticeable 
+amount, especially when a slow complex fill is being done. The 
+33% improvement in memory usage can make it worthwhile. 
+
+In most cases, it is recommended to let the floodfill function 
+select the most optimum fill method (simplex or complex) by using 
+the AutoFill command (default). 
+
+The only error returned by the floodfill command is running out 
+of stack memory. Attempting to fill a border or filling a simplex 
+seed color is not considered an error condition. If you need to 
+detect this situation, look at the stack free space. If the value 
+returned is zero, then the flood fill was terminated because an 
+attempt was made to fill a border color or the seed color matched 
+the fill color for a simplex fill. 
+
+<eof>
+ 
+             The VESA256 Virtual Display System
+             =================================
+
+	                   12/01/94
+
+                            *WARNING* 
+      Not all VESA bios systems support the virtual display 
+        feature, and some of those that try to are buggy.
+     The VESA256 driver will return a flag called VirtualBGI 
+    that will indicate if the virtual display is supported. 
+      Unfortunately, VESA256 cannot identify a buggy Vesa bios. 
+    If you are experiencing problems, you should contact the 
+      manufacturer of your display card to see if they have 
+    an updated VESA driver. If you plan on using the Virtual
+     display functions in distribution software, you should 
+   keep in mind that your customers will have these problems.
+                            *WARNING* 
+
+To understand the virtual screen concept, think of it as your 
+having available a large piece of drawing paper of some arbitrary 
+size. This is the virtual screen. The virtual screen is the area 
+on which you will be doing all the work. For now let's say that 
+the virtual screen is 1000 pixels wide by 1000 pixels tall. 
+The virtual screen always starts at location Vx=0,Vy=0. 
+This is not changeable. The end points of the virtual screen 
+(VirtMaxX,VirtMaxY) is determined by the size of the virtual 
+screen. The this hypothetical case, VirtMaxX=1000,VirtmaxY=1000.
+This size is determined by a number of different factors.
+These include display software and hardware limitations, the
+amount of display memory available, and the mode selected.
+
+On the Virtual screen, there are two areas that are used, 
+the drawing area, and the display screen area. One way to 
+consider this is to think of one person drawing on the drawing 
+area of the virtual screen, and another person looking over the 
+drawing person's shoulder at the paper. Each of them have the 
+limitation that they are wearing special glasses which limit 
+their view. Each can only see a portion of the virtual screen, 
+but they can move their field of view around anyplace on the 
+virtual screen. That means that the person doing the drawing can 
+be drawing on one area of the virtual screen, while the person 
+looking over the drawing person's shoulder can be looking at 
+another area. 
+
+Does the above sound familiar? If you've looked at the 
+SetActivePage and SetVisualPage BGI commands, this is the
+action they are performing. The difference is that the field 
+of view is limited to discreet pages. On a true virtual 
+system, there is no limitation to the positioning of the field 
+of view. 
+
+The VESA256 virtual commands allow the independent placement 
+of the drawing area and the display screen area anyplace on the 
+virtual screen. The only limitation is that the areas cannot
+be placed outside the virtual screen. 
+
+The display screen area is fixed by the particular mode selected. 
+As an example, if you select mode (0), the screen resolution
+will be 320x200 which means that the display screen area will be 
+320x200. While you can move the 320x200 area around anyplace 
+on the virtual display, you can only change the display screen
+size by changing the mode (eg mode(2) will give you a 640x480
+size display screen area). 
+
+When VESA256 has been initially loaded, the drawing area will
+be set to match the screen area/resolution for the selected mode. 
+eg for mode(0) the drawing area will be set to 320x200. 
+Once the graphics mode has been initialized, the display 
+area can be set to any size that will fit within the virtual 
+screen area. Once set, it will remain at that size until 
+changed. Each mode has its own drawing area definition, so
+if you change from Mode(0) to Mode(2), and change the drawing
+area size in Mode(2), when switch back to mode(0) the 
+original mode(0) drawing area will be selected again. If you 
+switch back to Mode(2) again, the selected mode(2) drawing
+area will be reselected. Also when you change modes, the drawing 
+and display screen area offsets will be set to 0,0.
+
+The virtual screen is also controlled separately with the
+individual modes. The default width of the virtual screen after 
+the call to InitGraph is the default width of the selected mode's 
+screen resolution. If you change the virtual screen's width, it 
+will be changed for that mode only. 
+
+
+Visual aid:
+   
+   
+   +-------------------------------------------+
+   |Vx=0                                       |
+   |Vy=0         - Virtual screen -            |
+   |                                           |
+   |                                           |
+   |                                           |
+   |    +---------------------------------+    |
+   |    |DrawOfsX                         |    | 
+   |    |DrawOfsY     - Drawing area -    |    |
+   |    |                                 |    |
+   |    |                                 |    | 
+   |    |                                 |    | 
+   |    |    +-----------------------+    |    |  
+   |    |    |ScreenOfsX             |    |    |
+   |    |    |ScreenOfsY             |    |    |
+   |    |    |                       |    |    |
+   |    |    |                       |    |    |
+   |    |    |                       |    |    |
+   |    |    |   - Display area -    |    |    |
+   |    |    |                       |    |    |    
+   |    |    |                       |    |    |    
+   |    |    |                       |    |    |
+   |    |    |                GetMaxX|    |    |
+   |    |    |                GetMaxY|    |    |
+   |    |    +-----------------------+    |    |
+   |    |                                 |    |
+   |    |                                 |    |
+   |    |                         DispMaxX|    |
+   |    |                         DispMaxY|    |
+   |    +---------------------------------+    |
+   |                                           |
+   |                                           |
+   |                                   VirtMaxX|
+   |                                   VirtMaxY|
+   +-------------------------------------------+
+                                                 
+                                                    
+
+Keep in mind that the virtual display is not fully supported
+by all VESA systems.  VESA does not require that the virtual 
+screen commands (functions 6 and 7) be fully supported, and many
+do not support the function. Worse, some only partially support 
+it, or have buggy implemenations of the functions. Unfortunately, 
+it is not easy to determine if a buggy VESA bios is in use other 
+than by the action of things not working.  
+
+There are several issues that you need to determine. One is can 
+you make the virtual work area larger than the display screen
+area. This is controlled by VESA function 6 (SetScanLineLength).
+You can find out if this is changeable by changing the scanline 
+length and looking at the results. If GetScanLineLength returns
+the new length, the virtual scan line resizing is available.
+If the length was not changed, either the new length given was 
+too long, or the capability is not available. 
+
+Note: The actual scan line length returned may not be equal to 
+the length requested. This is the result of hardware limitations 
+which control how long the scan line can be and the increments in 
+which it can grow. Additionally, you cannot set the scan line 
+length to be less than the display resolution. Setting the 
+scan line length to 0 will cause the default screen resolution to 
+be used for the scan line length (eg if the screen resolution is 
+320x200, the scan line length will be set to 320. 
+
+Some SuperVGA systems are limited to what virtual scan line 
+lengths they can support. If the selected length is not 
+supportable, the next larger size will be selected up to the 
+maximum of the supportable size for the scan line. For many 
+systems, the maximum size is currently 2048. 
+
+When you change the scanline length, the maximum number of 
+available scan lines (VirtMaxY) most likely will also change. 
+Normally, the number of scan lines available in the virtual 
+display is controlled by how much display memory is available.
+If you change the scan line length, the memory is reconfigured 
+and the extra length is obtained by reducing the maximum number 
+of available scan lines on the virtual display. 
+
+You can change the scan line length, and thus the virtual screen 
+size using the SetVirtualWidth procedure in VESA256. As an 
+example, let's assume that you have 1MB of display memory and 
+that you had selected the 320x200x256 mode. This will provide
+3276 scan lines (1048576/320=3276). Remember, this is system 
+dependent, you may not get this many due to hardware limitations, 
+or the virtual system may not be available. If you redefine the 
+virtual scanline length to be 640 pixels, then the number of 
+available scan lines will be cut in half (1048576/640=1638). 
+Again, this may be even less depending on the hardware 
+limitations.
+
+The drawing area is the area in which the graph unit will be 
+drawing. In a virtual display system, the screen resolution selected
+has no relation to the drawing area that is selected. The BGI will
+use the selected drawing area size for its resolution parameters.
+You can change the size of the drawing area by using the 
+SetDrawingSize procedure in VESA256. The Drawing area can be 
+smaller or larger than the display screen size. The drawing area 
+cannot be wider or taller than the virtual screen. 
+
+The starting offset of the drawing area (DrawOfsX,DrawOfsY) 
+controls where in the virtual screen memory the BGI will be 
+drawing. The top left corner of the drawing area is treated as 
+location 0,0 by the BGI. If the drawing area is the same size as 
+the virtual screen, you will not be able to move the drawing 
+area. 
+
+The screen area is a window on the virtual display. The screen area 
+is not limited to the drawing area. The screen area is an entirely 
+separate window which can be positioned anywhere on the virtual 
+display. The size of the screen area is dependent upon the mode
+selected. The virtual area can not be made smaller than the 
+screen area, and the screen area cannot be moved outside of the 
+virtual display area. Other than that, the screen area can be 
+moved anywhere on the virtual display by setting the ScreenOfsX, 
+ScreenOfsY parameters.
+
+The screen display area is always fixed to the resolution 
+specified by the selected GraphMode. You cannot change the size 
+other than by changing the GraphMode selection. You can however 
+move the position of the display area anywhere within the virtual 
+screen independent of the drawing area.
+
+Many systems limit the maximum position of the screen offset 
+within the virtual display memory regardless of how much memory 
+is available. normally this shouldn't be a problem, but it can 
+limit the effective size of the virtual display if information 
+cannot be displayed on the screen.
+
+The restrictions of the display screen area also hold to the 
+drawing area with the exception that unlike the screen area, the 
+drawing area can be re-sized up to the size of the virtual 
+display area, and the drawing area size is independent of the 
+selected mode. The GraphMode command only controls the screen 
+resolution it does not control the BGI drawing resolution. 
+
+There are several other minor issues to take into consideration 
+when using a virtual drawing area. If you change the width of the
+virtual screen, it will reorganize the virtual screen memory causing 
+any existing image to be distorted. Additionally, the controlling 
+program'ds graphics variables will not reflect the new screen 
+information.  
+
+After you change the virtual screen size and/or the drawing area 
+size, you will need to call the SetGraphMode procedure so that 
+the graph unit variables will be updated to the new drawing area 
+size.  You do not need to call the SetGraphMode procedure if all 
+you are doing is moving the drawing area to a different location 
+on the virtual screen. It is only required if you are changing 
+the size of the virtual screen or drawing area. Also remember 
+that the virtual screen and display area are specific to the 
+selected GraphMode. If you change the selected GraphMode, you 
+will need to adjust the virtual screen width and drawing area 
+size if they do not fit your needs. 
+
+<eof>
+
+
+
+
+

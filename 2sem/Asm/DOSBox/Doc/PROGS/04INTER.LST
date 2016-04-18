@@ -1,0 +1,149 @@
+Turbo Assembler	 Version 4.1	    02/24/14 11:09:56	    Page 1
+04inter.asm
+
+
+
+      1	0000				     .model tiny
+      2	0000				     .code
+      3					     org 100h
+      4
+      5	0100  B4 00		     start:  mov ah, 00h
+      6	0102  CD 16			     int 16h
+      7
+      8	0104  3C 0D			     cmp al, 0dh
+      9	0106  74 19			     je	getb
+     10
+     11	0108  B4 02			     mov ah, 02h
+     12	010A  86 C2			     xchg al, dl
+     13	010C  CD 21			     int 21h
+     14	010E  86 C2			     xchg al, dl
+     15	0110  B4 00			     mov ah, 00h
+     16
+     17	0112  2C 30			     sub al, 30h
+     18	0114  93			     xchg ax, bx
+     19	0115  BA 000A			     mov dx, 000ah
+     20	0118  F7 E2			     mul dx
+     21	011A  33 D2			     xor dx, dx
+     22	011C  02 C3			     add al, bl
+     23	011E  93			     xchg ax, bx
+     24	011F  EB DF			     jmp start
+     25
+     26	0121  E8 0066		     getb:   call nwln
+     27	0124  B4 02			     mov ah, 02h
+     28	0126  B1 10			     mov cl, 10h
+     29	0128  B5 01			     mov ch, 1h
+     30
+     31	012A  E8 000A			     getbw:  call getbc
+     32	012D  CD 21				     int 21h
+     33	012F  3A E9				     cmp ch, cl
+     34	0131  74 19				     je	next
+     35	0133  FE C5				     inc ch
+     36	0135  EB F3				     jmp getbw
+     37
+     38	0137  8B FB			     getbc:  mov di, bx
+     39
+     40	0139  8A D1				     mov dl, cl
+     41	013B  2A D5				     sub dl, ch
+     42	013D  86 CA				     xchg cl, dl
+     43	013F  D3 EF				     shr di, cl
+     44	0141  86 CA				     xchg cl, dl
+     45	0143  83 E7 01				     and di, 0001h
+     46	0146  83 C7 30				     add di, 30h
+     47	0149  8B D7				     mov dx, di
+     48	014B  C3			     ret
+     49
+     50
+     51	014C  E8 003B		     next:   call nwln
+     52	014F  B4 02			     mov ah, 02h
+     53	0151  B1 04			     mov cl, 04h
+     54	0153  B5 01			     mov ch, 1h
+     55
+     56	0155  E8 000A		     gethw:  call gethc
+     57	0158  CD 21			     int 21h
+Turbo Assembler	 Version 4.1	    02/24/14 11:09:56	    Page 2
+04inter.asm
+
+
+
+     58	015A  3A E9			     cmp ch, cl
+     59	015C  74 37			     je	stop
+     60	015E  FE C5			     inc ch
+     61	0160  EB F3			     jmp gethw
+     62
+     63	0162  B6 00		     gethc:  mov dh, 0h
+     64	0164  8B FB			     mov di, bx
+     65
+     66	0166  8A D1			     sha:    mov dl, cl
+     67	0168  2A D5				     sub dl, ch
+     68	016A  3A F2				     cmp dh, dl
+     69	016C  74 06				     je	enough
+     70	016E  D3 EF				     shr di, cl
+     71	0170  FE C6				     inc dh
+     72	0172  EB F2				     jmp sha
+     73
+     74	0174  83 E7 0F			     enough: and di, 000Fh
+     75	0177  83 C7 30				     add di, 30h
+     76	017A  83 FF 39				     cmp di, '9'
+     77	017D  72 08				     jb	okc
+     78	017F  74 06				     je	okc
+     79	0181  83 C7 07				     add di, 07h
+     80	0184  EB 01 90				     jmp okc
+     81
+     82	0187  8B D7			     okc:    mov dx, byte ptr di
+     83	0189  C3		     ret
+     84
+     85
+     86	018A  B4 02		     nwln:   mov ah, 02h
+     87	018C  B2 0A			     mov dl, 0ah
+     88	018E  CD 21			     int 21h
+     89	0190  B2 0D			     mov dl, 0dh
+     90	0192  CD 21			     int 21h
+     91	0194  C3		     ret
+     92
+     93	0195  B8 4C00		     stop:   mov ax, 4c00h
+     94	0198  CD 21			     int 21h
+     95
+     96				     end start
+Turbo Assembler	 Version 4.1	    02/24/14 11:09:56	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "02/24/14"
+??FILENAME			  Text	 "04inter "
+??TIME				  Text	 "11:09:56"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 04INTER
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+ENOUGH				  Near	 DGROUP:0174
+GETB				  Near	 DGROUP:0121
+GETBC				  Near	 DGROUP:0137
+GETBW				  Near	 DGROUP:012A
+GETHC				  Near	 DGROUP:0162
+GETHW				  Near	 DGROUP:0155
+NEXT				  Near	 DGROUP:014C
+NWLN				  Near	 DGROUP:018A
+OKC				  Near	 DGROUP:0187
+SHA				  Near	 DGROUP:0166
+START				  Near	 DGROUP:0100
+STOP				  Near	 DGROUP:0195
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+  _TEXT				  16  019A Word	  Public  CODE
+

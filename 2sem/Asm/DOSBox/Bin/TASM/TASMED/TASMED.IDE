@@ -1,0 +1,259 @@
+;***********************************
+; Custom TASMED	IDE definition.
+; Copyright (C)	1997 by	CodeMaster.
+;***********************************
+
+; NB: This file	can be modified	only by	experienced users. Error checking is
+; performed, but very simple, so modify	it carefully. Serious errors in	this
+; file can completely mess up TASMED.
+
+; Main menu definition (alignment and case is not meaningful)
+Menu
+  Submenu "&File"		"File management commands (New, Open, Save, etc.)"
+    "&New"			New
+    "&Open..."			Open			F3
+    "&Save"			Save			F2
+    "Save &as..."		SaveAs			Shift+F2
+    "Save a&ll"			SaveAll
+    "&Print"			Print			Shift+F5
+    ---
+    "&Change dir..."		ChangeDir
+    ---
+    "&DOS shell"		DOSShell
+    "E&xit"			Exit			Alt+X
+; << Closed files list will be insert here
+  EndSubmenu
+
+  Submenu "&Edit"		"Text editing commands (undo, cut-and-paste etc.)"
+    "&Undo"			Undo			Alt+Backspace
+    ---
+    "Cu&t"			Cut			Shift+Del
+    "&Copy"			Copy			Ctrl+Ins
+    "&Paste"			Paste			Shift+Ins
+    "C&lear"			Clear			Ctrl+Del
+    "&Show clipboard"		ShowClipboard
+    ---
+    "Finish &word"		FinishWord		Alt+Space
+    ---
+    "Change st&yle"		ChangeStyle		Shift+F4
+  EndSubmenu
+
+  Submenu "&Search"		"Text and global search commands"
+    "&Find..."			Find			F7
+    "&Replace..."		Replace			F4
+    "&Search again"		SearchAgain		Ctrl+L
+    ---
+    "&Go to line number..."	GoToLineNumber		Alt+N
+    ---
+    "&Browser"			Browser			Shift+F3
+  EndSubmenu
+
+  Submenu "&Project"		"Project management and execution commands"
+    "&Make"			Make			F9
+    "&Build"			Build			F8
+    ---
+    "&Run"			RunProgram		Ctrl+F9	LeftWindows RightWindows
+    "P&arameters..."		Parameters		Shift+F8
+    ---
+    "&Open..."			OpenProject
+    "&Save..."			SaveProject
+    "Sa&ve as..."		SaveProjectAs
+    "&Close"			CloseProject
+    ---
+    "O&ptions..."		ProjectOptions		Shift+F9 Menu
+    "&Files..."			ProjectFiles
+    ---
+    "&Information..."		Information
+  EndSubmenu
+
+  Submenu "&Debug"		"Call external debugger, view messages and program output"
+    "E&xternal"			External		Alt+F9
+    ---
+    "&Next message"		NextMessage		Alt+F8
+    "&Previous message"		PreviousMessage		Alt+F7
+    ---
+    "&Output"			Output			PrintScreen
+    "&User screen"		UserScreen		Alt+F5
+  EndSubmenu
+
+  Submenu "&Tools"		"Internal and user-installed tools"
+    "&ASCII table"		ASCIITable
+    "&Expression calculator"	ExpressionCalculator	Ctrl+F4
+    "&Converter/Disassembler"	ConverterDisassembler	Alt+F4
+; << All external tools	will be	automatically insert here
+  EndSubmenu
+
+  Submenu "&Options"		"Set miscellaneous defaults and modify dictionaries"
+    Submenu "&Dictionaries"	"Modify miscellaneous dictionaries"
+      "&Directives..."		Directives
+      "&Instructions..."	Instructions
+      "&Registers..."		Registers
+      "Reserved &words..."	ReservedWords
+      "&Specifiers..."		Specifiers
+      ---
+      "&Open..."		OpenDictionaries
+      "Save &as..."		SaveDictionariesAs
+    EndSubmenu
+    Submenu "&Environment"	"Specify environment settings"
+      "&Preferences..."		Preferences
+      "&Editor..."		Editor
+      "St&yle..."		Style
+      "&Colors..."		Colors
+      "&Mouse..."		Mouse
+      "P&rinter..."		Printer
+      "&Virtual memory..."	VirtualMemory
+      ---
+      "Macros &1..."		Macros1
+      "Macros &2..."		Macros2
+    EndSubmenu
+    ---
+    Submenu "E&xternal"		"Specify external tools (assembler, linker and debugger)"
+      "&Assembler..."		Assembler
+      "&Linker..."		Linker
+      "&Debugger..."		Debugger
+      ---
+      "Defaults for &TASM"	DefaultsForTASM
+      "Defaults for &MASM"	DefaultsForMASM
+      ---
+      "&Other tools..."		OtherTools
+    EndSubmenu
+    ---
+    "&Open..."			OpenConfig
+    "&Save"			SaveConfig
+    "Save &as..."		SaveConfigAs
+  EndSubmenu
+
+  Submenu "&Window"		"Windows management commands"
+    "&Tile"			Tile			Ctrl+F7
+    "C&ascade"			Cascade			Ctrl+F8
+    "Cl&ose all"		CloseAll
+    ---
+    "&Size/Move"		SizeMove		Ctrl+F5
+    "&Zoom"			Zoom			F5
+    "&Next"			Next			F6
+    "&Previous"			Previous		Shift+F6
+    "&Close"			Close			Alt+F3
+    ---
+    "&List..."			List			Alt+0
+  EndSubmenu
+EndMenu
+
+; Editor local menu definition
+Menu Editor
+  "&Undo"			Undo			Alt+Backspace
+  ---
+  "Cu&t"			Cut			Shift+Del
+  "&Copy"			Copy			Ctrl+Ins
+  "&Paste"			Paste			Shift+Ins
+  "C&lear"			Clear			Ctrl+Del
+  ---
+  "Change st&yle"		ChangeStyle		Shift+F4
+  ---
+  "Open ~f~ile at cursor"	OpenFileAtCursor	Ctrl+Enter
+  "~B~rowse symbol at cursor"	Browser			Shift+F3
+  ---
+  "~O~ptions..."		Editor
+EndMenu
+
+; Editor accelerators definition (Max: 64 per group)
+Accel
+  Ctrl+P	ASCIITable
+  Ctrl+H	Backspace
+  Backspace	Backspace
+  Ctrl+B	BlockType
+  Ctrl+Del	Clear
+  Ctrl+Ins	Copy
+  Ctrl+K	CtrlK		; not a	real commands,
+  Ctrl+Q	CtrlQ		; but another accelerator groups
+  Shift+Del	Cut
+  Ctrl+G	DelChar
+  Del		DelChar
+  Ctrl+Y	DelLine
+  Ctrl+T	DelWord
+  Down		Down
+  Ctrl+X	Down
+  End		End
+  Ctrl+N	HideComments
+  Ctrl+O	IndentMode
+  Ins		InsMode
+  Ctrl+V	InsMode
+  Ctrl+S	Left
+  Left		Left
+  Ctrl+]	LoStr
+  Ctrl+\	MixStr
+  Enter		NewLine
+  Ctrl+M	NewLine
+  Ctrl+Enter	OpenFileAtCursor
+  Ctrl+C	PageDown
+  PgDn		PageDown
+  Ctrl+End	PageEnd
+  Ctrl+Home	PageStart
+  Ctrl+R	PageUp
+  PgUp		PageUp
+  Shift+Ins	Paste
+  Alt+PgDn	Return
+  Ctrl+D	Right
+  Right		Right
+  Alt+PgUp	SearchLabel
+  Home		Start
+  Ctrl+PgDn	TextEnd
+  Ctrl+PgUp	TextStart
+  Ctrl+U	Undo
+  Ctrl+E	Up
+  Up		Up
+  Ctrl+[	UpStr
+  Ctrl+A	WordLeft
+  Ctrl+Left	WordLeft
+  Ctrl+F	WordRight
+  Ctrl+Right	WordRight
+EndAccel
+
+; Ctrl+K ? combinations	definition
+Accel CtrlK
+  U		BlockLeft
+  I		BlockRight
+  Y		Clear
+  P		Comment
+  C		CopyBlock
+  K		EndSelect
+  H		HideSelect
+  L		LineSelect
+  V		MoveBlock
+  A		SelectAll
+  0		SetBookmark0
+  1		SetBookmark1
+  2		SetBookmark2
+  3		SetBookmark3
+  4		SetBookmark4
+  5		SetBookmark5
+  6		SetBookmark6
+  7		SetBookmark7
+  8		SetBookmark8
+  9		SetBookmark9
+  B		StartSelect
+  O		Uncomment
+EndAccel
+
+; Ctrl+Q ? combinations	definition
+Accel CtrlQ
+  Y		DelEnd
+  H		DelStart
+  P		Duplicate
+  D		End
+  F		Find
+  0		GoToBookmark0
+  1		GoToBookmark1
+  2		GoToBookmark2
+  3		GoToBookmark3
+  4		GoToBookmark4
+  5		GoToBookmark5
+  6		GoToBookmark6
+  7		GoToBookmark7
+  8		GoToBookmark8
+  9		GoToBookmark9
+  G		GoToLineNumber
+  A		Replace
+  S		Start
+  C		TextEnd
+  R		TextStart
+EndAccel

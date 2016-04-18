@@ -1,0 +1,49 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27sprite\(488,130)"fonts.spr"
+#27Textcolor\(001)
+#27X\(235)
+#27Y\(015)
+#27Font\(004,005)
+Text
+#27Line\(220,068,320,068)
+#27Line\(220,070,320,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(138)
+#27Y\(078)
+To enter a text into your picture,
+you can use this function.
+Select one of the nine available
+fonts (1). To do this, you press
+a key between 1 and 9. After that,
+you have to select the size of the
+text you would like to enter. This
+  is something for what you need
+ some exercise. You also have to
+select the color of your text. The
+ rectangle you see now, marks your
+   text. Use the mouse to select
+ the right position. Press left
+ or right button to set the text.
+#27X\(134)
+To abort the text function you use
+the ESC key. This is possible during
+the selection process for the font,
+the text and the position and not
+when you select the color or the
+fontsize.
+#27Textcolor\(004)
+#27Font\(010,001)
+#27X\(122)
+#27step\(022)
+1) CHR-files are licensed by the 
+   authors. The copyright must be
+   ??????????.
+#27std_step\
+#27screen_on\
+#27EndOfFile\

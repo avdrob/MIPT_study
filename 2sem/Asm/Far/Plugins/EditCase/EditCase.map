@@ -1,0 +1,64 @@
+ EditCase
+
+ Timestamp is 4f45743f (Thu Feb 23 00:03:27 2012)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000024H .idata$5                CODE
+ 0001:00000028 000000f2H .rdata                  CODE
+ 0001:00000120 00000af5H .text                   CODE
+ 0001:00000c18 00000014H .idata$2                CODE
+ 0001:00000c2c 00000014H .idata$3                CODE
+ 0001:00000c40 00000024H .idata$4                CODE
+ 0001:00000c64 00000074H .idata$6                CODE
+ 0001:00000ce0 00000091H .edata                  CODE
+ 0002:00000000 00000000H .data                   DATA
+ 0002:00000000 00000210H .bss                    DATA
+ 0003:00000000 00000058H .rsrc$01                DATA
+ 0003:00000060 00000388H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0001:00000000       __imp__lstrcpynW@12        10001000     kernel32:KERNEL32.dll
+ 0001:00000004       __imp__lstrcatW@8          10001004     kernel32:KERNEL32.dll
+ 0001:00000008       __imp__lstrlenW@4          10001008     kernel32:KERNEL32.dll
+ 0001:0000000c       __imp__lstrcmpW@8          1000100c     kernel32:KERNEL32.dll
+ 0001:00000010       __imp__lstrcpyW@8          10001010     kernel32:KERNEL32.dll
+ 0001:00000014       __imp__HeapFree@12         10001014     kernel32:KERNEL32.dll
+ 0001:00000018       __imp__GetProcessHeap@0    10001018     kernel32:KERNEL32.dll
+ 0001:0000001c       __imp__HeapAlloc@12        1000101c     kernel32:KERNEL32.dll
+ 0001:00000020       \177KERNEL32_NULL_THUNK_DATA 10001020     kernel32:KERNEL32.dll
+ 0001:00000028       _MainGuid                  10001028     EditCase.obj
+ 0001:00000038       _MenuGuid                  10001038     EditCase.obj
+ 0001:00000048       ??_C@_1DE@BGKMIKPD@?$AAE?$AAu?$AAg?$AAe?$AAn?$AAe?$AA?5?$AAR?$AAo?$AAs?$AAh?$AAa?$AAl?$AA?5?$AA?$CG?$AA?5?$AAF?$AAa?$AAr?$AA?5?$AAG?$AAr?$AAo?$AAu?$AAp?$AA?$AA@ 10001048     EditCase.obj
+ 0001:00000080       ??_C@_1EK@IFCLLMMP@?$AAT?$AAe?$AAx?$AAt?$AA?5?$AAc?$AAa?$AAs?$AAe?$AA?5?$AAc?$AAo?$AAn?$AAv?$AAe?$AAr?$AAs?$AAi?$AAo?$AAn?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAF?$AAa?$AAr?$AA?5?$AAM?$AAa?$AAn@ 10001080     EditCase.obj
+ 0001:000000cc       ??_C@_1BC@MGKGEOAP@?$AAE?$AAd?$AAi?$AAt?$AAC?$AAa?$AAs?$AAe?$AA?$AA@ 100010cc     EditCase.obj
+ 0001:000000e0       ??_C@_19DHONEMF@?$AA?5?$AA?6?$AA?$AN?$AA?7?$AA?$AA@ 100010e0     EditCase.obj
+ 0001:000000ec       ??_C@_13GMDMCADD@?$AA?$CD?$AA?$AA@ 100010ec     EditCase.obj
+ 0001:000000f0       ??_C@_1BG@DENGNAGA@?$AAA?$AAd?$AAd?$AAW?$AAo?$AAr?$AAd?$AAD?$AAi?$AAv?$AA?$AA@ 100010f0     EditCase.obj
+ 0001:00000108       ??_C@_1BC@ENICKDH@?$AAC?$AAo?$AAn?$AAt?$AAe?$AAn?$AAt?$AAs?$AA?$AA@ 10001108     EditCase.obj
+ 0001:00000120       __chkstk                   10001120 f   chkstk.obj
+ 0001:00000120       __alloca_probe             10001120     chkstk.obj
+ 0001:00000150       _GetGlobalInfoW@4          10001150 f   EditCase.obj
+ 0001:000001d0       _SetStartupInfoW@4         100011d0 f   EditCase.obj
+ 0001:00000310       ?FindStart@@YIHPA_WHH@Z    10001310 f   EditCase.obj
+ 0001:00000360       ?FindEnd@@YIHPA_WHH@Z      10001360 f   EditCase.obj
+ 0001:000003a0       ?ChangeCase@@YIHPA_WHHH@Z  100013a0 f   EditCase.obj
+ 0001:00000480       _GetPluginInfoW@4          10001480 f   EditCase.obj
+ 0001:000004d0       ?FindBounds@@YI_NPA_WHHAAH1@Z 100014d0 f   EditCase.obj
+ 0001:000006b0       ?GetNextCCType@@YIHPA_WHHH@Z 100016b0 f   EditCase.obj
+ 0001:00000830       _OpenW@4                   10001830 f   EditCase.obj
+ 0001:00000b70       _memcpy                    10001b70 f   libCRT:memcpy.obj
+ 0001:00000ba0       _free                      10001ba0 f   libCRT:free.obj
+ 0001:00000bc0       _malloc                    10001bc0 f   libCRT:malloc.obj
+ 0001:00000be0       _memset                    10001be0 f   libCRT:memset.obj
+ 0001:00000c18       __IMPORT_DESCRIPTOR_KERNEL32 10001c18     kernel32:KERNEL32.dll
+ 0001:00000c2c       __NULL_IMPORT_DESCRIPTOR   10001c2c     kernel32:KERNEL32.dll
+
+ entry point at        0000:00000000
+
+ Static symbols
+

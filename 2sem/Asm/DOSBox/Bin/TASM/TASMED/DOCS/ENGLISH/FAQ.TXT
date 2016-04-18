@@ -1,0 +1,37 @@
+
+     Frequently Asked Questions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+     NB: Refer to BUGS.COM also.
+
+     ? I can't execute TASMED.
+      Execute OVERVIEW.COM and read section "How to install and start".
+
+     ? My  computer hangs when I am executing external tool which uses DPMI
+       (for example TLINK).
+     ? I get "Reconfigure DPMI host"  error in linker messages window after
+       linking. I use TLINK.
+      Not  enough  memory  to  initialize  DPMI application. Solution: use
+       TASMED.BAT  to execute TASMED. If it is already done, then you ought
+       to  increase  "EXTLEAVE"  variable in your TASMED.BAT file (look for
+       "SET  RTM="  line).  Or  try  to execute TASMED.BAT with 32-bit DPMI
+       host.  It can be done by adding "-32" command line option or setting
+       variable  "USE32"  to  "YES". In this case you'll need 32RTM.EXE and
+       DPMI32VM.OVL in any path from your "PATH" environment variable. This
+       files are included in TASM 4.0+ and BC++ 4.0+.  Another way is using
+       TLINK 7.x which uses  32-bit DPMI host with TD 5.0 which is reliable
+       than TD 3.1.  And the last  (and the best)  solution is to get TLINK
+       3.0 from Turbo C. It is quite suitable for work, but only if you are
+       not linking large programs.
+
+     ? How to insert ASCII codes in editor? I can't insert in standard way.
+      Use ASCII table (Ctrl+P) or press Alt+Shift instead of Alt.
+
+     ? Troubles with mouse cursor when compiling in windowed DOS session.
+      Add the "-NOCPUACCESS" switch to TASMED command line.
+
+     ? Hang up occurs when exiting TASMED.
+      Try latest version of  DPMI host.  TASMED is succesfully tested with
+       16-bit Borland DPMI host version 1.5,  which included in  TASM 4.0+.
+       Or try 32-bit DPMI host, it works too (see above how to use it).
+
+     06-03-99  Eugene Nonko aka CodeMaster

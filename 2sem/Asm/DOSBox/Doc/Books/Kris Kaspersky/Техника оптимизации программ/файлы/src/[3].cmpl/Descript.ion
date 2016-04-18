@@ -1,0 +1,10 @@
+Descript.ion /cat/root
+asm.vs.c.cpy.asm.asm ассемблерная реализация процедуры копирования памяти
+asm.vs.c.cpy.c программа для сравнения ассемблерной реализации функции	копирования памяти с такой же функцией, реализованной на Си
+asm.vs.c.cpy.make.bat clock.make _имя_копилятора_ -release  asm.vs.c.cpy.c asm.vs.c.cpy.asm.obj
+asm.vs.c.min.asm.asm ассемблерная реализация процедуры нахождения минимума
+asm.vs.c.min.c программа для сравнения ассемблерной реализации функции	нахождения миниума с такой же функцией, реализованной на Си
+asm.vs.c.min.make.bat clock.make _имя_копилятора_ -release  asm.vs.c.min.c asm.vs.c.min.asm.obj
+asm.vs.c.sort.asm.asm ассемблерная реализация процедуры пузырьковой сортировки
+asm.vs.c.sort.make.bat clock.make _имя_копилятора_ -release  asm.vs.c.sort.c asm.vs.c.sort.asm.obj
+asm.vs.c.sort.c программа для сравнение ассемблерной реализации функции пузырьковой сортировки миниума с такой же функцией, реализованной на Си

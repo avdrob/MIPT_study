@@ -1,0 +1,51 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27Textcolor\(001)
+#27X\(215)
+#27Y\(015)
+#27Font\(004,005)
+Insert
+#27Line\(210,068,330,068)
+#27Line\(210,070,330,070)
+#27Font\(000,001)
+#27Textcolor\(000)
+#27X\(138)
+#27Y\(078)
+ This function offers you the
+  possibility to load another
+sprite into your actual picture.
+If both color palettes are not
+identical, the inserted sprite
+will look disturbed. Enter the
+filename of the sprite you wish
+to insert. Now, you will see a
+screen, on which you find all
+256 colors of the actual palette.
+#27X\(148)
+They are the same as for the new
+#27X\(158)
+sprite, because you keep the
+#27X\(138)
+ actual color palette in the
+ new sprite (see above). The
+colors that are marked with a
+   filled circle will be set
+ onto the old picture. Those
+with an empty circle, won't be
+set. To mark or unmark a color,
+use the mouse cursor and click
+on the color you would like to
+enable or disable. Press ENTER,
+when  you are ready. The sprite
+will be loaded and its contours
+will be shown as an rectangle.
+ Position the sprite with the 
+  cursor keys and press ENTER
+to finish your work.
+
+#27screen_on\
+#27EndOfFile\

@@ -1,0 +1,25 @@
+in ax
+push ax
+push 1
+sub
+pop ax
+mov dx 1
+mov bx 1
+push 1
+push 1
+:1
+push dx
+push 1
+add
+pop dx
+push bx
+add
+pop cx
+pop bx
+push cx
+push cx
+push ax
+push dx
+ja :1
+out
+halt

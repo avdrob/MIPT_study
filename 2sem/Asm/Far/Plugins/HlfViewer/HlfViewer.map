@@ -1,0 +1,138 @@
+ HlfViewer
+
+ Timestamp is 4f457468 (Thu Feb 23 00:04:08 2012)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000030H .idata$5                CODE
+ 0001:00000030 000001d6H .rdata                  CODE
+ 0001:00000210 00001d95H .text                   CODE
+ 0001:00001fa8 00000014H .idata$2                CODE
+ 0001:00001fbc 00000014H .idata$3                CODE
+ 0001:00001fd0 00000030H .idata$4                CODE
+ 0001:00002000 000000a6H .idata$6                CODE
+ 0001:000020b0 000000c5H .edata                  CODE
+ 0002:00000000 00000014H .data                   DATA
+ 0002:00000018 00000cb0H .bss                    DATA
+ 0003:00000000 00000058H .rsrc$01                DATA
+ 0003:00000060 00000378H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __imp__lstrcpynW@12        10001000     kernel32:KERNEL32.dll
+ 0001:00000004       __imp__lstrlenW@4          10001004     kernel32:KERNEL32.dll
+ 0001:00000008       __imp__DeleteFileW@4       10001008     kernel32:KERNEL32.dll
+ 0001:0000000c       __imp__CloseHandle@4       1000100c     kernel32:KERNEL32.dll
+ 0001:00000010       __imp__WriteFile@20        10001010     kernel32:KERNEL32.dll
+ 0001:00000014       __imp__CreateFileW@28      10001014     kernel32:KERNEL32.dll
+ 0001:00000018       __imp__lstrcatW@8          10001018     kernel32:KERNEL32.dll
+ 0001:0000001c       __imp__GetFullPathNameW@16 1000101c     kernel32:KERNEL32.dll
+ 0001:00000020       __imp__HeapFree@12         10001020     kernel32:KERNEL32.dll
+ 0001:00000024       __imp__GetProcessHeap@0    10001024     kernel32:KERNEL32.dll
+ 0001:00000028       __imp__HeapAlloc@12        10001028     kernel32:KERNEL32.dll
+ 0001:0000002c       \177KERNEL32_NULL_THUNK_DATA 1000102c     kernel32:KERNEL32.dll
+ 0001:00000030       _MainGuid                  10001030     HlfViewer.obj
+ 0001:00000040       _MenuGuid                  10001040     HlfViewer.obj
+ 0001:00000050       _DialogGuid                10001050     HlfViewer.obj
+ 0001:00000060       ??_C@_1M@EFMNOFJK@?$AA?$CK?$AA?4?$AAh?$AAl?$AAf?$AA?$AA@ 10001060     HlfViewer.obj
+ 0001:0000006c       ??_C@_1DE@BGKMIKPD@?$AAE?$AAu?$AAg?$AAe?$AAn?$AAe?$AA?5?$AAR?$AAo?$AAs?$AAh?$AAa?$AAl?$AA?5?$AA?$CG?$AA?5?$AAF?$AAa?$AAr?$AA?5?$AAG?$AAr?$AAo?$AAu?$AAp?$AA?$AA@ 1000106c     HlfViewer.obj
+ 0001:000000a0       ??_C@_1EA@CONHECGE@?$AAH?$AAl?$AAf?$AA?9?$AAf?$AAi?$AAl?$AAe?$AA?5?$AAV?$AAi?$AAe?$AAw?$AAe?$AAr?$AA?5?$AAf?$AAo?$AAr?$AA?5?$AAF?$AAa?$AAr?$AA?5?$AAM?$AAa?$AAn?$AAa?$AAg?$AAe?$AAr?$AA?$AA@ 100010a0     HlfViewer.obj
+ 0001:000000e0       ??_C@_1BE@KLINDABO@?$AAH?$AAl?$AAf?$AAV?$AAi?$AAe?$AAw?$AAe?$AAr?$AA?$AA@ 100010e0     HlfViewer.obj
+ 0001:000000f4       ??_C@_17KGEADEDI@?$AAH?$AAL?$AAF?$AA?$AA@ 100010f4     HlfViewer.obj
+ 0001:000000fc       ??_C@_1BG@IOFJDEI@?$AA?4?$AAL?$AAa?$AAn?$AAg?$AAu?$AAa?$AAg?$AAe?$AA?$DN?$AA?$AA@ 100010fc     HlfViewer.obj
+ 0001:00000114       ??_C@_1M@PALMNGCF@?$AAS?$AAt?$AAy?$AAl?$AAe?$AA?$AA@ 10001114     HlfViewer.obj
+ 0001:00000120       ??_C@_1CG@GFFDAIMK@?$AAP?$AAr?$AAo?$AAc?$AAe?$AAs?$AAs?$AAE?$AAd?$AAi?$AAt?$AAo?$AAr?$AAI?$AAn?$AAp?$AAu?$AAt?$AA?$AA@ 10001120     HlfViewer.obj
+ 0001:00000148       ??_C@_15NPKLCIOJ@?$AAF?$AA1?$AA?$AA@ 10001148     HlfViewer.obj
+ 0001:00000150       ??_C@_1BE@IHEBLNLC@?$AAE?$AAd?$AAi?$AAt?$AAo?$AAr?$AAK?$AAe?$AAy?$AA?$AA@ 10001150     HlfViewer.obj
+ 0001:00000164       ??_7?$DialogItemBinding@UFarDialogItem@@@@6B@ 10001164     HlfViewer.obj
+ 0001:0000016c       ??_7?$DialogBuilderBase@UFarDialogItem@@@@6B@ 1000116c     HlfViewer.obj
+ 0001:0000018c       ??_7PluginEditFieldBinding@@6B@ 1000118c     HlfViewer.obj
+ 0001:00000194       ??_7PluginDialogBuilder@@6B@ 10001194     HlfViewer.obj
+ 0001:000001b4       ??_7PluginCheckBoxBinding@@6B@ 100011b4     HlfViewer.obj
+ 0001:000001bc       ??_7PluginRadioButtonBinding@@6B@ 100011bc     HlfViewer.obj
+ 0001:000001c4       ??_C@_15EFLNJKHH@?$AA?$CF?$AAu?$AA?$AA@ 100011c4     HlfViewer.obj
+ 0001:000001cc       ??_7PluginIntEditFieldBinding@@6B@ 100011cc     HlfViewer.obj
+ 0001:000001d4       ??_C@_15JNBOKNOG@?$AA?$AN?$AA?6?$AA?$AA@ 100011d4     HlfViewer.obj
+ 0001:000001dc       ??_C@_19CPJEHIBK@?$AA?4?$AAh?$AAl?$AAf?$AA?$AA@ 100011dc     HlfViewer.obj
+ 0001:000001e8       ??_C@_11LOCGONAA@?$AA?$AA@ 100011e8     HlfViewer.obj
+ 0001:000001ec       ??_C@_17MEJHPLBO@?$AAc?$AAm?$AAd?$AA?$AA@ 100011ec     HlfViewer.obj
+ 0001:000001f4       ??_C@_13FPGAJAPJ@?$AA?2?$AA?$AA@ 100011f4     HlfViewer.obj
+ 0001:000001f8       ??_C@_1O@BJPKKLLM@?$AAC?$AAo?$AAn?$AAf?$AAi?$AAg?$AA?$AA@ 100011f8     HlfViewer.obj
+ 0001:00000210       __chkstk                   10001210 f   chkstk.obj
+ 0001:00000210       __alloca_probe             10001210     chkstk.obj
+ 0001:00000240       ?GetLangString@PluginDialogBuilder@@MAEPB_WH@Z 10001240 f i HlfViewer.obj
+ 0001:00000260       _GetGlobalInfoW@4          10001260 f   HlfViewer.obj
+ 0001:000002e0       _GetPluginInfoW@4          100012e0 f   HlfViewer.obj
+ 0001:00000360       ?IsHlf@@YIHXZ              10001360 f   HlfViewer.obj
+ 0001:00000470       ?FindTopic@@YIPB_WXZ       10001470 f   HlfViewer.obj
+ 0001:00000570       ?GetPluginConfig@@YIXXZ    10001570 f   HlfViewer.obj
+ 0001:00000770       ?InitDialogItem@?$DialogBuilderBase@UFarDialogItem@@@@MAEXPAUFarDialogItem@@PB_W@Z 10001770 f i HlfViewer.obj
+ 0001:00000770       ?SaveValue@?$DialogItemBinding@UFarDialogItem@@@@UAEXPAUFarDialogItem@@H@Z 10001770 f i HlfViewer.obj
+ 0001:00000780       ?TextWidth@?$DialogBuilderBase@UFarDialogItem@@@@MAEHABUFarDialogItem@@@Z 10001780 f i HlfViewer.obj
+ 0001:00000790       ?DoShowDialog@?$DialogBuilderBase@UFarDialogItem@@@@MAEHXZ 10001790 f i HlfViewer.obj
+ 0001:000007a0       ?CreateRadioButtonBinding@?$DialogBuilderBase@UFarDialogItem@@@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAH@Z 100017a0 f i HlfViewer.obj
+ 0001:000007a0       ?GetLangString@?$DialogBuilderBase@UFarDialogItem@@@@MAEPB_WH@Z 100017a0 f i HlfViewer.obj
+ 0001:000007b0       ??1?$DialogBuilderBase@UFarDialogItem@@@@MAE@XZ 100017b0 f i HlfViewer.obj
+ 0001:00000800       ?CreateCheckBoxBinding@?$DialogBuilderBase@UFarDialogItem@@@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAHH@Z 10001800 f i HlfViewer.obj
+ 0001:00000800       ?AddIntEditField@?$DialogBuilderBase@UFarDialogItem@@@@UAEPAUFarDialogItem@@PAHH@Z 10001800 f i HlfViewer.obj
+ 0001:00000810       ??_E?$DialogItemBinding@UFarDialogItem@@@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_EPluginCheckBoxBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_EPluginEditFieldBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_GPluginEditFieldBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_GPluginRadioButtonBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_EPluginRadioButtonBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_GPluginIntEditFieldBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_GPluginCheckBoxBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_EPluginIntEditFieldBinding@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000810       ??_G?$DialogItemBinding@UFarDialogItem@@@@UAEPAXI@Z 10001810 f i HlfViewer.obj
+ 0001:00000830       ??_E?$DialogBuilderBase@UFarDialogItem@@@@MAEPAXI@Z 10001830 f i HlfViewer.obj
+ 0001:00000830       ??_G?$DialogBuilderBase@UFarDialogItem@@@@MAEPAXI@Z 10001830 f i HlfViewer.obj
+ 0001:00000850       ?ReallocDialogItems@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10001850 f i HlfViewer.obj
+ 0001:00000920       ?UpdateSecondColumnPosition@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10001920 f i HlfViewer.obj
+ 0001:00000980       ?SaveValues@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10001980 f i HlfViewer.obj
+ 0001:000009d0       ?MaxTextWidth@?$DialogBuilderBase@UFarDialogItem@@@@IAEHXZ 100019d0 f i HlfViewer.obj
+ 0001:00000a90       ?SaveValue@PluginEditFieldBinding@@UAEXPAUFarDialogItem@@H@Z 10001a90 f i HlfViewer.obj
+ 0001:00000ac0       ?InitDialogItem@PluginDialogBuilder@@MAEXPAUFarDialogItem@@PB_W@Z 10001ac0 f i HlfViewer.obj
+ 0001:00000ae0       ?TextWidth@PluginDialogBuilder@@MAEHABUFarDialogItem@@@Z 10001ae0 f i HlfViewer.obj
+ 0001:00000b00       ?DoShowDialog@PluginDialogBuilder@@MAEHXZ 10001b00 f i HlfViewer.obj
+ 0001:00000b60       ?SaveValue@PluginCheckBoxBinding@@UAEXPAUFarDialogItem@@H@Z 10001b60 f i HlfViewer.obj
+ 0001:00000ba0       ?SaveValue@PluginRadioButtonBinding@@UAEXPAUFarDialogItem@@H@Z 10001ba0 f i HlfViewer.obj
+ 0001:00000bd0       ??0PluginIntEditFieldBinding@@QAE@ABUPluginStartupInfo@@PAPAXHPAHH@Z 10001bd0 f i HlfViewer.obj
+ 0001:00000c60       ?SaveValue@PluginIntEditFieldBinding@@UAEXPAUFarDialogItem@@H@Z 10001c60 f i HlfViewer.obj
+ 0001:00000c90       ?CreateCheckBoxBinding@PluginDialogBuilder@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAHH@Z 10001c90 f i HlfViewer.obj
+ 0001:00000ce0       ?CreateRadioButtonBinding@PluginDialogBuilder@@MAEPAU?$DialogItemBinding@UFarDialogItem@@@@PAH@Z 10001ce0 f i HlfViewer.obj
+ 0001:00000d30       ??_EPluginDialogBuilder@@UAEPAXI@Z 10001d30 f i HlfViewer.obj
+ 0001:00000d30       ??_GPluginDialogBuilder@@UAEPAXI@Z 10001d30 f i HlfViewer.obj
+ 0001:00000d70       _SetStartupInfoW@4         10001d70 f   HlfViewer.obj
+ 0001:00000da0       ?ShowHelpFromTempFile@@YIXXZ 10001da0 f   HlfViewer.obj
+ 0001:00000f00       ?AddBorder@?$DialogBuilderBase@UFarDialogItem@@@@IAEXPB_W@Z 10001f00 f i HlfViewer.obj
+ 0001:00000f60       ?AddCheckbox@?$DialogBuilderBase@UFarDialogItem@@@@QAEPAUFarDialogItem@@HPAHH_N@Z 10001f60 f i HlfViewer.obj
+ 0001:000010a0       ?AddRadioButtons@?$DialogBuilderBase@UFarDialogItem@@@@QAEXPAHHQBH_N@Z 100020a0 f i HlfViewer.obj
+ 0001:00001210       ?EndColumns@?$DialogBuilderBase@UFarDialogItem@@@@QAEXXZ 10002210 f i HlfViewer.obj
+ 0001:000012e0       ?AddOKCancel@?$DialogBuilderBase@UFarDialogItem@@@@QAEXHH_N@Z 100022e0 f i HlfViewer.obj
+ 0001:00001440       ?UpdateBorderSize@?$DialogBuilderBase@UFarDialogItem@@@@IAEXXZ 10002440 f i HlfViewer.obj
+ 0001:000014c0       ??0PluginDialogBuilder@@QAE@ABUPluginStartupInfo@@ABU_GUID@@1HPB_WP6GHPAXHH3@Z3@Z 100024c0 f i HlfViewer.obj
+ 0001:00001560       ?AddIntEditField@PluginDialogBuilder@@UAEPAUFarDialogItem@@PAHH@Z 10002560 f i HlfViewer.obj
+ 0001:00001630       ?AddEditField@PluginDialogBuilder@@QAEPAUFarDialogItem@@PA_WHHPB_W_N@Z 10002630 f i HlfViewer.obj
+ 0001:00001730       ?ShowCurrentHelpTopic@@YIXXZ 10002730 f   HlfViewer.obj
+ 0001:00001810       _OpenW@4                   10002810 f   HlfViewer.obj
+ 0001:00001a70       _ProcessEditorInputW@4     10002a70 f   HlfViewer.obj
+ 0001:00001b30       _ConfigureW@4              10002b30 f   HlfViewer.obj
+ 0001:00001ef0       ??_V@YAXPAX@Z              10002ef0 f   libCRT:delete_array.obj
+ 0001:00001f00       ??3@YAXPAX@Z               10002f00 f   libCRT:delete.obj
+ 0001:00001f10       ??_U@YAPAXI@Z              10002f10 f   libCRT:new_array.obj
+ 0001:00001f20       _memset                    10002f20 f   libCRT:memset.obj
+ 0001:00001f60       ??2@YAPAXI@Z               10002f60 f   libCRT:new.obj
+ 0001:00001f70       _free                      10002f70 f   libCRT:free.obj
+ 0001:00001f90       _malloc                    10002f90 f   libCRT:malloc.obj
+ 0001:00001fa8       __IMPORT_DESCRIPTOR_KERNEL32 10002fa8     kernel32:KERNEL32.dll
+ 0001:00001fbc       __NULL_IMPORT_DESCRIPTOR   10002fbc     kernel32:KERNEL32.dll
+
+ entry point at        0000:00000000
+
+ Static symbols
+
+ 0001:00000720       ?inputrecord_compare@@YI_NABU_INPUT_RECORD@@0@Z 10001720 f   HlfViewer.obj

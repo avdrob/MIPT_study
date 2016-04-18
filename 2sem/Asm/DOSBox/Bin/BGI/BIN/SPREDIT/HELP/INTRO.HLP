@@ -1,0 +1,43 @@
+#27screen_off\
+#27sprite\(000,000)"paper-0.spr"
+#27sprite\(000,091)"paper-1.spr"
+#27sprite\(000,182)"paper-2.spr"
+#27sprite\(000,273)"paper-3.spr"
+#27sprite\(000,364)"paper-4.spr"
+#27sprite\(172,262)"kamel2.spr"
+#27Textcolor\(001)
+#27X\(235)
+#27Y\(015)
+#27Font\(004,005)
+Help
+#27Line\(220,068,320,068)
+#27Line\(220,070,320,070)
+#27Textcolor\(000)
+#27X\(174)
+#27Y\(070)
+#27Font\(011,001)
+Select a Topic
+#27Font\(000,002)
+#27X\(190)
+#27Y\(120)
+Load & Save
+#27X\(240)
+Edit
+#27X\(214)
+Animate
+#27X\(240)
+Show
+#27X\(224)
+Insert
+#27X\(240)
+Text
+#27X\(180)
+Other Themes
+#27X\(506)
+#27Y\(420)
+#27Font\(002,005)
+Use ESC, RETURN,
+  UP, and DOWN
+#27sprite\(450,113)"hand.spr"
+#27screen_on\
+#27EndOfFile\

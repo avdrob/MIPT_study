@@ -1,0 +1,278 @@
+
+    Legend
+    ~~~~~~
+    ! General information
+    + Additions and improvements
+    * Changes
+    # Fixed bug
+
+    What's new in version 1.98 [06-03-99]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + Added syntax highlighting support for GNU as and GNU ld.
+    + "Save as" and "Open" commands for dictionaries.
+
+    What's new in version 1.97 [20-10-98]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + Self-viewing colored documentation files. Pretty, eh? ;)
+    + "Project information" command.
+    + Enhances word autofinishing feature.
+    + Auto change style feature.
+    + Calculator combined with Converter/Disassembler.
+    + Screen saver.
+    + Project exit code catcher.
+    + Some simple examples added to package.
+    + Advanced handling for errors in config files.
+    + Conditional define "DEBUG" when debugging under TASMED.
+    + "Persistent blocks" checkbox added to "Editor options".
+    + "Definition parameter indent" option in "Style" dialog box.
+    * Text bounded with corner brackets '<>' now responses as string.
+    * New TASMED logo.
+    # Incorrect  style  changing  when  label  placed  in  one  line  with
+      mnemonic, for example: "i: int 21h".
+
+    What's new in version 1.96 [01-02-98]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! Russian documentations added.
+    + Specifiers  semantic  group. Specifiers is a reserved words that can
+      follows only directives. For example: tiny, pascal, para, etc.
+    + Internal virtual memory support.
+    + Local menu in editor window (configurable in TASMED.IDE).
+    + "Track source" command to browser and message windows.
+    + Closed windows list in the "File" submenu.
+    + Any char can be inserted by macros. See MACROS.ENG for details.
+    + Delete key handling. Delete now will erase tabs also.
+    + Windows'95 specific keys now can be used as terminators.
+    + Color indicator in ASCII table.
+    + Clock now can display week day. Press and hold Alt to see it.
+    + Character code indicator added.
+    + Line and column highlighting feature.
+    + Auto menu selecting feature.
+    - Automatic base conversion in Expression calculator.
+    * New TASMED logo.
+    * Any char can be entered via ASCII table.
+    * TASMED executer slightly optimized.
+    * Projects ideology changed.
+    # Fixed "...date/time stamp..." message under OS/2.
+    # Incompatibilities with some DPMI hosts (RTM 1.5).
+    # Bugs in Converter/Disassembler.
+    # Enhanced keyboard driver.
+    # Macros after compilation (cause is lost interrupt vector).
+    # CMPXCHG8B disassembling bug found.
+    # Fixed bug with user screen handling when loading config.
+
+    What's new in version 1.9 [01-09-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! TASMED became freeware product.
+    + Powerful symbol browser.
+    + Support  for  non-assembler  sources.  Now  it is possible to change
+      style of Pascal and C sources that contain inline assembly.
+    + Customizable  IDE. Execute with "-xide" command line option and edit
+      TASMED.IDE file to customize menus and editor hot keys.
+    + Support for more complicated macros.
+    + TASMED.BAT file included to package.
+    + Support  for MMX. Converter/Disassembler improved to disassemble MMX
+      instructions.
+    + Multitasking  OS  support.  TASMED will release time-slices in event
+      waiting cycles under these OS.
+    + Label  jumping feature. For example, if you press Alt+PgUp on @@1 in
+      line  "jmp  @@1" TASMED will automatically search for this label and
+      move  cursor  to  this  line.  You can also press Alt+PgDn to return
+      back.  TASMED  even  will  make  difference between local and global
+      labels.
+    + Common clipboard for all input lines and editors.
+    + 80x60 & 90x60 video modes.
+    + "Duplicate line" function added to editor (hot key: Ctrl+Q P).
+    + ASCII code insert function (hot key: Ctrl+P).
+    + Window number indicator to windows list items.
+    + Support for multiple wildcards in file open dialog box.
+    + Documented MMX and P6 instructions added to standard dictionary.
+    + TASMED standard dictionaries updated.
+    + Configuration file CRC checking.
+    + Switch  "Use Alt+Shift to execute macros" in Preferences dialog box.
+      If  your  keyboard  driver using Ctrl+Shift to switch between modes,
+      you ought to set this switch on to avoid conflicts.
+    * Examples removed from package to reduce size.
+    * Internal  keyboard  driver enhanced. Now it supports Pause and Print
+      Screen  keys  and  even new keys of Windows'95-style keyboard (under
+      DOS only).
+    * Configuration and desktop files concated to one (TASMED.CFG).
+    * Converter/Disassembler interface changed.
+    * Changes in about box. Now it contains TASMED logo.
+    * Few opened instances of one file now will be synchronized.
+    * Improvements in style changing engine.
+    * Clock is now dragable and has its own customizable color.
+    * Standard macros modified. For example: now you can write a name of a
+      procedure  in a new line and press Ctrl+LShift P to finish procedure
+      definition, etc.
+    * Editor whitespace color separated.
+    # Bug with command line parameters handling in TASMED.COM.
+    # Incompatibilities with Dos Navigator.
+    # Style changing code.
+    # TLINK error parser.
+    # Smart skipping functionality.
+    # Syntax highlighting procedure.
+    # Conditional defines handling.
+    # "Replace whole words only" function in editor.
+    # Block left functionality.
+    # Screen saving in graphical modes fixed.
+
+    What's new in version 1.86 [12-07-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! Second public registerware release.
+    + Some examples to package. Including TASMED intro.
+    + User tools feature.
+    + Standard filter for Turbo GREP.
+    + Program  terminator feature. Look at Options|Environment|Preferences
+      dialog  box  and setup hot key for it (default is F12). Now, if your
+      program  is  buggy  and  hanged  your computer, don't hurry to press
+      Ctrl+Alt+Del,  better  press this hot key, terminate program and fix
+      bugs.
+    + Error  autofocus  feature. Editor will automatically focus erroneous
+      line when moving across message window.
+    + User  video  mode  support.  When  TASMED  working  in user mode, it
+      synchronizes workshell video mode with background video mode.
+    + "Conditional defines" to "Project options" dialog box.
+    + Macros feature. Read MACROS.DOC for details.
+    + Temporary  comments  hidement. Press Ctrl+P to hide all comments. It
+      can ease navigation through your program.
+    + Fast  type  feature.  Now  you can write only few first letters of a
+      word, then press Alt+Space to automatically finish it.
+    + Auto brackets and auto quotes functions.
+    + "About" command shortcut to status line.
+    + Function Abs (absolute value) added to expression calculator.
+    + ST word to standard registers dictionary.
+    * Clock enhanced. Press and hold for a second Ctrl to see current date
+      and Shift to see amount of free memory on heap.
+    * Now user can include to projects objects and libraries.
+    * Status line message color customizing is now possible.
+    * Code style changing engine slightly optimized and improved to handle
+      "=" operator correctly.
+    * Syntax  highlighting  routine  now handles include directive in MASM
+      correctly.
+    # Move block operation (Ctrl+K V) in editor.
+    # Program execution under Windows'95.
+    # Error positioning system.
+    # Command line parser in TASMED.COM.
+    # Disassembler.
+    # Standard Turbo Assembler filter TASM.PAS.
+    # Incompatibilities with OS/2.
+    # Floating point constants now highlight correctly.
+
+    What's new in version 1.85 [03-06-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! First public registerware release.
+    + Line continuation '\' symbol support.
+    + More VESA text modes.
+    + .radix directive added to standard dictionary.
+    + Support for Microsoft CodeView.
+    * Changes in Converter/Disassembler. Now it supports large decimals.
+    # Standard MASM filter.
+
+    What's new in version 1.84 [23-05-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! Bugs  in  text  mode  VESA  support  on  some  S3  videocards found.
+      After seven or about screen swapings it hangs up computer.
+    + Full support for Microsoft Assembler and Linker.
+    + Undo operation.
+    + Expression  calculator  now  supports exponential, trigonometric and
+      hyperbolic  functions,  predefined  constants  Pi and E and operator
+      "power of number", ** (left-associated). New functions are: ln, exp,
+      sqrt, sqr, sin, cos, tan, cot, arcsin, arccos, arctan, arccot, sinh,
+      cosh, tanh, coth, arcsinh, arccosh, arctanh and arccoth.
+    + Clock (you can switch it on/off in Preferences dialog box).
+    * Editor significantly optimized. Now it works 10-11 times faster than
+      before.
+    * New intro, even better than previous, but slower. :(
+    # Video modes.
+
+    What's new in version 1.83 [03-05-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! My 17-th birthday release. =)
+    + Effort  to  make  TASMED  independent  from external tools,  such as
+      assembler, linker and debugger. See CLMACROS.DOC for details.
+    + "Use wide chars" option in Preferences dialog box.
+    + Significantly enhanced screen swapping.  Now it can use VGA and VESA
+      special features. Execute TASMED /? for more detailed information.
+    + Some useful hotkeys, such as F7 for Find, F4 for Replace etc.
+    + Request  to  reload file if it was modified during execution or  DOS
+      shell.
+    + .OBJ target (don't link it at all).
+    + New  video  modes.  Look at Options|Environment|Preferences. I think
+      TASMED looks fine in text mode 90x30, eh?
+    + Support  for  Microsoft Macro Assembler and partially for  Microsoft
+      Linker.
+    + Output filters for MASM and TASM (TLINK doesn't need any filters).
+    + Handling for "Error 205" (overflow) and "Error 200" (divide by zero)
+      exceptions in expression calculator.
+    + CMPXCHG8B,  RDMSR, RDTSC, WRMSR, RDPMC and CMOVcc instructions added
+      to dictionary.
+    * External executer, TASMED.COM.
+    * Minor changes in editor, such as new backspace handling.
+    * TASMED now seems to work on EGA correctly.
+    # Project recompilation.
+    # Change style engine.
+    # Workaround  for  mouse  driver  bug.  Now  mouse works with all non-
+      standart video modes correctly.
+
+    What's new in version 1.82 [15-04-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + New  check box (Include files checking) and new input line (Path for
+      include  files)  in Project options dialog. If this check box is on,
+      then  TASMED  will  check  all  files  included  to your program via
+      "include" directive before compilation. If your file wasn't modified
+      and  no  includes are modified, then TASMED will not reassemble your
+      program.  Of  course,  "Include  files  checking" takes some time to
+      process your program.
+    + Bitwise operations in Expression calculator (such as &, || etc.).
+    + Window|List menu item and corresponding feature.
+    * Resource file is now incapsulated to executable.
+    # Some stupid GPFs.
+    # Ctrl+T (delete to the end of word) now functions correctly.
+    # Project processing procedures revised. Fixed some minor bugs.
+
+    What's new in version 1.81 [11-04-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + Converter/Disassembler. Hexadecimal -> Decimal -> Binary -> ASCII ->
+      Assembly.  You  can find it in Tools submenu.  Internal disassembler
+      will even show you incorrect and undocumented instructions.
+    + Bitwise shifts in Expression calculator (<< and >>).
+    * Expression calculator now has another interface.
+
+    What's new in version 1.8 [24-03-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! Internal release.
+    + Output window (Debug|Output menu item).
+    + C-style expression calculator with variables support.
+    + Comment  block  (Ctrl+K  O) and uncomment block (Ctrl+K P) features.
+      Useful  when you ought to comment and then uncomment large blocks of
+      code.
+    + Context-sensitive status line.
+    * Registration file format.
+    * Standard print filter.
+    # Syntax highlighting.
+
+    What's new in version 1.6 [11-01-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + Options  in  Style  dialog ("Align instructions", "Align parameters"
+      and "Space after comma")
+    + Warning,  when  you are trying to change style of a file that is not
+      an assembly program.
+    * New, project-oriented ideology
+
+    What's new in version 1.5 [03-01-97]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ! Completely  rewritten  text editor.  New editor supports most of the
+      Borland editor functions, rectangular block, large files etc.
+    + Change style feature.  This feature will help you to change style of
+      your  program.  For example, you want to make all directives written
+      with  only  upper  letters  and  all  instructions written with only
+      lower.  No  problem,  just  setup  your  personal  style  in "Style"
+      dialog box (Options|Environment|Style) and press Shift+F4 (menu item
+      Edit|Change style). Your code will be automatically adjusted to your
+      personal style.
+
+    Versions before 1.5
+    ~~~~~~~~~~~~~~~~~~~
+    ! Absolutely forgotten... A lot of changes and imrovements.
+
+    06-03-99  Eugene Nonko aka CodeMaster

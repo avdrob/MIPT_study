@@ -1,0 +1,361 @@
+Turbo Assembler	 Version 4.1	    03/23/14 11:55:32	    Page 1
+printf.asm
+
+
+
+      1	0000			     .model tiny
+      2	0000			     .data
+      3	0000  25 64 00			     tada db '%d', 00h
+      4
+      5	      =000A			     dcm = 0ah
+      6	      =0001			     bin = 01h
+      7	      =0004			     hxd = 04h
+      8
+      9	0003				     hex_num:
+     10	0003  30 31 32 33 34 35	36+		     db	'0123456789ABCDEF'
+     11	      37 38 39 41 42 43	44+
+     12	      45 46
+     13	0013			     .code
+     14					     org 100h
+     15
+     16	0100			     start:
+     17	0100  BB 198E			     mov bx, 6542
+     18	0103  53			     push bx
+     19	0104  BB 0000r			     mov bx, offset tada
+     20	0107  53			     push bx
+     21	0108  1E			     push ds
+     22	0109  E8 0005			     call printf
+     23
+     24	010C  B8 4C00			     mov ax, 4c00h
+     25	010F  CD 21			     int 21h
+     26
+     27				     ;===========================================
+     28	0111			     printf:
+     29	0111  55			     push bp
+     30	0112  8B EC			     mov bp, sp
+     31	0114  83 EC 02			     sub sp, 2
+     32
+     33	0117  8E 46 04			     mov es, [bp + 4]
+     34	011A  8B 7E 06			     mov di, [bp + 6]
+     35	011D  C7 46 FE 0008		     mov [bp - 2], word	ptr 8
+     36
+     37	0122			     outp:
+     38	0122  26: 8A 15			     mov dl, es:[di]
+     39
+     40	0125  B4 25			     mov ah, '%'
+     41	0127  3A E2			     cmp ah, dl
+     42	0129  74 12			     je	id
+     43
+     44	012B  B4 00			     mov ah, 00h
+     45	012D  3A E2			     cmp ah, dl
+     46	012F  74 07			     je	exit
+     47
+     48	0131  B4 02			     mov ah, 02h
+     49	0133  CD 21			     int 21h
+     50	0135  47			     inc di
+     51	0136  EB EA			     jmp outp
+     52
+     53	0138				     exit:
+     54	0138  83 C4 02			     add sp, 2
+     55	013B  5D			     pop bp
+     56
+     57	013C  C3		     ret
+Turbo Assembler	 Version 4.1	    03/23/14 11:55:32	    Page 2
+printf.asm
+
+
+
+     58
+     59	013D				     id:
+     60	013D  47				     inc di
+     61	013E  26: 8A 15				     mov dl, es:[di]
+     62
+     63	0141  B4 73				     mov ah, 's'
+     64	0143  3A E2				     cmp ah, dl
+     65	0145  74 6F				     je	strng
+     66
+     67	0147  B4 63				     mov ah, 'c'
+     68	0149  3A E2				     cmp ah, dl
+     69	014B  74 58				     je	chr
+     70
+     71	014D  B4 25				     mov ah, '%'
+     72	014F  3A E2				     cmp ah, dl
+     73	0151  74 4A				     je	perc
+     74
+     75	0153  B4 78				     mov ah, 'x'
+     76	0155  3A E2				     cmp ah, dl
+     77	0157  74 30				     je	hex
+     78
+     79	0159  B4 62				     mov ah, 'b'
+     80	015B  3A E2				     cmp ah, dl
+     81	015D  74 18				     je	bnr
+     82
+     83	015F  B4 64				     mov ah, 'd'
+     84	0161  3A E2				     cmp ah, dl
+     85	0163  74 00				     je	dcml
+     86
+     87
+     88	0165				     dcml:
+     89	0165  8B 76 FE				     mov si, [bp - 2]
+     90	0168  FF 32				     push [bp +	si]
+     91	016A  E8 00D4				     call getd
+     92	016D  83 C4 02				     add sp, 2
+     93
+     94	0170  47				     inc di
+     95	0171  83 46 FE 02			     add [bp - 2], word	ptr 2
+     96	0175  EB AB				     jmp outp
+     97
+     98	0177				     bnr:
+     99	0177  8B 76 FE				     mov si, [bp - 2]
+    100	017A  FF 32				     push [bp +	si]
+    101	017C  E8 009E				     call getb
+    102	017F  83 C4 02				     add sp, 2
+    103
+    104	0182  47				     inc di
+    105	0183  83 46 FE 02			     add [bp - 2], word	ptr 2
+    106	0187  EB 99				     jmp outp
+    107
+    108	0189				     hex:
+    109	0189  57				     push di
+    110
+    111	018A  8B 76 FE				     mov si, [bp - 2]
+    112	018D  FF 32				     push [bp +	si]
+    113	018F  E8 0059				     call geth
+    114	0192  83 C4 02				     add sp, 2
+Turbo Assembler	 Version 4.1	    03/23/14 11:55:32	    Page 3
+printf.asm
+
+
+
+    115	0195  5F				     pop di
+    116
+    117	0196  47				     inc di
+    118	0197  83 46 FE 02			     add [bp - 2], word	ptr 2
+    119	019B  EB 85				     jmp outp
+    120
+    121	019D				     perc:
+    122	019D  B4 02				     mov ah, 02h
+    123	019F  CD 21				     int 21h
+    124	01A1  47				     inc di
+    125	01A2  E9 FF7D				     jmp outp
+    126
+    127	01A5				     chr:
+    128	01A5  8B 76 FE				     mov si, [bp - 2]
+    129
+    130	01A8  B4 02				     mov ah, 02h
+    131	01AA  8A 12				     mov dl, [bp + si]
+    132	01AC  CD 21				     int 21h
+    133
+    134	01AE  47				     inc di
+    135	01AF  83 46 FE 02			     add [bp - 2], word	ptr 2
+    136	01B3  E9 FF6C				     jmp outp
+    137
+    138	01B6				     strng:
+    139	01B6  57				     push di
+    140	01B7  06				     push es
+    141
+    142	01B8  8B 76 FE				     mov si, [bp - 2]
+    143	01BB  FF 72 02				     push [bp +	si + 2]
+    144	01BE  FF 32				     push [bp +	si]
+    145	01C0  E8 000D				     call prtstr
+    146	01C3  83 C4 04				     add sp, 4
+    147	01C6  07				     pop es
+    148	01C7  5F				     pop di
+    149
+    150	01C8  47				     inc di
+    151	01C9  83 46 FE 04			     add [bp - 2], word	ptr 4
+    152	01CD  E9 FF52				     jmp outp
+    153				     ;===========================================
+    154
+    155
+    156						     ;===========================================
+    157	01D0					     prtstr:
+    158	01D0  55					     push bp
+    159	01D1  8B EC					     mov bp, sp
+    160
+    161	01D3  8E 46 04					     mov es, [bp + 4]
+    162	01D6  8B 7E 06					     mov di, [bp + 6]
+    163
+    164	01D9						     outch:
+    165	01D9  26: 8A 15						     mov dl, es:[di]
+    166
+    167	01DC  B4 00						     mov ah, 00h
+    168	01DE  3A E2						     cmp ah, dl
+    169	01E0  74 07						     je	exit_prtstr
+    170
+    171	01E2  B4 02						     mov ah, 02h
+Turbo Assembler	 Version 4.1	    03/23/14 11:55:32	    Page 4
+printf.asm
+
+
+
+    172	01E4  CD 21						     int 21h
+    173	01E6  47						     inc di
+    174	01E7  EB F0						     jmp outch
+    175
+    176	01E9					     exit_prtstr:
+    177	01E9  5D					     pop bp
+    178
+    179	01EA  C3				     ret
+    180						     ;===========================================
+    181
+    182						     ;===========================================
+    183	01EB					     geth:
+    184	01EB  55					     push bp
+    185	01EC  8B EC					     mov bp, sp
+    186
+    187	01EE  8B 5E 04					     mov bx, [bp + 4]
+    188	01F1  B1 04					     mov cl, 04h
+    189	01F3  BF 0003r					     mov di, offset hex_num
+    190
+    191	01F6						     get_num2:
+    192	01F6  8B D3						     mov dx, bx
+    193	01F8  B0 04						     mov al, hxd
+    194	01FA  FE C9						     dec cl
+    195	01FC  F6 E1						     mul cl
+    196	01FE  FE C1						     inc cl
+    197	0200  86 C1						     xchg al, cl
+    198	0202  D3 EA						     shr dx, cl
+    199	0204  86 C1						     xchg al, cl
+    200	0206  83 E2 0F						     and dx, 000fh
+    201
+    202	0209  57						     push di
+    203	020A  03 FA						     add di, dx
+    204	020C  8A 15						     mov dl, byte ptr [di]
+    205	020E  5F						     pop di
+    206	020F  B4 02						     mov ah, 02h
+    207	0211  CD 21						     int 21h
+    208
+    209	0213  B5 00						     mov ch, 0h
+    210	0215  3A CD						     cmp cl, ch
+    211	0217  FE C9						     dec cl
+    212	0219  75 DB						     jne get_num2
+    213
+    214	021B  5D					     pop bp
+    215	021C  C3				     ret
+    216						     ;===========================================
+    217
+    218						     ;===================================
+    219	021D					     getb:
+    220	021D  55					     push bp
+    221	021E  8B EC					     mov bp, sp
+    222
+    223	0220  B1 10					     mov cl, 10h
+    224	0222  8B 5E 04					     mov bx, [bp + 4]
+    225
+    226	0225						     get_num1:
+    227	0225  8B D3						     mov dx, bx
+    228	0227  FE C9						     dec cl
+Turbo Assembler	 Version 4.1	    03/23/14 11:55:32	    Page 5
+printf.asm
+
+
+
+    229	0229  D3 EA						     shr dx, cl
+    230	022B  FE C1						     inc cl
+    231	022D  83 E2 01						     and dx, bin
+    232	0230  80 C2 30						     add dl, '0'
+    233	0233  B4 02						     mov ah, 02h
+    234	0235  CD 21						     int 21h
+    235
+    236	0237  B5 00						     mov ch, 0h
+    237	0239  3A CD						     cmp cl, ch
+    238	023B  FE C9						     dec cl
+    239	023D  75 E6						     jne get_num1
+    240
+    241	023F  5D					     pop bp
+    242	0240  C3				     ret
+    243						     ;===================================
+    244
+    245						     ;===================================
+    246	0241					     getd:
+    247	0241  55					     push bp
+    248	0242  8B EC					     mov bp, sp
+    249
+    250	0244  8B 46 04					     mov ax, [bp + 4]
+    251	0247  33 C9					     xor cx, cx
+    252	0249  33 D2					     xor dx, dx
+    253	024B  BB 000A					     mov bx, word ptr dcm
+    254
+    255	024E						     get_num3:
+    256	024E  F7 F3						     div bx
+    257
+    258	0250  52						     push dx
+    259	0251  41						     inc cx
+    260
+    261	0252  33 D2						     xor dx, dx
+    262	0254  3A D0						     cmp dl, al
+    263	0256  75 F6						     jne get_num3
+    264
+    265	0258  B4 02					     mov ah, 02h
+    266
+    267	025A						     pop_out:
+    268	025A  5A						     pop dx
+    269	025B  80 C2 30						     add dl, '0'
+    270	025E  CD 21						     int 21h
+    271	0260  E2 F8						     loop pop_out
+    272
+    273
+    274	0262  5D					     pop bp
+    275	0263  C3				     ret
+    276						     ;===================================
+    277
+    278
+    279				     end start
+Turbo Assembler	 Version 4.1	    03/23/14 11:55:32	    Page 6
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "03/23/14"
+??FILENAME			  Text	 "printf  "
+??TIME				  Text	 "11:55:32"
+??VERSION			  Number 040A
+@32BIT				  Text	 0
+@CODE				  Text	 DGROUP
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 PRINTF
+@INTERFACE			  Text	 000H
+@MODEL				  Text	 1
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+BIN				  Number 0001
+BNR				  Near	 DGROUP:0177
+CHR				  Near	 DGROUP:01A5
+DCM				  Number 000A
+DCML				  Near	 DGROUP:0165
+EXIT				  Near	 DGROUP:0138
+EXIT_PRTSTR			  Near	 DGROUP:01E9
+GETB				  Near	 DGROUP:021D
+GETD				  Near	 DGROUP:0241
+GETH				  Near	 DGROUP:01EB
+GET_NUM1			  Near	 DGROUP:0225
+GET_NUM2			  Near	 DGROUP:01F6
+GET_NUM3			  Near	 DGROUP:024E
+HEX				  Near	 DGROUP:0189
+HEX_NUM				  Near	 DGROUP:0003
+HXD				  Number 0004
+ID				  Near	 DGROUP:013D
+OUTCH				  Near	 DGROUP:01D9
+OUTP				  Near	 DGROUP:0122
+PERC				  Near	 DGROUP:019D
+POP_OUT				  Near	 DGROUP:025A
+PRINTF				  Near	 DGROUP:0111
+PRTSTR				  Near	 DGROUP:01D0
+START				  Near	 DGROUP:0100
+STRNG				  Near	 DGROUP:01B6
+TADA				  Byte	 DGROUP:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0013 Word	  Public  DATA
+  _TEXT				  16  0264 Word	  Public  CODE
+

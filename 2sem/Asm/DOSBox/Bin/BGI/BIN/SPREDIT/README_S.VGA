@@ -1,0 +1,155 @@
+**************************************************************
+COPYRIGHT 1990, JORDAN HARGRAPHIX SOFTWARE
+PORTIONS COPYRIGHT JOHN BRIDGES, 1990
+		   CHRISTOPHER MORGAN, 1984
+**************************************************************
+
+Here it is! The SuperVGA BGI driver you have all been waiting for! ;->
+
+  This driver supports a wide range of VGA cards, and should work on
+all major brands.
+
+Card types supported:
+  Ahead, ATI, Chips & Tech, Everex, Paradise, Trident, Tseng (both 3000
+and 4000 chipsets) and Video7.
+
+I have not tested this driver on all these card types, so I can not guarantee
+perfect operation with your card.  I have tested this driver extensively
+on Trident and ATI cards, and have had no problems.
+
+This is a new release, so let me know if you find any bugs.
+
+This is a fully functioning BGI driver; only floodfill remains unimplemented.
+
+ Right now, the driver only supports 4 modes, although other modes
+will be added in future releases.
+
+Modes currently supported:
+  0) Standard VGA/MCGA 320x200x256
+  1) 256k Svga 640x400x256
+  2) 512k Svga 640x480x256
+  3) 512k Svga 800x600x256
+  4) 1024k Svga 1024x768x256
+
+-----------------------------------------------------------------------------
+INSTALLATION:
+  Using the driver in existing programs is easy.
+
+** Installation in C programs:
+
+int huge Always()
+{
+  return VidMode;  /* Place appropriate video mode here: 0,1,2 or 3 */
+}
+
+  ...
+  int GraphDrv = DETECT, GraphMod;
+
+  installuserdriver("SVGA256",Always);
+  initgraph(&GraphDrv,&GraphMod,"");	
+  ...
+
+** Installation in Pascal programs:
+
+function Always : integer;
+  Always := VidMode;  {Place appropriate video mode here: 0,1,2 or 3}
+
+ ...
+ var
+   AutoDetect : pointer;
+   GraphDrv : integer;
+   GraphMod : integer;
+
+   AutoDetect := @Always;
+   GraphDrv := installuserdriver('SVGA256',AutoDetect);
+   GraphDrv := DETECT;
+   InitGraph(GraphDrv,GraphMod,'');
+   ...
+
+
+-------------------------------------------------------------------------
+WARNING: The driver does not test to see if the card installed is
+actually a VGA card (If it does not detect a SuperVGA card, it treats
+the card as a standard VGA), so DO NOT use the driver if you do not have 
+a VGA card installed. (I will try to fix this in the next version)
+
+-------------------------------------------------------------------------
+
+REGISTRATION:
+  I have decided to make this first driver available free of charge,
+although donations of $10-$20 would be greatly appreciated and certainly
+expedite the release of future versions. :->
+With donations of $15 and up, you will be considered a registered user
+and will entitle you to a printed copy of the source and updates on future 
+releases.
+
+Send checks/money/etc to: Jordan Hargrave
+			  1000 Morewood Ave, Box #3277
+			  Pittsburgh, PA 15213
+
+Watch for other Jordan Hargraphix productions to be released soon:
+
+ Hextris : A tetris-like game with hexagonal shaped pieces, converted
+	   from the popular UNIX game. (Copyright 1990 by Dave Markley)
+
+*===============================*===========================================*
+| Jordan Hargrave		|   Internet:	jh5y@andrew.cmu.edu	    |
+| 1000 Morewood Ave, Box #3277  |     Bitnet:	jh5y%andrew.cmu.edu@cmccvb  |
+| Pittsburgh, PA 15213		|       UUCP:	uunet!andrew.cmu.edu!jh5y   |
+| (412) 268-4493	 	|    Prodigy:	HXNJ79A			    |
+|			  	| Compuserve:	[72510,1143]		    |
+*===============================*===========================================*
+
+Version 1.5
+November 4, 1990
+
+This is the newest version of my SuperVGA BGI driver.  I have fixed several
+bugs in the previous releases, as well as added several improvements.
+
+	o 1024x768x256 color mode is now supported on Tseng 4000
+	  video cards.
+
+	o Getimage and putimage will work with bitmaps up to the 
+	 size of available memory. (> 64k)
+
+	o Sped up the default font generation.
+
+	o textheight/width work correctly.
+
+Registration Form
+
+NAME:____________________________________________________
+ADDRESS:_________________________________________________
+	_________________________________________________
+	_________________________________________________
+CITY:________________________ STATE:____ ZIP:____________
+COUNTRY:____________
+
+PHONE # (Data):  ___ ____ ______________
+	(Voice): ___ ____ ______________
+
+General info:
+
+Machine type:  8088/6[_]  80286[_]  80386[_]  80486[_]  Other[_] 
+Machine name: ________________________________________
+
+Display type:  MDA[_]  CGA[_]  Herc[_]  EGA[_]  MCGA[_]  VGA[_]  SVGA[_]
+Card name:_____________________________________________
+
+Floppy drives:    3« 720k[_]  3« 1.44M[_]  3« 2.88M[_]
+		  5¬ 360k[_]  5¬ 1.2M [_]
+
+
+Modem speed: 1200[_]  2400[_]  4800[_]  9600[_] 19200[_] Other: ________
+Modem name:_____________________________
+
+Other configuration:_________________________________________________
+		    _________________________________________________
+		    _________________________________________________
+		    _________________________________________________
+		    _________________________________________________
+
+
+Please send checks to:	Jordan Hargrave
+			1000 Morewood Ave, Box #3277
+			Pittsburgh, PA 15213

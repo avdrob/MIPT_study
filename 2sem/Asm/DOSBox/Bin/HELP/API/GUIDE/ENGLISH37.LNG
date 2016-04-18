@@ -1,0 +1,165 @@
+VERSION:3.7
+English
+' English Language File
+' Created by The KPD-Team, 2002
+'
+' You can send translations of this file
+' to KPDTeam@allapi.net
+'
+
+LID_LANG_ERR_DUPLICATE:Duplicate item in language file
+LID_LANG_VER_ERR:This language file was designed for another version of API-Guide. It's possible that it may not contain all the strings used in this program.
+LID_LANG_FILE_INFO:English Language File for API-Guide 3.7%CRLF%Copyright © The KPD-Team, 1998-2002
+LID_MENU_FILE:File
+LID_MENU_SRCH:Search
+LID_MENU_IUPD:Internet Update
+LID_MENU_SUBMIT:Submit your own examples
+LID_MENU_EXIT:Exit
+LID_MENU_OPTIONS:Options
+LID_MENU_ONTOP:Always on Top
+LID_MENU_BAR:API-Guide Bar
+LID_MENU_ALPHA:Alpha Blend
+LID_MENU_LANGUAGE:Language
+LID_MENU_HELP:Help
+LID_MENU_TOPICS:API-Guide help topics
+LID_MENU_README:Readme
+LID_MENU_ONWEB:API-Guide on the web
+LID_MENU_ABOUT:About
+LID_MAIN_LIST_TAB:Alphabetical
+LID_MAIN_TREE_TAB:Groups
+LID_MAIN_INFO_TAB:Info
+LID_MAIN_PARAMS_TAB:Parameters
+LID_MAIN_NOTES_TAB:Notes
+LID_MAIN_EXMPLS_TAB:Example(s)
+LID_MAIN_DECLARE:Declaration
+LID_VERSION:Version
+LID_CREATED_BY:created by
+LID_DATA_VERSION:Data version
+LID_SPECIAL:Special thanks to
+LID_AND:and
+LID_VISIT_SITE:Visit our site at
+LID_MAIL_US:Or email us at
+LID_OK:OK
+LID_NEXT:Next >>
+LID_SYSTEM_INFO:System info
+LID_LANG_COMM:Language file comments
+LID_POSTCARD:PostcardWare Info
+LID_DISCLAIMER:Information provided by this program is intended solely to provide general guidance on matters of interest for the personal use of the user of this program, who accepts full responsibility for its use.%CRLF%It is provided "as is", with no guarantee of completeness or accuracy and without warranty of any kind, express or implied.
+LID_POST_WARE:API-Guide is postcardware!%CRLF%This means that, if you like this program,%CRLF%we would appreciate it if you mailed%CRLF%a postcard from your city%CRLF%to the following address:
+LID_POST_INFO:You can always find this address%CRLF%in the readme file or on the about window.
+LID_POSTCARDWARE:Postcardware
+LID_SUBMIT_BOUNDARY:You cannot use the following string in your example
+LID_READ_THIS:Read this first
+LID_SUBMIT_DISCLAIMER:We would appreciate it very much if you'd send us some examples with new API-Functions. If you also send your name and/or E-mail address and/or homepage , we 'll make sure they're added to the example.%CRLF%%CRLF%By sending the example you grant us, The KPD-Team, the permission to distribute the submitted source code. We preserve the right to modify the code if we believe it's necessary.%CRLF%%CRLF%Please do NOT use this form to request a certain API-Function that's not listed in the API-Guide.
+LID_YOUR_NAME:Your name
+LID_YOUR_EMAIL:Your email address
+LID_HOMEPAGE:Homepage
+LID_EXMPL:Example
+LID_COMMENTS:Comments
+LID_SUBM_DOWN_TNX:Thanks!%CRLF%We successfully received your example and we'll add it to the list as soon as possible.
+LID_ERR_UPLOAD:Error while sending the example!
+LID_SUBMIT:Submit example
+LID_CANCEL:Cancel
+LID_NOEXAMPLE:The example field cannot be empty!
+LID_FILE404:File not found
+LID_MAIN_FUNCTION:Function name
+LID_MAIN_LIBRARY:Library
+LID_MAIN_OS:Min. required OS
+LID_MAIN_DESC:Description
+LID_MAIN_EXMPLS:Examples
+LID_MAIN_REL_FTS:Related functions
+LID_MAIN_RETURN_VALS:Return values
+LID_NONE:NONE
+LID_YOUR_NOTES:Your notes
+LID_MAIN_COPY:Copy
+LID_MAIN_PRINT:Print
+LID_INVALID_QUERY:Invalid search string!
+LID_SEARCH:Search
+LID_FIND:Find
+LID_SEARCH_WHAT:Find what
+LID_SEARCHBOX_FUNCTION_NAME:Function name
+LID_SEARCHBOX_DECLARATION:Declaration
+LID_SEARCHBOX_LIBRARY:Library
+LID_SEARCHBOX_DESCRIPTION:Description
+LID_SEARCHBOX_GROUP:Group
+LID_SEARCHBOX_OPERATING_SYSTEM:Operating system
+LID_SEARCHBOX_PARAMETER_INFO:Parameter info
+LID_SEARCHBOX_EXAMPLES:Examples (the names)
+LID_SEARCH_404:Search text is not found.
+LID_FUNCTS_FOUND:functions found!
+LID_EXAMPLES:Examples
+LID_PREV_INST:There's already an active instance of API-Guide.%CRLF%Do you want a second instance to be activated?
+LID_WINDOW_404:Unable to find the other window!
+LID_FIRST_TIME:This is the first time you've started this version of API-Guide.%CRLF%Do you want to read the readme.chm-file now?
+LID_MAXIMIZE:Maximize
+LID_INVALID_DATA:Invalid data format!%CRLF%Please use the Internet Update to renew your datafiles.
+LID_UPDATE_MASTER:Fetching data from master...
+LID_MASTER_ERROR:Error while fetching data from master!
+LID_MASTER_ERROR_SERVER:Error while fetching data from master! The server may be down.%CRLF%Please try again later.
+LID_ERROR_NUMBER:Error number
+LID_ERROR_CORRUPTED_DATA:The downloaded data is invalid.
+LID_PROCESSING:Processing data
+LID_PROC_DONE:Processing done
+LID_TV_NAME:Name
+LID_TV_SIZE:Size
+LID_TV_DATE:Date
+LID_START_UPDATE:Start update
+LID_NO_UPDATE:There are no new items available!
+LID_NEW_DATA:new data files
+LID_NEW_DATA_FILE:New data file
+LID_DOWN_ERROR:Error while downloading the requested file!
+LID_UPDATE_COMPLETE:Update successfully completed!
+LID_COMPRESS_ERROR:Error while decompressing data!
+LID_EXEC_ERR:The operating system is out of memory or resources.
+LID_EXEC_ERR_FNF:The specified file was not found.
+LID_EXEC_ERR_PNF:The specified path was not found.
+LID_EXEC_ERR_ACCESSDENIED:The operating system denied access to the specified file.
+LID_EXEC_ERR_SHARE:A sharing violation occurred.
+LID_EXEC_ERR_NOASSOC:There is no application associated with the given filename extension.
+LID_RETRY:Retry
+LID_DOWNING:Downloading
+LID_BYTES_DOWNED:Bytes downloaded
+LID_ERR_PROXY:Invalid proxy server!
+LID_NO_DOWN:Nothing to download!
+LID_INSTALLING:Installing... Please wait
+LID_DATA_DOWN_ERR:An error occurred while downloading the new data files.%CRLF%You might need to download them again.
+LID_ADJUST_PROXY:If you're using a proxy server, please cancel, adjust the proxy settings and retry.
+LID_DISABLE_PROXY:If you're not using a proxy server, please cancel, uncheck 'Use proxy' and retry.
+LID_USE_PROXY:Use proxy
+LID_DOWN_COMPLETE:File download completed.
+LID_CON_FAILED:Connection failed...
+LID_CANCELLED:Update cancelled
+LID_UPD_START:Starting update...
+LID_DOWNING_FILE:Downloading file
+LID_CHOOSE_UPDATE:Please choose one or more of the items to update, and click 'Start Update'
+LID_NO_OTHERS:This option is not compatible with other options. If you choose to install this, you cannot select one of the other options.
+LID_ERR_CHM:An error occurred while trying to show the Html Help contents.
+LID_ERR_NO_HH:Html Help not available on this computer.
+LID_COLOR_CODING:Color Coding
+LID_CC_KEYWORDS_404:Unable to find the keywords file!%CRLF%Color Coding cancelled...
+LID_DOTNET:.NET
+LID_REPLACED_BY:Replaced by
+LID_NO_INFO:No info available
+LID_NO_EXAMPLE:No example available
+LID_NEW_DOTNET:new dotNET files
+LID_DOTNET_DATA:.NET data version
+LID_IUPD_STEP1:Step 1/5: Connection settings
+LID_IUPD_STEP2:Step 2/5: Downloading index
+LID_IUPD_STEP3:Step 3/5: Select updates
+LID_IUPD_STEP4:Step 4/5: Downloading updates
+LID_IUPD_STEP5:Step 5/5: Install files
+LID_IUPD_CONTACT:Contacting AllAPI.net... Please wait
+LID_IUPD_SIZE:(This is usually between 10KB and 15KB)
+LID_IUPD_RECVD:Bytes received
+LID_IUPD_TYPE:Type
+LID_IUPD_PROXY:Proxy
+LID_IUPD_USERNAME:Username
+LID_IUPD_PASSWORD:Password
+LID_IUPD_PORT:Port
+LID_IUPD_SAVEPASS:Save password
+LID_IUPD_NOPROXYAUTH:No proxy authentication
+LID_IUPD_REMOTEDNS:Use remote DNS
+LID_IUPD_TYPE1:No Proxy
+LID_IUPD_TYPE2:Normal Proxy
+LID_IUPD_TYPE3:SOCKS4 Proxy
+LID_IUPD_TYPE4:SOCKS5 Proxy

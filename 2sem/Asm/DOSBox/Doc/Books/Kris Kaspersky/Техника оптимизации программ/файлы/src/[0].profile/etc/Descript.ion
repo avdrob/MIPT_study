@@ -1,0 +1,4 @@
+crypted.dat зашифрованный файл для его расшифровки pswd.exe
+crypter.c шифровщик файлов для их расшифровки pswd.exe
+crypter.make.bat CALL clock.make crypter.c
+Descript.ion /cat/root

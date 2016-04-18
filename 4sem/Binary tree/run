@@ -1,0 +1,6 @@
+#!/bin/bash
+make all
+./test
+rm ./test.gc*
+gcov -f tree.c 
+

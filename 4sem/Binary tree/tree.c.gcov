@@ -1,0 +1,288 @@
+        -:    0:Source:Back/tree.c
+        -:    0:Graph:tree.gcno
+        -:    0:Data:tree.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdlib.h>
+        -:    2:#include "tree.h"
+        -:    3:
+        -:    4:struct leaf_t {
+        -:    5:    tree_t *tree;
+        -:    6:    struct leaf_t *parent;
+        -:    7:    struct leaf_t *left;
+        -:    8:    struct leaf_t *right;
+        -:    9:    struct leaf_t *prev;
+        -:   10:    struct leaf_t *next;
+        -:   11:    int height;
+        -:   12:    data_t val;
+        -:   13:};
+        -:   14:
+        -:   15:struct tree_t {
+        -:   16:    leaf_t *root;
+        -:   17:    leaf_t *first;
+        -:   18:    leaf_t *last;
+        -:   19:    int leaf_cnt;
+        -:   20:    int height;
+        -:   21:};
+        -:   22:
+        -:   23:struct iter_t {
+        -:   24:	tree_t *tree;
+        -:   25:	leaf_t *cur_leaf;
+        -:   26:};
+        -:   27:
+        -:   28:static leaf_t *create_leaf(tree_t*, data_t);
+        -:   29:static void subtree_dump(tree_t*, leaf_t*, FILE*, int);
+        -:   30:static int count_height(leaf_t*);
+        -:   31:
+        -:   32://=====================================
+        -:   33://Private functions
+        1:   34:leaf_t *create_leaf(tree_t* tree, data_t val)
+        -:   35:{
+        1:   36:    leaf_t *new_leaf=(leaf_t*)calloc(1, sizeof(leaf_t));
+        1:   37:    if (!new_leaf)
+    #####:   38:        return NULL;
+        1:   39:    new_leaf->parent=new_leaf->left=new_leaf->right=new_leaf->next=new_leaf->prev=NULL;
+        1:   40:    new_leaf->tree=tree;
+        1:   41:    new_leaf->val=val;
+        -:   42:    
+        1:   43:    return new_leaf;
+        -:   44:}
+        -:   45:
+       23:   46:void subtree_dump(tree_t *tree, leaf_t *leaf, FILE* outf, int depth)
+        -:   47:{
+       23:   48:    iter_t *it=new_iter(tree);
+        -:   49:    if (!new_iter)
+        -:   50:        return;
+       23:   51:    set_iter(it, leaf);
+        -:   52:    
+        -:   53:    int i;
+      255:   54:    for (i=1; i<=depth; i++)
+      232:   55:        fprintf(outf, "   ");
+       23:   56:    fprintf(outf, "%d: [%p] %d\n", getlh(iter_cur(it)), iter_cur(it), get_data(iter_cur(it)));
+        -:   57:    
+       23:   58:    if (iter_left(it))
+       11:   59:        subtree_dump(tree, iter_left(it), outf, depth+1);
+       23:   60:    if (iter_right(it))
+       11:   61:        subtree_dump(tree, iter_right(it), outf, depth+1);
+        -:   62:
+       23:   63:    delete_iter(it);
+       23:   64:    return;
+        -:   65:}
+        -:   66:
+      650:   67:int count_height(leaf_t* leaf)
+        -:   68:{
+      650:   69:    int hl=0, hr=0;
+      650:   70:    if (leaf->left)
+      310:   71:        hl=count_height(leaf->left);
+      650:   72:    if (leaf->right)
+      320:   73:        hr=count_height(leaf->right);
+        -:   74:    if (hl==hl==0)
+        -:   75:        return leaf->height;
+        -:   76:    
+      650:   77:    return (hl>hr ? hl:hr);
+        -:   78:}
+        -:   79://======================================
+        -:   80:
+        -:   81://======================================
+        -:   82://Public functions
+       24:   83:iter_t *new_iter(tree_t *tree)
+        -:   84:{
+       24:   85:    iter_t *iter=(iter_t*)calloc(1, sizeof(iter_t));
+       24:   86:    if (!iter)
+    #####:   87:        return NULL;
+       24:   88:    iter->tree=tree;
+       24:   89:    iter->cur_leaf=tree->root;
+        -:   90:    
+       24:   91:    return iter;
+        -:   92:}
+        -:   93:
+       23:   94:void delete_iter(iter_t *iter)
+        -:   95:{
+       23:   96:    iter->tree=NULL;
+       23:   97:    iter->cur_leaf=NULL;
+       23:   98:    free(iter);
+       23:   99:}
+        -:  100:
+       27:  101:leaf_t *iter_root(iter_t *iter)
+        -:  102:{
+       27:  103:    return iter->tree->root;
+        -:  104:}
+        -:  105:
+        1:  106:leaf_t *iter_begin(iter_t *iter)
+        -:  107:{
+        1:  108:    return iter->tree->first;
+        -:  109:}
+        -:  110:
+        4:  111:leaf_t *iter_end(iter_t *iter)
+        -:  112:{
+        4:  113:    return iter->tree->last;
+        -:  114:}
+        -:  115:
+       35:  116:leaf_t *iter_left(iter_t *iter)
+        -:  117:{
+       35:  118:    return iter->cur_leaf->left;
+        -:  119:}
+        -:  120:
+       35:  121:leaf_t *iter_right(iter_t *iter)
+        -:  122:{
+       35:  123:    return iter->cur_leaf->right;
+        -:  124:}
+        -:  125:
+       21:  126:leaf_t *iter_par(iter_t* iter)
+        -:  127:{
+       21:  128:    return iter->cur_leaf->parent;
+        -:  129:}
+        -:  130:
+       43:  131:leaf_t *iter_prev(iter_t *iter)
+        -:  132:{
+       43:  133:    return iter->cur_leaf->prev;
+        -:  134:}
+        -:  135:
+       47:  136:leaf_t *iter_next(iter_t *iter)
+        -:  137:{
+       47:  138:    return iter->cur_leaf->next;
+        -:  139:}
+        -:  140:    
+      308:  141:leaf_t *iter_cur(iter_t *iter)
+        -:  142:{
+      308:  143:    return iter->cur_leaf;
+        -:  144:}
+        -:  145:
+      185:  146:void *set_iter(iter_t *iter, leaf_t *leaf)
+        -:  147:{
+      185:  148:    if (!leaf)
+      188:  149:        return;
+      182:  150:    iter->cur_leaf=leaf;
+        -:  151:}
+        -:  152:
+        1:  153:tree_t *new_tree()
+        -:  154:{   
+        1:  155:    tree_t *tree=(tree_t*)calloc(1, sizeof(tree_t));
+        1:  156:    if (!tree)
+    #####:  157:        return NULL;
+        -:  158:        
+        1:  159:    leaf_t *root=create_leaf(tree, 0);
+        1:  160:    if (!root){
+    #####:  161:        free(tree);
+    #####:  162:        return NULL;
+        -:  163:    }
+        1:  164:    tree->root=tree->first=tree->last=root;
+        1:  165:    tree->root->height=0;
+        1:  166:    tree->leaf_cnt=1;
+        1:  167:    tree->height=0;
+        -:  168:    
+        1:  169:    return tree;
+        -:  170:}
+        -:  171:
+        1:  172:void delete_tree(tree_t *tree)
+        -:  173:{
+        1:  174:    delete_subtree(tree, tree->root);
+        -:  175:
+        1:  176:    tree->root=tree->first=tree->last=NULL;
+        1:  177:    tree->height=tree->leaf_cnt=0;
+        1:  178:    free(tree);
+        1:  179:}
+        -:  180:
+       23:  181:void delete_subtree(tree_t *tree, leaf_t* leaf)
+        -:  182:{
+       23:  183:    if(!leaf)
+        1:  184:        return;
+       22:  185:    if (leaf==tree->root)
+        2:  186:        return;
+        -:  187:    
+       20:  188:    if (leaf->left)
+       10:  189:        delete_subtree(tree, leaf->left);
+       20:  190:    if (leaf->right)
+        9:  191:        delete_subtree(tree, leaf->right);
+        -:  192:        
+       20:  193:    if (leaf==leaf->parent->left)
+       10:  194:        leaf->parent->left=NULL;
+        -:  195:    else 
+       10:  196:        leaf->parent->right=NULL;
+        -:  197:    
+       20:  198:    if (leaf->prev)
+       20:  199:        leaf->prev->next=leaf->next;
+       20:  200:    if (leaf->next)
+       20:  201:        leaf->next->prev=leaf->prev;
+        -:  202:    
+       20:  203:    tree->leaf_cnt--;
+       20:  204:    leaf->parent=leaf->left=leaf->right=leaf->prev=leaf->next=NULL;
+       20:  205:    leaf->tree=NULL;
+       20:  206:    leaf->val=0;
+       20:  207:    leaf->height=0;
+       20:  208:    tree->height=count_height(tree->root);
+       20:  209:    free(leaf);
+        -:  210:    
+       20:  211:    return;
+        -:  212:}
+        -:  213:
+       44:  214:leaf_t *add_leaf(tree_t *tree, leaf_t *dest_leaf, const char mode, data_t val)
+        -:  215:{
+       44:  216:    if (!(mode=='r' | mode=='l'))
+        1:  217:        return NULL;
+       43:  218:    if ((mode=='r' && dest_leaf->right) | (mode=='l' && dest_leaf->left))
+        1:  219:        return NULL;
+        -:  220:        
+       42:  221:    leaf_t *new_leaf=(leaf_t*)calloc(1, sizeof(leaf_t));
+       42:  222:    if (!new_leaf)
+    #####:  223:        return NULL;
+        -:  224:        
+       42:  225:    if (mode=='r')
+       21:  226:        dest_leaf->right=new_leaf;
+        -:  227:    else
+       21:  228:        dest_leaf->left=new_leaf;
+       42:  229:    new_leaf->tree=tree;
+       42:  230:    new_leaf->parent=dest_leaf;
+       42:  231:    new_leaf->left=new_leaf->right=new_leaf->next=NULL;
+       42:  232:    new_leaf->prev=tree->last;
+       42:  233:    tree->last->next=new_leaf;
+       42:  234:    tree->last=new_leaf;
+       42:  235:    tree->leaf_cnt+=1;
+       42:  236:    new_leaf->val=val;
+       42:  237:    new_leaf->height=dest_leaf->height+1;
+       42:  238:    if (new_leaf->height>tree->height)
+       21:  239:        tree->height+=1;
+        -:  240:    
+       42:  241:    return new_leaf;
+        -:  242:}
+        -:  243:
+       23:  244:data_t get_data(leaf_t *leaf)
+        -:  245:{
+       23:  246:    return leaf->val;
+        -:  247:}
+        -:  248:
+       87:  249:int put_data(leaf_t *leaf, data_t val)
+        -:  250:{
+       87:  251:    if (!leaf)
+        1:  252:        return 1;
+       86:  253:    leaf->val=val;
+       86:  254:    return 0;
+        -:  255:}
+        -:  256:
+      109:  257:int getlh(leaf_t *leaf)
+        -:  258:{
+      109:  259:    return leaf->height;
+        -:  260:}
+        -:  261:
+       43:  262:int gettrh(tree_t *tree)
+        -:  263:{
+       43:  264:    return tree->height;
+        -:  265:}
+        -:  266:
+       88:  267:int getlfnum(tree_t* tree)
+        -:  268:{
+       88:  269:    return tree->leaf_cnt;
+        -:  270:}
+        -:  271:
+        -:  272:
+        1:  273:void tree_dump(tree_t *tree, FILE *outf)
+        -:  274:{
+        1:  275:    fprintf(outf, "\n############################\n");
+        1:  276:    fprintf(outf, "#Tree [%9p]          #\n", tree);
+        1:  277:    fprintf(outf, "#Height =%5d             #\n", tree->height);
+        1:  278:    fprintf(outf, "#Number of leafs =%5d    #\n", tree->leaf_cnt);
+        1:  279:    fprintf(outf, "############################\n");
+        -:  280:    
+        1:  281:    subtree_dump(tree, tree->root, outf, 0);
+        1:  282:    return;
+        -:  283:}
